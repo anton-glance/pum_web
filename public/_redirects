@@ -1,0 +1,9 @@
+# Cloudflare Pages _redirects matches PATHS, not hostnames — so the www→apex
+# redirect CANNOT live here (a "/*" rule would also loop the apex domain).
+# It must be a zone-level Redirect Rule (owner action, ~1 min in the dashboard):
+#   pum.mx → Rules → Redirect Rules → Create → template "Redirect from WWW to Root"
+#   (or: When hostname equals www.pum.mx → 301 to https://pum.mx/${http.request.uri.path})
+# Canonical tags already point every page at the apex, so SEO is consolidated meanwhile.
+#
+# Path-level redirects (if ever needed) go below, e.g.:
+#   /old-path  /new-path  301

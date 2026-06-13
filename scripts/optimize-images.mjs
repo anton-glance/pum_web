@@ -14,7 +14,7 @@ const OUT = join(ROOT, 'public/assets')
 
 /* widths per asset family — largest ≈ 2× the biggest rendered size */
 const FAMILIES = {
-  packs: { widths: [200, 400, 800], png: 800, quality: { avif: 55, webp: 78 } },
+  packs: { widths: [200, 400, 800], png: 560, quality: { avif: 55, webp: 78 } },
   puffs: { widths: [180, 360], png: 360, quality: { avif: 60, webp: 80 } },
   logos: { widths: [200, 400], png: 400, quality: { avif: 60, webp: 85 } },
   brand: { widths: [300, 600], png: 600, quality: { avif: 55, webp: 80 } },
@@ -50,7 +50,7 @@ async function brandMarks() {
       await input.clone().resize({ width: w }).avif({ quality: 55 }).toFile(join(outDir, `${name}-${w}.avif`))
       await input.clone().resize({ width: w }).webp({ quality: 80 }).toFile(join(outDir, `${name}-${w}.webp`))
     }
-    await input.clone().resize({ width: 600 }).png({ compressionLevel: 9 }).toFile(join(outDir, `${name}.png`))
+    await input.clone().resize({ width: 420 }).png({ compressionLevel: 9 }).toFile(join(outDir, `${name}.png`))
   }
   // reversed wordmark for legal headers (rendered 32px tall)
   const rev = sharp(join(SRC, 'brand/logo-corn-u-reversed.png'))

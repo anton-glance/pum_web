@@ -173,6 +173,10 @@ function headBlock(p) {
     `<meta name="twitter:image" content="${ogImage}">`,
     ...p.ld.map((obj) => `<script type="application/ld+json">${JSON.stringify(obj)}</script>`),
   ]
+  /* Cloudflare Web Analytics — injected only when a token is set in site.json (owner pastes
+     it from the CF dashboard). Cookieless/privacy-friendly, so no consent banner required. */
+  const cfToken = SITE.analytics && SITE.analytics.cloudflareToken
+  if (cfToken) lines.push(`<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"${esc(cfToken)}"}'></script>`)
   return lines.join('\n')
 }
 

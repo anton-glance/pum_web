@@ -1,0 +1,26 @@
+# Cloudflare Pages headers. Security headers apply site-wide (/*); cache rules are
+# scoped so content-hashed assets/fonts cache for a year while live JSON data stays fresh.
+# NOTE: Permissions-Policy intentionally ALLOWS gyroscope/accelerometer — the device-tilt
+# motion engine (src/lib/motion.jsx) needs DeviceOrientation. CSP uses 'unsafe-inline' for
+# script/style because the site is statically prerendered React with inline styles + inline
+# JSON-LD (no user input / no XSS surface); connect-src/form-action stay open over https so
+# connecting a forms provider or analytics later does not require editing the CSP.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(self), gyroscope=(self), camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; form-action 'self' https:; upgrade-insecure-requests
+
+# Content-hashed build assets — safe to cache forever
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Self-hosted fonts — stable filenames, cache long
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Live content JSON is fetched at runtime — keep it fresh so edits propagate quickly
+/data/*
+  Cache-Control: public, max-age=300, must-revalidate

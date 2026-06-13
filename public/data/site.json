@@ -22,6 +22,10 @@
     "prelaunchRibbon": true,
     "waitlist": false
   },
+  "analytics": {
+    "$comment": "Cloudflare Web Analytics: paste the beacon token from the CF dashboard (Analytics → Web Analytics → add pum.mx). Empty = no analytics injected. Privacy-friendly, cookieless, no consent banner needed.",
+    "cloudflareToken": ""
+  },
   "forms": {
     "$comment": "Endpoint URLs for a form/email provider (Formspree, Buttondown, Mailchimp, own API…). Empty string = simulate success locally (pre-launch). Swap providers by editing these only (handoff doc 06 R9).",
     "waitlistUrl": "",

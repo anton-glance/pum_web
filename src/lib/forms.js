@@ -5,10 +5,15 @@
    `empresa` is the honeypot field — bots that fill it get a silent fake success. */
 import { SITE } from './data.js'
 
+/* Endpoint resolution order: build-time env (VITE_WAITLIST_URL / VITE_NEWSLETTER_URL /
+   VITE_CONTACT_URL) → site.json forms.* → '' (empty = pre-launch simulate). This lets the
+   owner connect a provider (Formspree, Buttondown, Mailchimp, own API…) by setting one env
+   var at build/deploy time without editing committed data. */
+const ENV = (typeof import.meta !== 'undefined' && import.meta.env) || {}
 const ENDPOINTS = {
-  waitlist: () => SITE.forms?.waitlistUrl || '',
-  newsletter: () => SITE.forms?.newsletterUrl || '',
-  contact: () => SITE.forms?.contactUrl || '',
+  waitlist: () => ENV.VITE_WAITLIST_URL || SITE.forms?.waitlistUrl || '',
+  newsletter: () => ENV.VITE_NEWSLETTER_URL || SITE.forms?.newsletterUrl || '',
+  contact: () => ENV.VITE_CONTACT_URL || SITE.forms?.contactUrl || '',
 }
 
 export async function submitForm(kind, fields) {
