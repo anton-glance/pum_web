@@ -2,8 +2,8 @@
    Deck-aligned (handoff v3): no placeholders, en-desarrollo framing, target nutrition
    table + footnote, waitlist CTAs. */
 import React from 'react'
-import { Icon, esValidation, PumImg, NutritionTable } from './ui.jsx'
-import { FLAVORS, PAGES, NUTRITION, SITE, LINKS, STRINGS, WAITLIST } from '../lib/data.js'
+import { Icon, esValidation, PumImg, NutritionTable, RichText, inlineMd, MdTable } from './ui.jsx'
+import { PAGES, NUTRITION, SITE, STRINGS } from '../lib/data.js'
 import { submitForm, honeypotProps } from '../lib/forms.js'
 import { Parallax } from '../lib/motion.jsx'
 
@@ -14,12 +14,18 @@ function SubHero({ hero }) {
         <div>
           <span className="eyebrow">{hero.eyebrow}</span>
           <h1>{hero.headline}</h1>
-          <p>{hero.body}</p>
+          <p>{inlineMd(hero.body, 'hero')}</p>
         </div>
         <div className="art"><Parallax fx={8} fy={6}><PumImg src={hero.art} widths={[200, 400, 800]} sizes={`${hero.artMaxWidth}px`} width={hero.art.includes('/packs/') ? 800 : 600} height={hero.art.includes('/packs/') ? 1028 : 900} alt={SITE.brand.name} style={{ maxWidth: hero.artMaxWidth, width: '78%', height: 'auto' }} /></Parallax></div>
       </div>
     </section>
   )
+}
+
+/* Captioned placeholder frame for [FOTO REAL] slots — no people/children generated;
+   the brief stays visible so real photography can be dropped in later. */
+function Placeholder({ caption }) {
+  return <div className="ph"><Icon name="image" size={34} /><span>{caption}</span></div>
 }
 
 /* Closing band on content pages — the kept pre-launch lead capture: opens the
@@ -40,26 +46,57 @@ export function NosotrosPage({ onNotify }) {
   return (
     <React.Fragment>
       <SubHero hero={P.hero} />
+      {/* founder story + portrait placeholder */}
       <section className="block"><div className="wrap">
-        <div className="split">
-          <div>
-            <h2 className="sec">{P.story.headline}</h2>
-            {P.story.paras.map((t, i) => <p className="lead" key={i} style={{ marginBottom: 12 }}>{t}</p>)}
-          </div>
-          <div className="ph"><Icon name="image" size={34} /> Foto: fundador (próximamente)</div>
+        <div className="split" style={{ alignItems: 'start' }}>
+          <div>{P.story.paras.map((t, i) => <RichText key={i} as="p" className="lead" text={t} style={{ marginBottom: 14 }} />)}</div>
+          <Placeholder caption={P.story.photo} />
         </div>
       </div></section>
+      {/* el hueco + infographic */}
       <section className="block alt"><div className="wrap">
-        <h2 className="sec">{P.compromisos.headline}</h2>
+        <h2 className="sec">{P.hueco.headline}</h2>
+        <p className="lead">{P.hueco.intro}</p>
         <ul className="commit">
-          {P.compromisos.items.map((it, i) => (
-            <li key={i}><Icon name="check-circle-2" size={22} /><span>{it}</span></li>
+          {P.hueco.items.map((it, i) => <li key={i}><Icon name="check-circle-2" size={22} /><span>{inlineMd(it, `hk${i}`)}</span></li>)}
+        </ul>
+        <div className="hueco-grid" role="img" aria-label={P.hueco.infographicNote}>
+          {P.hueco.cards.map((c, i) => (
+            <div className={`hueco-card${c.ok ? ' ok' : ''}`} key={i}>
+              <Icon name={c.ok ? 'check-circle-2' : 'x-circle'} size={30} />
+              <strong>{c.label}</strong>
+              <span>{c.eq}</span>
+            </div>
           ))}
+        </div>
+        <RichText as="p" className="lead" text={P.hueco.body} style={{ marginTop: 24 }} />
+      </div></section>
+      {/* mis compromisos */}
+      <section className="block"><div className="wrap">
+        <h2 className="sec">{P.compromisos.headline}</h2>
+        <div className="compromisos">
+          {P.compromisos.items.map((c, i) => (
+            <div className="compromiso" key={i}>
+              <div className="num" aria-hidden="true">{i + 1}</div>
+              <div><h3>{c.title}</h3><RichText as="p" text={c.body} /></div>
+            </div>
+          ))}
+        </div>
+        <div style={{ marginTop: 30, maxWidth: 760 }}><Placeholder caption={P.compromisos.photo} /></div>
+      </div></section>
+      {/* mi promesa */}
+      <section className="block alt"><div className="wrap">
+        <h2 className="sec">{P.promesa.headline}</h2>
+        <p className="lead">{P.promesa.intro}</p>
+        <ul className="commit">
+          {P.promesa.items.map((it, i) => <li key={i}><Icon name="check-circle-2" size={22} /><span>{inlineMd(it, `pr${i}`)}</span></li>)}
         </ul>
       </div></section>
+      {/* seguir el camino */}
       <section className="block"><div className="wrap">
-        <h2 className="sec">{P.promesa.headline}</h2>
-        <p className="lead">{P.promesa.body}</p>
+        <h2 className="sec">{P.camino.headline}</h2>
+        <RichText as="p" className="lead" text={P.camino.body} />
+        <p className="footnote">{inlineMd(P.faqNote, 'fn')}</p>
       </div></section>
       <CtaBand cta={P.cta} onNotify={onNotify} />
     </React.Fragment>
@@ -72,28 +109,47 @@ export function IngredientesPage({ onNotify }) {
     <React.Fragment>
       <SubHero hero={P.hero} />
       <section className="block"><div className="wrap">
-        <p className="lead" style={{ marginBottom: 22 }}>{P.intro}</p>
-        <div className="split" style={{ alignItems: 'start' }}>
-          <div>
-            <h2 className="sec" style={{ fontSize: 'clamp(20px,3vw,26px)' }}>{P.statementTitle}</h2>
-            <p className="lead" style={{ marginBottom: 16 }}>{P.statement}</p>
-            <p className="lead" style={{ fontSize: 12.5, color: 'var(--fg-mute)' }}>*{P.footnote}</p>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 19, color: 'var(--pum-navy)', margin: '24px 0 8px' }}>{P.friendlyHeadline}</h3>
-            <p className="lead">{P.friendly}</p>
+        <Placeholder caption={P.infographicNote} />
+        {P.sections.map((s, si) => (
+          <div key={si} style={{ marginTop: 32 }}>
+            <h2 className="sec" style={{ fontSize: 'clamp(20px,3vw,28px)' }}>{s.headline}</h2>
+            <ul className="ing-list">
+              {s.items.map((it, i) => <li key={i}><b>{it.term}</b> — {inlineMd(it.desc, `s${si}-${i}-`)}</li>)}
+            </ul>
           </div>
-          <div>
-            <h2 className="sec" style={{ fontSize: 'clamp(20px,3vw,26px)' }}>{P.nutritionHeadline}</h2>
-            <NutritionTable data={NUTRITION} />
-          </div>
+        ))}
+      </div></section>
+      <section className="block alt"><div className="wrap">
+        <h2 className="sec">{P.saborizantes.headline}</h2>
+        <p className="lead">{P.saborizantes.intro}</p>
+        <MdTable headers={P.saborizantes.headers} rows={P.saborizantes.rows} />
+        <h2 className="sec" style={{ marginTop: 44 }}>{P.colorantes.headline}</h2>
+        <p className="lead">{P.colorantes.intro}</p>
+        <MdTable headers={P.colorantes.headers} rows={P.colorantes.rows} />
+        <h2 className="sec" style={{ marginTop: 44 }}>{P.vitaminas.headline}</h2>
+        <MdTable headers={P.vitaminas.headers} rows={P.vitaminas.rows} />
+      </div></section>
+      <section className="block"><div className="wrap">
+        <h2 className="sec">{P.sinSellos.headline}</h2>
+        <p className="lead">{P.sinSellos.intro}</p>
+        <MdTable headers={P.sinSellos.headers} rows={P.sinSellos.rows} />
+        <div style={{ marginTop: 44, maxWidth: 560 }}>
+          <h2 className="sec" style={{ fontSize: 'clamp(20px,3vw,26px)' }}>{P.nutritionHeadline}</h2>
+          <p className="lead" style={{ fontSize: 14, marginBottom: 14 }}>{P.nutritionNote}</p>
+          <NutritionTable data={NUTRITION} />
         </div>
       </div></section>
       <section className="block alt"><div className="wrap">
         <h2 className="sec">{P.haveNot.headline}</h2>
-        <ul className="commit">
-          {P.haveNot.items.map((it, i) => (
-            <li key={i}><Icon name="x-circle" size={22} style={{ color: '#E23D3D' }} /><span>{it}</span></li>
-          ))}
+        <ul className="commit no">
+          {P.haveNot.items.map((it, i) => <li key={i}><Icon name="x-circle" size={22} /><span>{it}</span></li>)}
         </ul>
+      </div></section>
+      <section className="block"><div className="wrap">
+        <h2 className="sec">{P.sabores.headline}</h2>
+        <RichText as="p" className="lead" text={P.sabores.body} />
+        <p className="footnote">{P.footnote}</p>
+        <p className="footnote">{inlineMd(P.faqNote, 'fn')}</p>
       </div></section>
       <CtaBand cta={P.cta} onNotify={onNotify} />
     </React.Fragment>
@@ -102,20 +158,28 @@ export function IngredientesPage({ onNotify }) {
 
 export function FaqPage({ onNotify }) {
   const P = PAGES.faq
+  const dt = { fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 19, color: 'var(--pum-navy)', margin: '0 0 8px', lineHeight: 1.25 }
+  const dd = { margin: 0, fontSize: 15.5, lineHeight: 1.6, color: 'var(--fg-soft)', fontWeight: 500 }
   return (
     <React.Fragment>
       <SubHero hero={P.hero} />
-      <section className="block"><div className="wrap" style={{ maxWidth: 760 }}>
-        <dl style={{ margin: 0 }}>
-          {P.items.map((it, i) => (
-            <div key={i} style={{ borderBottom: '1px solid var(--border)', padding: '20px 0' }}>
-              <dt style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 19, color: 'var(--pum-navy)', margin: '0 0 8px', lineHeight: 1.25 }}>{it.q}</dt>
-              <dd style={{ margin: 0, fontSize: 15.5, lineHeight: 1.6, color: 'var(--fg-soft)', fontWeight: 500 }}>{it.a}</dd>
-            </div>
-          ))}
-        </dl>
+      <section className="block"><div className="wrap" style={{ maxWidth: 820 }}>
+        {P.groups.map((g, gi) => (
+          <div className="faq-group" key={gi} style={gi === 0 ? { marginTop: 0 } : undefined}>
+            <h2 className="sec" style={{ fontSize: 'clamp(22px,3vw,30px)' }}>{g.headline}</h2>
+            <dl style={{ margin: '8px 0 0' }}>
+              {g.items.map((it, i) => (
+                <div key={i} style={{ borderBottom: '1px solid var(--border)', padding: '20px 0' }}>
+                  <dt style={dt}>{it.q}</dt>
+                  <dd style={dd}>{inlineMd(it.a, `f${gi}-${i}-`)}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        ))}
+        <p className="footnote">{P.footnote}</p>
       </div></section>
-      <CtaBand cta={STRINGS.waitlist && { headline: PAGES.nosotros.cta.headline, body: PAGES.nosotros.cta.body, button: PAGES.nosotros.cta.button }} onNotify={onNotify} />
+      <CtaBand cta={P.cta} onNotify={onNotify} />
     </React.Fragment>
   )
 }

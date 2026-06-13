@@ -152,6 +152,67 @@ export function NutritionTable({ data, compact = false }) {
   )
 }
 
+/* Inline-markdown renderer for the verbatim brand copy (PUM_ClaudeDesign_build_prompt.md).
+   Handles [label](/route) links, **bold** and *italic*. Markdown routes from the copy
+   (/ingredientes, /para-papas, /sabores/x, /preguntas-frecuentes) are mapped to the real
+   built .html routes so the approved copy can be pasted verbatim into the data files. */
+const ROUTE_MAP = {
+  '/ingredientes': '/marca/ingredientes.html',
+  '/para-papas': '/marca/nosotros.html',
+  '/preguntas-frecuentes': '/preguntas-frecuentes.html',
+}
+export function resolveHref(href) {
+  if (ROUTE_MAP[href]) return ROUTE_MAP[href]
+  if (/^\/sabores\/[a-z]+$/i.test(href)) return `${href}.html`
+  return href
+}
+function emphasis(str, kp) {
+  const out = []
+  const re = /\*\*([^*]+)\*\*|\*([^*]+)\*/g
+  let m, last = 0, k = 0
+  while ((m = re.exec(str))) {
+    if (m.index > last) out.push(str.slice(last, m.index))
+    if (m[1] != null) out.push(<strong key={`${kp}b${k++}`}>{m[1]}</strong>)
+    else out.push(<em key={`${kp}i${k++}`}>{m[2]}</em>)
+    last = re.lastIndex
+  }
+  if (last < str.length) out.push(str.slice(last))
+  return out
+}
+export function inlineMd(text, kp = 't') {
+  if (text == null) return null
+  const out = []
+  const re = /\[([^\]]+)\]\(([^)]+)\)/g
+  let m, last = 0, k = 0
+  while ((m = re.exec(text))) {
+    if (m.index > last) out.push(...emphasis(text.slice(last, m.index), `${kp}p${k}`))
+    out.push(<a key={`${kp}l${k++}`} href={resolveHref(m[2])}>{emphasis(m[1], `${kp}la${k}`)}</a>)
+    last = re.lastIndex
+  }
+  if (last < text.length) out.push(...emphasis(text.slice(last), `${kp}e`))
+  return out
+}
+export function RichText({ text, as: Tag = 'p', className, style }) {
+  return <Tag className={className} style={style}>{inlineMd(text)}</Tag>
+}
+
+/* Generic content table for the Ingredientes page (cells may contain inline-markdown
+   links). Horizontally scrolls on narrow screens via the .table-wrap wrapper. */
+export function MdTable({ headers, rows }) {
+  return (
+    <div className="table-wrap">
+      <table className="prose-table">
+        <thead><tr>{headers.map((h, i) => <th key={i}>{h}</th>)}</tr></thead>
+        <tbody>
+          {rows.map((r, i) => (
+            <tr key={i}>{r.map((c, j) => <td key={j}>{inlineMd(c, `c${i}-${j}-`)}</td>)}</tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
 export function Icon({ name, size = 22, stroke = 2.2, color, style }) {
   const Cmp = ICONS[name]
   if (!Cmp) return null

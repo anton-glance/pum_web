@@ -51,14 +51,28 @@ const breadcrumb = (items) => ({
   '@type': 'BreadcrumbList',
   itemListElement: items.map(([name, url], i) => ({ '@type': 'ListItem', position: i + 1, name, ...(url ? { item: `${ORIGIN}${clean(url)}` } : {}) })),
 })
+/* FAQPage from the grouped verbatim Q&As; `sa` is the plain-text schema answer
+   (the visible `a` carries inline-markdown links). */
 const faqLD = () => ({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: CONTENT.faq.items.map((it) => ({
+  mainEntity: CONTENT.faq.groups.flatMap((g) => g.items).map((it) => ({
     '@type': 'Question',
     name: it.q,
-    acceptedAnswer: { '@type': 'Answer', text: it.a },
+    acceptedAnswer: { '@type': 'Answer', text: it.sa || it.a },
   })),
+})
+/* ItemList of flavors (PUM_ClaudeDesign_build_prompt.md §SEO) — on Para Papás + Ingredientes. */
+const FLAVOR_LIST = [
+  ['Jamaica · Flor crujiente', 'jamaica'],
+  ['Limón · Fresco y ácido', 'limon'],
+  ['Chocolate · Cacao cremosito', 'chocolate'],
+  ['Churro · Dulce y canelado', 'churro'],
+]
+const itemListLD = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: FLAVOR_LIST.map(([name, id], i) => ({ '@type': 'ListItem', position: i + 1, name, url: `${ORIGIN}/sabores/${id}` })),
 })
 const productLD = (f) => ({
   '@context': 'https://schema.org',
@@ -98,7 +112,7 @@ const PAGES = [
     title: CONTENT.nosotros.title,
     desc: CONTENT.nosotros.metaDescription,
     ogType: 'website',
-    ld: [breadcrumb([['Inicio', '/'], ['Para Papás', '/marca/nosotros.html']])],
+    ld: [breadcrumb([['Inicio', '/'], ['Para Papás', '/marca/nosotros.html']]), itemListLD()],
   },
   {
     path: 'marca/ingredientes.html',
@@ -107,7 +121,7 @@ const PAGES = [
     title: CONTENT.ingredientes.title,
     desc: CONTENT.ingredientes.metaDescription,
     ogType: 'website',
-    ld: [breadcrumb([['Inicio', '/'], ['Ingredientes', '/marca/ingredientes.html']])],
+    ld: [breadcrumb([['Inicio', '/'], ['Ingredientes', '/marca/ingredientes.html']]), itemListLD()],
   },
   {
     path: 'marca/contacto.html',

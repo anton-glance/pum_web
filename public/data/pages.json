@@ -1,95 +1,210 @@
 {
-  "$comment": "Long-form page content for /marca, /sabores intro and /preguntas-frecuentes. Deck-aligned (handoff v3): no placeholders, en-desarrollo framing, target values under a footnote. Decisions applied: azúcar mascabado (D1), aceite de girasol (D3), official colors espirulina+cúrcuma only (D2), no school/legal-risk claims on the public site (D4).",
+  "$comment": "Long-form page content. Nosotros (Para Papás), Ingredientes y Preguntas frecuentes renderizan VERBATIM la copy aprobada de PUM_ClaudeDesign_build_prompt.md. Producto en desarrollo: se conservan las notas 'en desarrollo / preliminar'. Links en la copy usan rutas markdown (/sabores/x, /ingredientes, /para-papas, /preguntas-frecuentes) que el render mapea a las rutas .html reales. FOTO REAL = marco placeholder (sin personas/niños); INFOGRAFÍA = diseñada.",
   "nosotros": {
-    "title": "¡PUM! — Nosotros",
-    "metaDescription": "La historia detrás de ¡PUM!: un papá creando palitos de maíz horneados, ligeros y crujientes, con sabores dulces mexicanos y diseñados para no cargar ningún sello.",
+    "title": "Para Papás | ¡PUM! Snack sin sellos para niños",
+    "metaDescription": "La historia de ¡PUM!: palitos de maíz horneados, sin sellos de advertencia, en sabores mexicanos. El snack dulce que sí puede entrar a la escuela.",
     "hero": {
       "eyebrow": "Para Papás",
       "headline": "El snack que quiero hacer para nuestros hijos",
-      "body": "Soy papá y estoy creando ¡PUM!. Aquí te cuento por qué, en qué creo y los compromisos detrás de cada bolsa.",
+      "body": "Todo empezó con una pregunta sencilla: *¿por qué no hay un dulce ligerito y crujiente que de verdad pueda darle a mi hija?*",
       "art": "/assets/brand/mark-corn-u-trans.png",
       "artMaxWidth": 220
     },
     "story": {
-      "headline": "Por qué estoy creando ¡PUM!",
       "paras": [
-        "Soy papá de una niña de 10 años. Buscando algo para su recreo me di cuenta de que en México no existe un snack dulce, ligero y crujiente para niños: todo lo crujiente es salado y picante, todo lo dulce es denso o masticable, y casi todo carga sellos de advertencia.",
-        "Así que decidí hacerlo yo. ¡PUM! son palitos de maíz horneados, ligeros y crujientes, con sabores dulces mexicanos de verdad —Jamaica, Chocolate, Churro y Limón— en bolsa individual de 30 g. Un antojo para presumir, no para esconder.",
-        "Todavía estoy en la formulación, por eso los valores que ves en el sitio son objetivos preliminares. Lo comparto abierto desde ahora porque quiero construirlo bien y de frente."
-      ]
+        "Soy papá de una niña de 10 años. Como cualquier papá, quería darle algo rico para el recreo —un gustito, no un sermón—. Pero cada vez que buscaba, me topaba con la misma pared: **todo lo crujiente es salado o enchilado, y todo lo dulce es pesado, masticable o lleno de cosas que ni se pronuncian.** Y desde 2025, casi todo carga sellos —esos octágonos negros— que ni siquiera lo dejan entrar a la escuela.",
+        "Yo no quería un snack \"de dieta\". Quería un dulce de verdad: divertido, de esos que presume con sus amigos… y que yo le pudiera dar sin sentir culpa.",
+        "No lo encontré. Así que decidí hacerlo. Por eso estoy creando **¡PUM!**"
+      ],
+      "photo": "FOTO REAL: el fundador en casa, retrato cálido y espontáneo —café en mano, cocina al fondo. Sin ningún niño en la toma."
+    },
+    "hueco": {
+      "headline": "El hueco que quiero que ¡PUM! llene",
+      "intro": "En el anaquel hay de todo… menos esto:",
+      "items": [
+        "**Crujiente** sin ser salado ni picoso.",
+        "**Dulce** sin ser pesado, chicloso ni relleno.",
+        "**Sin un solo sello** de advertencia."
+      ],
+      "body": "¡PUM! serán **palitos de maíz horneados** —ligeros y aireados— en sabores mexicanos de verdad: la flor de [Jamaica](/sabores/jamaica), el [Limón](/sabores/limon) fresco, el [Chocolate](/sabores/chocolate) y el clásico [Churro](/sabores/churro). El antojo que los niños ya conocen, hecho como yo lo querría para la mía.",
+      "cards": [
+        { "label": "Crujiente", "eq": "= salado o picoso", "ok": false },
+        { "label": "Dulce", "eq": "= pesado o chicloso", "ok": false },
+        { "label": "¡PUM!", "eq": "= crujiente, dulce y sin sellos", "ok": true }
+      ],
+      "infographicNote": "INFOGRAFÍA: tres \"huecos\" — un ícono crujiente=salado tachado, dulce=pesado tachado, y ¡PUM! en medio cumpliendo las tres cosas. Estilo monstruito amigable, color por sabor."
     },
     "compromisos": {
       "headline": "Mis compromisos",
       "items": [
-        "Diseñado para no cargar ningún sello de advertencia.",
-        "Ingredientes que sí reconoces.",
-        "Sin colorantes ni saborizantes artificiales.",
-        "Sin aceite de palma ni edulcorantes artificiales.",
-        "Hecho en México, con sabores mexicanos de verdad."
-      ]
+        { "title": "Cero sellos, siempre.", "body": "Estoy formulando ¡PUM! para que, desde el primer palito, no cargue **ningún** octágono de advertencia. No como un extra: como la regla con la que lo construyo. Es lo que debe convertirlo en el único dulce que sí puede entrar a la escuela." },
+        { "title": "Ingredientes que reconoces.", "body": "Maíz, un poco de azúcar mascabado, sal de mar, color y sabor de plantas. Nada que no le pudiera explicar a mi propia hija. Lo cuento todo en la página de [Ingredientes](/ingredientes)." },
+        { "title": "Sin edulcorantes artificiales.", "body": "No voy a usar sustitutos de azúcar. Prefiero un poco de azúcar mascabado de verdad, bien medida, que llenar un snack infantil de cosas que los niños no necesitan." },
+        { "title": "Hecho para niños grandes, no para bebés.", "body": "¡PUM! es un snack para presumir, no para esconder —pensado para el recreo, la lonchera y el \"préstame uno\" entre amigos—." },
+        { "title": "Hecho para compartir.", "body": "Los niños no comen solos: intercambian, presumen, comparten. Quiero ¡PUM! hecho justo para ese momento." }
+      ],
+      "photo": "FOTO REAL o ILUSTRACIÓN: niños de ~10 años en el recreo compartiendo e intercambiando snacks, riéndose. NOTA: no es la hija del fundador; usar otros niños con autorización de imagen, o una ilustración."
     },
     "promesa": {
-      "headline": "Mi promesa",
-      "body": "Construir ¡PUM! de frente: decir qué lleva, compartir los valores objetivo y confirmarlos en la formulación final. Sin promesas que no pueda cumplir."
+      "headline": "Mi promesa para ti",
+      "intro": "Tres cosas, y quiero que me las cobres:",
+      "items": [
+        "**Transparencia total.** Si lo lleva, lo digo. Si no, también.",
+        "**Nada que esconder.** Por eso quiero que cada bolsa tenga una \"ventana\" transparente —para que veas el palito real antes de comprarlo—.",
+        "**Hecho en México.** Para las familias de aquí."
+      ]
     },
+    "camino": {
+      "headline": "¿Quieres seguir el camino?",
+      "body": "Conoce los cuatro sabores en los que estoy trabajando: [Jamaica](/sabores/jamaica) · [Limón](/sabores/limon) · [Chocolate](/sabores/chocolate) · [Churro](/sabores/churro)."
+    },
+    "faqNote": "¿Tienes dudas? Visita las [Preguntas frecuentes](/preguntas-frecuentes).",
     "cta": {
       "headline": "¿Quieres probarlo primero?",
       "body": "Aún no sale a la venta. Déjanos tu correo y serás de los primeros.",
-      "button": "Avísame cuando salga"
+      "button": "Avísame cuando salga ¡PUM!"
     }
   },
   "ingredientes": {
-    "title": "¡PUM! — Ingredientes",
-    "metaDescription": "Lo que llevará cada palito de maíz horneado ¡PUM! — ingredientes que sí reconoces y los valores nutrimentales objetivo, a confirmar en la formulación final.",
+    "title": "Ingredientes | ¡PUM! Palitos de maíz sin sellos",
+    "metaDescription": "Los ingredientes de ¡PUM!: maíz, salvado de maíz, azúcar mascabado, colores y sabores de plantas. Sin edulcorantes artificiales y cero sellos NOM-051.",
     "hero": {
       "eyebrow": "Ingredientes",
-      "headline": "Ingredientes reales que sí conoces.",
-      "body": "Esto es lo que llevará ¡PUM! y los valores objetivo. ¡PUM! está en desarrollo; se confirmarán en la formulación final.",
+      "headline": "De qué está hecho ¡PUM!",
+      "body": "¡PUM! es una botana de maíz horneada formulada para no cargar ningún sello de advertencia NOM-051. La composición a continuación corresponde a la receta en desarrollo; los ingredientes y cantidades finales se confirmarán en la formulación final.",
       "art": "/assets/packs/pack-churro.png",
       "artMaxWidth": 300
     },
-    "intro": "¡PUM! está en desarrollo. Estos son los ingredientes y los valores objetivo; se confirmarán en la formulación final.",
-    "statementTitle": "Ingredientes*",
-    "statement": "Harina de maíz, salvado de maíz, azúcar mascabado, aceite de girasol, sal de mar, ácido cítrico, saborizantes naturales, colorantes naturales (espirulina, cúrcuma), vitaminas y minerales (B1, B6, ácido fólico, hierro, zinc).",
-    "footnote": "Todos los valores son objetivos preliminares, a confirmar en la formulación final.",
-    "nutritionHeadline": "Declaración nutrimental (objetivo)",
-    "friendlyHeadline": "Por qué estos ingredientes",
-    "friendly": "El salvado de maíz aporta fibra y mantiene el palito ligero; el dulzor es medido; usamos aceites bajos en grasas saturadas, nunca palma ni coco; el color viene de plantas.",
-    "haveNot": {
-      "headline": "Lo que no llevará",
-      "items": [
-        "Colorantes artificiales.",
-        "Saborizantes artificiales.",
-        "Aceite de palma.",
-        "Edulcorantes artificiales."
+    "infographicNote": "INFOGRAFÍA: la bolsa de ¡PUM! \"abierta\" con líneas que señalan cada componente, color por sabor.",
+    "sections": [
+      {
+        "headline": "Base",
+        "items": [
+          { "term": "Harina de maíz", "desc": "la base del palito; al hornearse se infla en una textura ligera y crujiente." },
+          { "term": "Salvado de maíz", "desc": "aporta fibra dietética y reduce la densidad calórica, lo que ayuda a mantener el producto por debajo del límite de calorías de la NOM-051." }
+        ]
+      },
+      {
+        "headline": "Endulzante y sazón",
+        "items": [
+          { "term": "Azúcar mascabado", "desc": "añadida en una cantidad medida, por debajo del umbral, para mantener los azúcares libres por debajo del límite de azúcares de la NOM-051." },
+          { "term": "Sal de mar", "desc": "en cantidad pequeña y medida, por debajo del umbral de sodio." },
+          { "term": "Ácido cítrico", "desc": "aporta acidez; más presente en [Limón](/sabores/limon) y [Jamaica](/sabores/jamaica)." }
+        ]
+      },
+      {
+        "headline": "Aceite",
+        "items": [
+          { "term": "Aceite vegetal bajo en grasas saturadas (girasol, soya o maíz)", "desc": "funciona como aglutinante de la cobertura. Los aceites bajos en grasa saturada evitan activar el sello de grasas saturadas. No se utiliza aceite de palma ni de coco." }
+        ]
+      }
+    ],
+    "saborizantes": {
+      "headline": "Saborizantes naturales",
+      "intro": "El sabor se aplica en la etapa de cobertura, a partir de ingredientes reales:",
+      "headers": ["Sabor", "Origen"],
+      "rows": [
+        ["[Jamaica · Flor crujiente](/sabores/jamaica)", "Flor de jamaica"],
+        ["[Chocolate · Cacao cremosito](/sabores/chocolate)", "Cacao"],
+        ["[Churro · Dulce y canelado](/sabores/churro)", "Canela"],
+        ["[Limón · Fresco y ácido](/sabores/limon)", "Cítrico + ácido cítrico"]
       ]
     },
+    "colorantes": {
+      "headline": "Colorantes naturales (de plantas)",
+      "intro": "No se utilizan colorantes artificiales. El color proviene de:",
+      "headers": ["Color", "Origen", "Sabor"],
+      "rows": [
+        ["Magenta", "Hibisco, betabel", "[Jamaica](/sabores/jamaica)"],
+        ["Verde", "Espirulina", "[Limón](/sabores/limon)"],
+        ["Café", "Cacao", "[Chocolate](/sabores/chocolate)"],
+        ["Dorado", "Tono natural de la canela", "[Churro](/sabores/churro)"]
+      ]
+    },
+    "vitaminas": {
+      "headline": "Vitaminas y minerales añadidos",
+      "headers": ["Nutrimento", "Función"],
+      "rows": [
+        ["Vitamina B1 (tiamina)", "Apoya la conversión de los alimentos en energía"],
+        ["Vitamina B6", "Apoya el metabolismo normal y el funcionamiento del sistema nervioso"],
+        ["Ácido fólico (B9)", "Apoya el crecimiento y la formación de células nuevas"],
+        ["Hierro", "Apoya el transporte de oxígeno en la sangre"],
+        ["Zinc", "Apoya el sistema inmune y el crecimiento"]
+      ]
+    },
+    "sinSellos": {
+      "headline": "Cómo ¡PUM! se mantiene sin sellos (NOM-051)",
+      "intro": "Cuatro decisiones de formulación mantienen el producto por debajo de los cinco umbrales:",
+      "headers": ["Umbral", "Límite NOM-051 (por 100 g)", "Palanca"],
+      "rows": [
+        ["Calorías", "≥ 275 kcal", "La fibra del salvado de maíz reduce la densidad calórica"],
+        ["Azúcares", "≥ 10% de la energía (azúcares libres)", "Azúcar mascabado medida, por debajo del límite"],
+        ["Grasas saturadas", "≥ 10% de la energía", "Aceites bajos en saturadas; sin palma ni coco"],
+        ["Sodio", "≥ 300 mg / ≥ 1 mg por kcal", "Mínima sal de mar"],
+        ["Grasas trans", "≥ 1% de la energía", "No se añaden"]
+      ]
+    },
+    "nutritionHeadline": "Declaración nutrimental (objetivo)",
+    "nutritionNote": "Valores objetivo de la receta en desarrollo. Los valores finales aparecerán en la tabla nutrimental del empaque.",
+    "haveNot": {
+      "headline": "No contiene",
+      "items": [
+        "Edulcorantes artificiales (sin stevia, sucralosa ni similares)",
+        "Aceite de palma",
+        "Colorantes artificiales",
+        "Saborizantes artificiales",
+        "Sellos de advertencia"
+      ]
+    },
+    "sabores": {
+      "headline": "Los sabores",
+      "body": "[Jamaica · Flor crujiente](/sabores/jamaica) · [Limón · Fresco y ácido](/sabores/limon) · [Chocolate · Cacao cremosito](/sabores/chocolate) · [Churro · Dulce y canelado](/sabores/churro)"
+    },
+    "footnote": "Formulación preliminar, sujeta a confirmación. Los valores finales aparecerán en la tabla nutrimental del empaque.",
+    "faqNote": "¿Más dudas? Visita las [Preguntas frecuentes](/preguntas-frecuentes).",
     "cta": {
       "headline": "¿Quieres probarlo primero?",
       "body": "Aún no sale a la venta. Únete a la lista de espera.",
-      "button": "Avísame cuando salga"
+      "button": "Avísame cuando salga ¡PUM!"
     }
   },
   "faq": {
-    "title": "¡PUM! — Preguntas frecuentes",
-    "metaDescription": "Preguntas frecuentes sobre ¡PUM!: qué es, cuándo sale, qué lleva, cero sellos, precio objetivo y dónde encontrarlo. Producto en desarrollo.",
+    "title": "Preguntas frecuentes | ¡PUM!",
+    "metaDescription": "Respuestas sobre ¡PUM!: por qué no lleva sellos, qué ingredientes usa, para qué edad es y dónde conseguirlo. Snack de maíz horneado para niños.",
     "hero": {
       "eyebrow": "Preguntas frecuentes",
       "headline": "Lo que más nos preguntan",
-      "body": "¡PUM! está en desarrollo. Aquí respondemos lo esencial; los valores son objetivos preliminares a confirmar en la formulación final.",
+      "body": "Resolvemos lo esencial sobre ¡PUM!. Las respuestas reflejan un producto en desarrollo; los detalles finales se confirman en la formulación.",
       "art": "/assets/brand/mark-corn-u-trans.png",
       "artMaxWidth": 200
     },
-    "items": [
-      { "q": "¿Ya puedo comprar ¡PUM!?", "a": "Todavía no. ¡PUM! está en desarrollo y aún no sale a la venta. Déjanos tu correo en la lista de espera y te avisamos en cuanto esté disponible." },
-      { "q": "¿Qué es ¡PUM!?", "a": "Palitos de maíz horneados, ligeros y crujientes, con sabores dulces mexicanos —Jamaica, Chocolate, Churro y Limón— en bolsa individual de 30 g." },
-      { "q": "¿Por qué dicen \"cero sellos\"?", "a": "Estamos diseñando la receta para no cargar ningún sello de advertencia de la NOM-051. Es un objetivo de formulación; los valores definitivos se confirmarán al terminar la formulación final." },
-      { "q": "¿Qué llevará?", "a": "Harina de maíz, salvado de maíz, azúcar mascabado, aceite de girasol, sal de mar, ácido cítrico, saborizantes naturales, colorantes naturales (espirulina, cúrcuma) y vitaminas y minerales. Sin colorantes ni saborizantes artificiales, y sin aceite de palma. Valores objetivo, a confirmar en la formulación final." },
-      { "q": "¿Tiene azúcar?", "a": "Sí, lleva azúcar mascabado en cantidad medida (objetivo de 1.8 g por bolsa de 30 g). No usamos edulcorantes artificiales." },
-      { "q": "¿Cuánto costará?", "a": "El precio objetivo es de $18 MXN por bolsa de 30 g. Es un objetivo preliminar y puede cambiar." },
-      { "q": "¿Para qué edad es?", "a": "Pensado para niños de 10 años en adelante y para compartir: un snack para presumir, no para bebés." },
-      { "q": "¿Dónde lo voy a encontrar?", "a": "Aún lo estamos definiendo. Suscríbete a la lista de espera y serás de los primeros en saber dónde conseguirlo." }
-    ]
+    "groups": [
+      {
+        "headline": "Sobre ¡PUM!",
+        "items": [
+          { "q": "¿Qué es ¡PUM!?", "a": "¡PUM! es la botana de maíz horneada que estoy creando: palitos ligeros y crujientes en sabores dulces mexicanos —[Jamaica](/sabores/jamaica), [Limón](/sabores/limon), [Chocolate](/sabores/chocolate) y [Churro](/sabores/churro)—, diseñados para no cargar ningún sello de advertencia.", "sa": "¡PUM! es una botana de maíz horneada en desarrollo: palitos ligeros y crujientes en sabores dulces mexicanos (Jamaica, Limón, Chocolate y Churro), diseñados para no cargar ningún sello de advertencia." },
+          { "q": "¿Para qué edad es?", "a": "Está hecho para niños de 10 años en adelante: un snack para presumir entre amigos.", "sa": "Está hecho para niños de 10 años en adelante." },
+          { "q": "¿Las escuelas lo podrán vender?", "a": "Esa es la idea. Desde 2025, las escuelas en México solo pueden vender productos sin sellos, y ¡PUM! se está construyendo para cumplir esa regla.", "sa": "Esa es la idea. Desde 2025 las escuelas en México solo pueden vender productos sin sellos, y ¡PUM! se construye para cumplir esa regla." },
+          { "q": "¿Dónde lo consigo?", "a": "Todavía no —apenas estamos empezando—. Déjanos tu correo y te avisamos en cuanto haya ¡PUM! cerca de ti.", "sa": "Todavía no; apenas estamos empezando. Deja tu correo para recibir aviso cuando haya ¡PUM! cerca de ti." }
+        ]
+      },
+      {
+        "headline": "Sellos, azúcar e ingredientes",
+        "items": [
+          { "q": "¿¡PUM! tendrá sellos de advertencia?", "a": "No. Se está formulando a propósito para no cargar ningún octágono —calorías, azúcares, grasas saturadas, grasas trans ni sodio—. Mira cómo en la página de [Ingredientes](/ingredientes).", "sa": "No. Se formula a propósito para no cargar ningún octágono: calorías, azúcares, grasas saturadas, grasas trans ni sodio." },
+          { "q": "¿Tendrá azúcar?", "a": "Sí —un poco de azúcar mascabado de verdad—, en una cantidad medida por debajo del límite de azúcares de la NOM-051. Sin edulcorantes artificiales.", "sa": "Sí, un poco de azúcar mascabado, en cantidad medida por debajo del límite de azúcares de la NOM-051. Sin edulcorantes artificiales." },
+          { "q": "¿Será frito?", "a": "No. ¡PUM! serán palitos de maíz horneados.", "sa": "No. ¡PUM! serán palitos de maíz horneados." },
+          { "q": "¿Tendrá colores o sabores artificiales?", "a": "No. El color viene de plantas (espirulina, hibisco, betabel, cacao) y el sabor de ingredientes reales como la flor de jamaica, el cacao y la canela.", "sa": "No. El color viene de plantas (espirulina, hibisco, betabel, cacao) y el sabor de ingredientes reales como flor de jamaica, cacao y canela." },
+          { "q": "¿Por qué le añaden vitaminas y minerales?", "a": "Para sumar un poco de valor extra —B1, B6, ácido fólico, hierro y zinc—, elegidos pensando en lo que los niños más necesitan.", "sa": "Para sumar valor extra: B1, B6, ácido fólico, hierro y zinc." }
+        ]
+      }
+    ],
+    "footnote": "Las respuestas reflejan un producto en desarrollo; los detalles finales se confirman en la formulación.",
+    "cta": {
+      "headline": "¿Quieres probarlo primero?",
+      "body": "Aún no sale a la venta. Déjanos tu correo y serás de los primeros.",
+      "button": "Avísame cuando salga ¡PUM!"
+    }
   },
   "contacto": {
     "title": "¡PUM! — Contacto",
