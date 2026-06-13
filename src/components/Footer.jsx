@@ -31,16 +31,17 @@ export function Newsletter() {
             <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: mobile ? 23 : 26, color: 'var(--pum-navy)', margin: '0 0 4px' }}>{N.headline}</h3>
             <p style={{ color: 'var(--pum-navy)', opacity: 0.8, fontWeight: 600, margin: mobile ? '0 0 14px' : 0, fontSize: mobile ? 14.5 : 15 }}>{N.body}</p>
           </div>
-          <div style={{ flex: mobile ? undefined : '0 1 auto' }}>
+          <div style={{ flex: mobile ? undefined : '0 1 500px', minWidth: 0, width: mobile ? '100%' : undefined }}>
             <form onSubmit={onSubmit} style={mobile
               ? { display: 'flex', flexDirection: 'column', gap: 9 }
-              : { display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'stretch' }}>
-              <input type="email" name="email" placeholder={N.emailPlaceholder} required {...esValidation('email')} aria-label={N.emailPlaceholder} style={{ fontFamily: 'var(--font-text)', fontWeight: 600, fontSize: 15, border: '2px solid var(--pum-navy)', borderRadius: 999, padding: '13px 18px', minWidth: mobile ? 0 : 200, width: mobile ? '100%' : undefined, color: 'var(--pum-navy)', background: '#fff', boxSizing: 'border-box' }} />
+              : { display: 'flex', gap: 12, alignItems: 'stretch' }}>
+              {/* email field spreads to fill the space between its left edge and the button */}
+              <input type="email" name="email" placeholder={N.emailPlaceholder} required {...esValidation('email')} aria-label={N.emailPlaceholder} style={{ fontFamily: 'var(--font-text)', fontWeight: 600, fontSize: 15, border: '2px solid var(--pum-navy)', borderRadius: 999, padding: '13px 18px', flex: mobile ? undefined : 1, minWidth: 0, width: mobile ? '100%' : 'auto', color: 'var(--pum-navy)', background: '#fff', boxSizing: 'border-box' }} />
               <input type="text" {...honeypotProps} />
-              <button type="submit" style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 16, background: 'var(--pum-navy)', color: 'var(--pum-cream)', border: 'none', borderRadius: 999, padding: mobile ? '14px 24px' : '13px 24px', cursor: 'pointer', letterSpacing: '.01em', lineHeight: 1 }}>{done ? N.done : N.submit}</button>
+              <button type="submit" style={{ flexShrink: 0, fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 16, background: 'var(--pum-navy)', color: 'var(--pum-cream)', border: 'none', borderRadius: 999, padding: mobile ? '14px 24px' : '13px 26px', cursor: 'pointer', letterSpacing: '.01em', lineHeight: 1 }}>{done ? N.done : N.submit}</button>
             </form>
             {error && <p style={{ fontSize: 12.5, color: 'var(--danger)', fontWeight: 700, margin: '8px 0 0' }}>{STRINGS.forms.submitError}</p>}
-            <p style={{ fontSize: 11.5, color: 'var(--pum-navy)', opacity: 0.85, fontWeight: 600, margin: '8px 0 0', lineHeight: 1.4 }}>{N.consentPrefix}<a href={LINKS.legal.privacidad} style={{ color: 'var(--pum-navy)', textDecoration: 'underline' }}>{N.consentLink}</a>.</p>
+            <p style={{ fontSize: 11.5, color: 'var(--pum-navy)', opacity: 0.85, fontWeight: 600, margin: '8px 0 0', lineHeight: 1.4, textAlign: mobile ? undefined : 'left' }}>{N.consentPrefix}<a href={LINKS.legal.privacidad} style={{ color: 'var(--pum-navy)', textDecoration: 'underline' }}>{N.consentLink}</a>.</p>
           </div>
         </div>
       </div>
@@ -116,16 +117,17 @@ export function Footer({ onFlavor }) {
                 <PumImg src={SITE.logos.onDark} widths={[200, 400]} sizes="122px" width={400} height={132} alt={SITE.brand.name} style={{ height: 40, width: 'auto' }} />
                 <p style={{ opacity: 0.7, fontSize: 14, lineHeight: 1.55, marginTop: 14, fontWeight: 500 }}>{SITE.footer.blurb}</p>
               </div>
-              {/* link columns grouped together, pushed right + right-aligned */}
-              <div style={{ display: 'flex', gap: 40, textAlign: 'right' }}>
-                {saboresCol}
-                <div>
+              {/* link columns: equal width (so the long "Preguntas frecuentes" doesn't skew
+                  the spacing) + left-aligned text in each */}
+              <div style={{ display: 'flex', gap: 36 }}>
+                <div style={{ width: 176 }}>{saboresCol}</div>
+                <div style={{ width: 176 }}>
                   <div style={colH}>{S.colMarca}</div>
                   {marcaLinks}
                 </div>
-                <div>
+                <div style={{ width: 176 }}>
                   <div style={colH}>{S.colSiguenos}</div>
-                  {socialLinks('right')}
+                  {socialLinks('left')}
                 </div>
               </div>
             </div>
