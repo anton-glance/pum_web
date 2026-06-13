@@ -1,0 +1,156 @@
+{
+  "$comment": "Every fixed UI string (es-MX), keyed — handoff doc 05 fixed strings + doc 06 R1. Future i18n surface.",
+  "nav": {
+    "cartAria": "Carrito",
+    "quieroPum": "Quiero ¡PUM!"
+  },
+  "forms": {
+    "requiredEmail": "Escribe tu correo para continuar.",
+    "invalidEmail": "Escribe un correo válido (ejemplo: nombre@correo.com).",
+    "requiredField": "Completa este campo para continuar.",
+    "submitError": "Algo salió mal. Inténtalo de nuevo, porfa."
+  },
+  "ribbon": {
+    "text": "¡PUM! está por llegar —",
+    "cta": "únete a la lista de espera",
+    "closeAria": "Cerrar aviso"
+  },
+  "menu": {
+    "openAria": "Abrir menú",
+    "closeAria": "Cerrar menú"
+  },
+  "skipLink": "Saltar al contenido",
+  "hero": {
+    "badge": "Palitos de maíz horneados",
+    "headline1": "El crunch que",
+    "headline2": "te hace sonreír.",
+    "body": "Snacks crujientes y ligeros, horneados con ingredientes reales. Conoce a los personajes, escucha el crunch y arma tu mezcla.",
+    "ctaPrimary": "Conoce los sabores",
+    "ctaSecondary": "Siente el crunch",
+    "packAlt": "¡PUM! Churro",
+    "tagline": ["Crujen.", "Sonríen.", "Disfrutan."]
+  },
+  "flavors": {
+    "eyebrow": "Cada sabor, un personaje",
+    "headline": "Conoce a los Pumitos",
+    "body": "Pícale a cada bolsa para escuchar su crunch y mira cómo te siguen con la mirada.",
+    "crunchMe": "¡crúnchame!",
+    "notify": "Avísame cuando salga",
+    "add": "Agregar",
+    "inCart": "en carrito",
+    "intensidad": "Intensidad",
+    "dulzura": "Dulzura"
+  },
+  "waitlist": {
+    "eyebrow": "Producto en desarrollo",
+    "title": "¡PUM! todavía no sale a la venta",
+    "body": "Estamos creando ¡PUM! y aquí compartimos sus especificaciones objetivo. Aún no está disponible — déjanos tu correo y serás de los primeros en probarlo.",
+    "cta": "Avísame cuando salga"
+  },
+  "priceTarget": {
+    "label": "Precio objetivo",
+    "value": "$18 MXN · 30 g",
+    "note": "Objetivo preliminar, a confirmar en la formulación final."
+  },
+  "game": {
+    "eyebrow": "Siente el crunch",
+    "idleHeadline": "¡Pícale y llena de crunch!",
+    "fullHeadline": "¡PUM! hasta el tope · pícale otra vez ↺",
+    "takeIt": "¡Me la llevo!",
+    "bagAltPrefix": "Bolsa ¡PUM! "
+  },
+  "story": {
+    "eyebrow": "Para Papás",
+    "headline1": "El dulce ligero y crujiente",
+    "headline2": "que faltaba en el anaquel.",
+    "p1": "Soy papá y estoy creando ¡PUM!: palitos de maíz horneados, ligeros y crujientes, con sabores dulces mexicanos. Diseñados para no cargar ningún sello de advertencia.",
+    "link1": "Conoce la historia y los compromisos",
+    "p2": "Ingredientes que sí reconoces, sin colorantes artificiales. Todos los valores son objetivos preliminares mientras terminamos la formulación.",
+    "link2": "Conoce los ingredientes",
+    "visualAlt": "La U de ¡PUM!",
+    "benefits": [
+      { "icon": "shield-check", "line1": "Cero", "line2": "sellos", "linkKey": "nosotros" },
+      { "icon": "sprout", "line1": "Ingredientes", "line2": "reales", "linkKey": "ingredientes" },
+      { "icon": "sparkles", "line1": "Sin colorantes", "line2": "artificiales", "linkKey": "ingredientes" },
+      { "icon": "smile", "line1": "Hecho para", "line2": "compartir", "linkKey": "nosotros" }
+    ]
+  },
+  "modal": {
+    "eyebrow": "Sabor natural · 30 g",
+    "caption": "¡pícame para el crunch!",
+    "nutritionTitle": "Información nutrimental",
+    "nutritionPortion": "Porción 30 g",
+    "alreadyInCart": "Ya en tu carrito",
+    "bagSingular": "bolsa",
+    "bagPlural": "bolsas",
+    "perUnitNote": "MXN c/u · IVA incluido",
+    "addMore": "Agregar {n} más",
+    "addToCart": "Agregar {n} al carrito",
+    "addToCartShort": "Agregar {n}",
+    "added": "¡Agregado!",
+    "addedNoteSingular": "bolsa agregada",
+    "addedNotePlural": "bolsas agregadas",
+    "viewCart": "Ver tu carrito →",
+    "closeAria": "Cerrar",
+    "minusAria": "menos",
+    "plusAria": "más"
+  },
+  "cart": {
+    "title": "Tu carrito",
+    "empty1": "Tu carrito está vacío.",
+    "empty2": "Agrega unos ¡PUM!",
+    "perUnit": "MXN c/u",
+    "subtotal": "Subtotal",
+    "shipping": "Envío",
+    "shippingFree": "Gratis",
+    "total": "Total",
+    "taxNote": "IVA incluido",
+    "parentalNotice": "Las compras solo pueden ser realizadas por mayores de edad. Los menores deben contar con la autorización de su mamá, papá o tutor.",
+    "checkout": "Ir a pagar",
+    "invoice": "¿Necesitas factura?",
+    "deleteItem": "Quitar del carrito"
+  },
+  "comingSoon": {
+    "headline": "¡Todavía estamos horneando!",
+    "body": "¡PUM! apenas está empezando y aún no salimos a la venta. Déjanos tu correo y serás de los primeros en probar el crunch en cuanto estemos listos.",
+    "emailPlaceholder": "tu@correo.com",
+    "submit": "Avísenme cuando haya ¡PUM!",
+    "consentPrefix": "Sin spam, solo crunch. Aceptas nuestro ",
+    "consentLink": "Aviso de Privacidad",
+    "doneHeadline": "¡Listo! 🎉",
+    "doneBody": "Te avisaremos en cuanto ¡PUM! esté disponible. Gracias por sumarte al crunch.",
+    "doneCta": "Seguir explorando"
+  },
+  "newsletter": {
+    "headline": "Únete a la lista de espera",
+    "body": "Sé de los primeros en probar ¡PUM! y entérate de novedades, sabores y dónde encontrarlo.",
+    "emailPlaceholder": "tu@correo.com",
+    "submit": "Avísame",
+    "done": "¡Listo! 🎉",
+    "consentPrefix": "Al suscribirte aceptas recibir correos de ¡PUM! y nuestro ",
+    "consentLink": "Aviso de Privacidad"
+  },
+  "footer": {
+    "colSabores": "Sabores",
+    "colMarca": "Marca",
+    "colSiguenos": "Síguenos",
+    "marcaLinks": [
+      { "label": "Nosotros", "linkKey": "nosotros" },
+      { "label": "Ingredientes", "linkKey": "ingredientes" },
+      { "label": "Preguntas frecuentes", "linkKey": "faq" },
+      { "label": "Contacto", "linkKey": "contacto" }
+    ],
+    "socialLinks": ["Instagram", "TikTok", "YouTube"],
+    "contactPrefix": "Dudas: ",
+    "contactBilling": " · Facturación: ",
+    "contactWhatsapp": " · WhatsApp: ",
+    "legalLinks": [
+      { "label": "Aviso de Privacidad", "linkKey": "privacidad" },
+      { "label": "Términos y Condiciones", "linkKey": "terminos" },
+      { "label": "Política de Envíos", "linkKey": "envios" },
+      { "label": "Política de Devoluciones", "linkKey": "devoluciones" }
+    ],
+    "tagline": "Crujen. Sonríen. Disfrutan."
+  },
+  "heroFoot": "🌽 Maíz de verdad · el crunch que truena en cada bocado"
+}

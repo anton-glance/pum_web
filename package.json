@@ -1,0 +1,27 @@
+{
+  "name": "pum-web",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vite build --ssr src/entry-server.jsx && node scripts/prerender.mjs",
+    "images": "node scripts/optimize-images.mjs",
+    "preview": "vite preview",
+    "preview:lan": "vite preview --host --port 4173",
+    "preview:iphone": "PUM_HTTPS=1 vite preview --host --port 4174",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name pum-snacks --branch main"
+  },
+  "dependencies": {
+    "lucide-react": "0.469.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-basic-ssl": "^1.2.0",
+    "@vitejs/plugin-react": "4.3.4",
+    "sharp": "^0.33.5",
+    "vite": "5.4.21",
+    "wrangler": "^4.86.0"
+  }
+}

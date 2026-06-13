@@ -1,0 +1,136 @@
+{
+  "$comment": "Long-form page content for /marca, /sabores intro and /preguntas-frecuentes. Deck-aligned (handoff v3): no placeholders, en-desarrollo framing, target values under a footnote. Decisions applied: azúcar mascabado (D1), aceite de girasol (D3), official colors espirulina+cúrcuma only (D2), no school/legal-risk claims on the public site (D4).",
+  "nosotros": {
+    "title": "¡PUM! — Nosotros",
+    "metaDescription": "La historia detrás de ¡PUM!: un papá creando palitos de maíz horneados, ligeros y crujientes, con sabores dulces mexicanos y diseñados para no cargar ningún sello.",
+    "hero": {
+      "eyebrow": "Para Papás",
+      "headline": "El snack que quiero hacer para nuestros hijos",
+      "body": "Soy papá y estoy creando ¡PUM!. Aquí te cuento por qué, en qué creo y los compromisos detrás de cada bolsa.",
+      "art": "/assets/brand/mark-corn-u-trans.png",
+      "artMaxWidth": 220
+    },
+    "story": {
+      "headline": "Por qué estoy creando ¡PUM!",
+      "paras": [
+        "Soy papá de una niña de 10 años. Buscando algo para su recreo me di cuenta de que en México no existe un snack dulce, ligero y crujiente para niños: todo lo crujiente es salado y picante, todo lo dulce es denso o masticable, y casi todo carga sellos de advertencia.",
+        "Así que decidí hacerlo yo. ¡PUM! son palitos de maíz horneados, ligeros y crujientes, con sabores dulces mexicanos de verdad —Jamaica, Chocolate, Churro y Limón— en bolsa individual de 30 g. Un antojo para presumir, no para esconder.",
+        "Todavía estoy en la formulación, por eso los valores que ves en el sitio son objetivos preliminares. Lo comparto abierto desde ahora porque quiero construirlo bien y de frente."
+      ]
+    },
+    "compromisos": {
+      "headline": "Mis compromisos",
+      "items": [
+        "Diseñado para no cargar ningún sello de advertencia.",
+        "Ingredientes que sí reconoces.",
+        "Sin colorantes ni saborizantes artificiales.",
+        "Sin aceite de palma ni edulcorantes artificiales.",
+        "Hecho en México, con sabores mexicanos de verdad."
+      ]
+    },
+    "promesa": {
+      "headline": "Mi promesa",
+      "body": "Construir ¡PUM! de frente: decir qué lleva, compartir los valores objetivo y confirmarlos en la formulación final. Sin promesas que no pueda cumplir."
+    },
+    "cta": {
+      "headline": "¿Quieres probarlo primero?",
+      "body": "Aún no sale a la venta. Déjanos tu correo y serás de los primeros.",
+      "button": "Avísame cuando salga"
+    }
+  },
+  "ingredientes": {
+    "title": "¡PUM! — Ingredientes",
+    "metaDescription": "Lo que llevará cada palito de maíz horneado ¡PUM! — ingredientes que sí reconoces y los valores nutrimentales objetivo, a confirmar en la formulación final.",
+    "hero": {
+      "eyebrow": "Ingredientes",
+      "headline": "Ingredientes reales que sí conoces.",
+      "body": "Esto es lo que llevará ¡PUM! y los valores objetivo. ¡PUM! está en desarrollo; se confirmarán en la formulación final.",
+      "art": "/assets/packs/pack-churro.png",
+      "artMaxWidth": 300
+    },
+    "intro": "¡PUM! está en desarrollo. Estos son los ingredientes y los valores objetivo; se confirmarán en la formulación final.",
+    "statementTitle": "Ingredientes*",
+    "statement": "Harina de maíz, salvado de maíz, azúcar mascabado, aceite de girasol, sal de mar, ácido cítrico, saborizantes naturales, colorantes naturales (espirulina, cúrcuma), vitaminas y minerales (B1, B6, ácido fólico, hierro, zinc).",
+    "footnote": "Todos los valores son objetivos preliminares, a confirmar en la formulación final.",
+    "nutritionHeadline": "Declaración nutrimental (objetivo)",
+    "friendlyHeadline": "Por qué estos ingredientes",
+    "friendly": "El salvado de maíz aporta fibra y mantiene el palito ligero; el dulzor es medido; usamos aceites bajos en grasas saturadas, nunca palma ni coco; el color viene de plantas.",
+    "haveNot": {
+      "headline": "Lo que no llevará",
+      "items": [
+        "Colorantes artificiales.",
+        "Saborizantes artificiales.",
+        "Aceite de palma.",
+        "Edulcorantes artificiales."
+      ]
+    },
+    "cta": {
+      "headline": "¿Quieres probarlo primero?",
+      "body": "Aún no sale a la venta. Únete a la lista de espera.",
+      "button": "Avísame cuando salga"
+    }
+  },
+  "faq": {
+    "title": "¡PUM! — Preguntas frecuentes",
+    "metaDescription": "Preguntas frecuentes sobre ¡PUM!: qué es, cuándo sale, qué lleva, cero sellos, precio objetivo y dónde encontrarlo. Producto en desarrollo.",
+    "hero": {
+      "eyebrow": "Preguntas frecuentes",
+      "headline": "Lo que más nos preguntan",
+      "body": "¡PUM! está en desarrollo. Aquí respondemos lo esencial; los valores son objetivos preliminares a confirmar en la formulación final.",
+      "art": "/assets/brand/mark-corn-u-trans.png",
+      "artMaxWidth": 200
+    },
+    "items": [
+      { "q": "¿Ya puedo comprar ¡PUM!?", "a": "Todavía no. ¡PUM! está en desarrollo y aún no sale a la venta. Déjanos tu correo en la lista de espera y te avisamos en cuanto esté disponible." },
+      { "q": "¿Qué es ¡PUM!?", "a": "Palitos de maíz horneados, ligeros y crujientes, con sabores dulces mexicanos —Jamaica, Chocolate, Churro y Limón— en bolsa individual de 30 g." },
+      { "q": "¿Por qué dicen \"cero sellos\"?", "a": "Estamos diseñando la receta para no cargar ningún sello de advertencia de la NOM-051. Es un objetivo de formulación; los valores definitivos se confirmarán al terminar la formulación final." },
+      { "q": "¿Qué llevará?", "a": "Harina de maíz, salvado de maíz, azúcar mascabado, aceite de girasol, sal de mar, ácido cítrico, saborizantes naturales, colorantes naturales (espirulina, cúrcuma) y vitaminas y minerales. Sin colorantes ni saborizantes artificiales, y sin aceite de palma. Valores objetivo, a confirmar en la formulación final." },
+      { "q": "¿Tiene azúcar?", "a": "Sí, lleva azúcar mascabado en cantidad medida (objetivo de 1.8 g por bolsa de 30 g). No usamos edulcorantes artificiales." },
+      { "q": "¿Cuánto costará?", "a": "El precio objetivo es de $18 MXN por bolsa de 30 g. Es un objetivo preliminar y puede cambiar." },
+      { "q": "¿Para qué edad es?", "a": "Pensado para niños de 10 años en adelante y para compartir: un snack para presumir, no para bebés." },
+      { "q": "¿Dónde lo voy a encontrar?", "a": "Aún lo estamos definiendo. Suscríbete a la lista de espera y serás de los primeros en saber dónde conseguirlo." }
+    ]
+  },
+  "contacto": {
+    "title": "¡PUM! — Contacto",
+    "metaDescription": "Dudas, ideas o ganas de distribuir ¡PUM!: escríbenos por correo, teléfono o WhatsApp.",
+    "hero": {
+      "eyebrow": "Contacto",
+      "headline": "¿Tienes algo que contarnos?",
+      "body": "Dudas, ideas, ganas de distribuir ¡PUM! o solo decir hola. Escríbenos y te respondemos pronto.",
+      "art": "/assets/brand/mark-corn-u-trans.png",
+      "artMaxWidth": 200
+    },
+    "form": {
+      "nameLabel": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "emailLabel": "Correo",
+      "emailPlaceholder": "tu@correo.com",
+      "messageLabel": "Mensaje",
+      "messagePlaceholder": "Cuéntanos…",
+      "submit": "Enviar mensaje",
+      "success": "¡Gracias! Recibimos tu mensaje y te responderemos pronto."
+    },
+    "cards": {
+      "addressTitle": "Dirección",
+      "phoneTitle": "Teléfono",
+      "whatsappTitle": "WhatsApp",
+      "whatsappCta": "Escríbenos por WhatsApp",
+      "emailTitle": "Correo",
+      "billingPrefix": "Facturación: "
+    }
+  },
+  "legal": [
+    { "slug": "aviso-de-privacidad", "title": "Aviso de Privacidad" },
+    { "slug": "terminos-y-condiciones", "title": "Términos y Condiciones" },
+    { "slug": "politica-de-envios", "title": "Política de Envíos" },
+    { "slug": "politica-de-devoluciones", "title": "Política de Devoluciones" },
+    { "slug": "facturacion", "title": "Facturación" }
+  ],
+  "legalStub": {
+    "body": "Contenido legal en preparación — pendiente de revisión legal.",
+    "contactPrefix": "Para dudas, escríbenos a ",
+    "back": "← Volver a la tienda",
+    "footer": "© 2026 ¡PUM! Snacks · Crujen. Sonríen. Disfrutan."
+  }
+}

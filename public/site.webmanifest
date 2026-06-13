@@ -1,0 +1,13 @@
+{
+  "name": "¡PUM! — Palitos de maíz horneados",
+  "short_name": "¡PUM!",
+  "description": "Snacks crujientes y ligeros, horneados con ingredientes reales. Crujen. Sonríen. Disfrutan.",
+  "lang": "es-MX",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FDF7F1",
+  "theme_color": "#F2B632",
+  "icons": [
+    { "src": "/favicon.png", "sizes": "256x256", "type": "image/png" }
+  ]
+}

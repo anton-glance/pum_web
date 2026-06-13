@@ -1,0 +1,154 @@
+/* =============================================================
+   ¡PUM!  —  Colors & Type Foundations
+   Crunchy baked corn-puff snacks · "Crujen. Sonríen. Disfrutan."
+   -------------------------------------------------------------
+   Font files pending — upload .woff2 into fonts/ and update src:
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Permanent+Marker&display=swap" rel="stylesheet">
+   ============================================================= */
+
+/* @font-face — pending real files from user.
+   local() lets system-installed copies render; otherwise fallback stack applies. */
+@font-face { font-family: 'Baloo 2'; font-weight: 500 800; font-display: swap; src: local('Baloo 2'), local('Baloo2-ExtraBold'); }
+@font-face { font-family: 'Nunito';  font-weight: 400 900; font-display: swap; src: local('Nunito'), local('Nunito-Regular'); }
+@font-face { font-family: 'Permanent Marker'; font-weight: 400; font-display: swap; src: local('Permanent Marker'), local('PermanentMarker-Regular'); }
+
+:root {
+  /* ---------- BRAND CORE ---------- */
+  --pum-navy:        #0D1E3A;  /* Tёмно-синий · primary ink, logo, text       */
+  --pum-navy-700:    #16284a;  /* raised navy surfaces                          */
+  --pum-navy-500:    #2c3f63;  /* muted navy / secondary ink on cream           */
+  --pum-corn:        #F2B632;  /* Кукурузный · the U, primary brand yellow      */
+  --pum-corn-bright: #FFD100;  /* Banana pop-yellow, hi-energy fills            */
+  --pum-corn-deep:   #E39A12;  /* corn pressed / shadow                         */
+
+  /* ---------- NEUTRALS (warm paper) ---------- */
+  --pum-cream:       #FDF7F1;  /* page background — warm off-white              */
+  --pum-cream-2:     #F6EEE2;  /* alt section band                              */
+  --pum-paper:       #FFFFFF;  /* cards / surfaces                              */
+  --pum-line:        #EBE0D0;  /* hairline borders on cream                     */
+  --pum-line-strong: #DBCBB3;  /* stronger dividers                             */
+  --pum-ink-60:      #5B6478;  /* secondary text                                */
+  --pum-ink-40:      #666F7E;  /* tertiary / captions, placeholders (darkened from #8A91A1 to pass WCAG AA 4.5:1 on cream — design-critique M2) */
+
+  /* ---------- FLAVOR PALETTE (canonical — brand sheet) ---------- */
+  --flv-fresa:    #FF4B7D;  /* Strawberry  · pink   */
+  --flv-banana:   #FFD100;  /* Banana      · yellow */
+  --flv-datil:    #7B4A1F;  /* Date+Cacao  · brown  */
+  --flv-manzana:  #8BC53F;  /* Apple-Cinn. · green  */
+
+  /* ---------- FLAVOR PALETTE (extended — concept range) ---------- */
+  --flv-chile:    #F0531F;  /* Chile Picante · orange-red */
+  --flv-lima:     #9BCB3C;  /* Lima Limón    · lime       */
+  --flv-choco:    #A0603A;  /* Chocolate     · cocoa      */
+  --flv-mora:     #7A3FA0;  /* Mora Azul     · purple     */
+
+  /* tinted backgrounds (flavor washed onto cream) */
+  --flv-fresa-wash:   #FFE7EE;
+  --flv-banana-wash:  #FFF6CC;
+  --flv-manzana-wash: #EAF4D6;
+  --flv-mora-wash:    #ECE2F4;
+
+  /* ---------- SEMANTIC (UI) ---------- */
+  --bg:           var(--pum-cream);
+  --bg-alt:       var(--pum-cream-2);
+  --surface:      var(--pum-paper);
+  --fg:           var(--pum-navy);
+  --fg-soft:      var(--pum-ink-60);
+  --fg-mute:      var(--pum-ink-40);
+  --accent:       var(--pum-corn);
+  --accent-ink:   var(--pum-navy);     /* text/icon that sits ON corn yellow   */
+  --on-navy:      var(--pum-cream);    /* text that sits ON navy               */
+  --border:       var(--pum-line);
+  --border-strong:var(--pum-line-strong);
+  --focus-ring:   #2c7be5;
+  --success:      #2E9E5B;
+  --danger:       #E23D3D;
+
+  /* nutri-warning octagon (Mexican front-of-pack seal) */
+  --warn-seal:    #111111;
+
+  /* ---------- TYPE FAMILIES ---------- */
+  --font-display: "Baloo 2", "Nunito", system-ui, sans-serif; /* logo-voice headings, chunky+rounded */
+  --font-text:    "Nunito", system-ui, -apple-system, sans-serif; /* body & UI */
+  --font-marker:  "Permanent Marker", "Baloo 2", cursive;         /* hand/brush accents ("CRUNCH", stickers) */
+
+  /* ---------- TYPE SCALE (rem · 16px base) ---------- */
+  --t-display:  4.5rem;   /* 72 — hero wordmark-voice           */
+  --t-h1:       3rem;     /* 48                                  */
+  --t-h2:       2.25rem;  /* 36                                  */
+  --t-h3:       1.5rem;   /* 24                                  */
+  --t-h4:       1.25rem;  /* 20                                  */
+  --t-body-lg:  1.125rem; /* 18                                  */
+  --t-body:     1rem;     /* 16                                  */
+  --t-sm:       0.875rem; /* 14                                  */
+  --t-xs:       0.75rem;  /* 12 — eyebrow / labels               */
+
+  --lh-tight:   1.04;  /* @kind other */
+  --lh-snug:    1.18;  /* @kind other */
+  --lh-body:    1.55;  /* @kind other */
+
+  --tracking-tight:  -0.01em;
+  --tracking-label:  0.14em;   /* uppercase eyebrows (SABOR NATURAL) */
+
+  /* ---------- RADII ---------- */
+  --r-sm:   8px;
+  --r-md:   14px;
+  --r-lg:   22px;
+  --r-xl:   32px;
+  --r-pill: 999px;
+
+  /* ---------- SPACING (4pt base) ---------- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;
+
+  /* ---------- ELEVATION ---------- */
+  --shadow-sm:  0 1px 2px rgba(13,30,58,.08);
+  --shadow-md:  0 6px 18px rgba(13,30,58,.10);
+  --shadow-lg:  0 18px 44px rgba(13,30,58,.14);
+  /* "chunky" toy-like shadow: solid offset, no blur — used on buttons/cards */
+  --shadow-chunk:      0 4px 0 var(--pum-navy);
+  --shadow-chunk-corn: 0 4px 0 var(--pum-corn-deep);
+}
+
+/* =============================================================
+   SEMANTIC ELEMENT STYLES  (opt-in: wrap content in .pum-type
+   or apply tokens directly. Kept un-reset so it won't fight hosts.)
+   ============================================================= */
+.pum-type { color: var(--fg); font-family: var(--font-text); font-size: var(--t-body); line-height: var(--lh-body); }
+.pum-type h1, .pum-h1 {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: var(--t-h1); line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight); color: var(--fg); margin: 0 0 .4em;
+}
+.pum-type h2, .pum-h2 {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: var(--t-h2); line-height: var(--lh-snug); color: var(--fg); margin: 0 0 .4em;
+}
+.pum-type h3, .pum-h3 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--t-h3); line-height: var(--lh-snug); color: var(--fg); margin: 0 0 .4em;
+}
+.pum-display {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: var(--t-display); line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight); color: var(--fg);
+}
+.pum-marker { font-family: var(--font-marker); font-weight: 400; color: var(--flv-fresa); }
+.pum-type p, .pum-body { font-family: var(--font-text); font-size: var(--t-body); line-height: var(--lh-body); color: var(--fg-soft); }
+.pum-lead { font-size: var(--t-body-lg); line-height: var(--lh-body); color: var(--fg-soft); }
+.pum-eyebrow {
+  font-family: var(--font-text); font-weight: 800;
+  font-size: var(--t-xs); letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--fg-mute);
+}
+.pum-label { /* on-pack style: BANANA / SABOR NATURAL */
+  font-family: var(--font-text); font-weight: 800; text-transform: uppercase;
+  letter-spacing: .04em; color: var(--fg);
+}
+code, .pum-code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: .9em; background: var(--pum-cream-2);
+  border: 1px solid var(--border); border-radius: var(--r-sm);
+  padding: .12em .4em; color: var(--pum-navy-500);
+}

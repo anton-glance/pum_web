@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡PUM! — Página no encontrada</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F2B632">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link href="/fonts/fonts.css" rel="stylesheet">
+<link href="/colors_and_type.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100vh}
+  body{background:var(--pum-cream);font-family:var(--font-text);color:var(--pum-navy);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;-webkit-font-smoothing:antialiased}
+  img{width:140px;height:auto;animation:bob 2.4s ease-in-out infinite;filter:drop-shadow(0 14px 20px rgba(13,30,58,.22))}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+  h1{font-family:var(--font-display);font-weight:800;font-size:clamp(30px,5vw,46px);margin:22px 0 8px}
+  p{color:var(--fg-soft);font-weight:600;font-size:16px;margin:0 0 26px;max-width:380px}
+  a.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:800;font-size:17px;background:var(--pum-corn);color:var(--pum-navy);border-radius:999px;padding:15px 30px;text-decoration:none;box-shadow:0 4px 0 var(--pum-corn-deep)}
+  @media (prefers-reduced-motion: reduce){ img{animation:none} }
+</style>
+</head>
+<body>
+  <picture>
+    <source type="image/webp" srcset="/assets/brand/mark-u-400.webp">
+    <img src="/assets/brand/mark-u.png" width="600" height="900" alt="">
+  </picture>
+  <h1>¡PUM!… esta página no existe</h1>
+  <p>Parece que este palito se nos perdió. Vuelve a la tienda y sigue el crunch.</p>
+  <a class="btn" href="/">Volver a la tienda →</a>
+</body>
+</html>

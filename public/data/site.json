@@ -1,0 +1,84 @@
+{
+  "$comment": "Site-wide config: nav, footer, contact, links, logos, feature flags (handoff doc 06 R1/R5/R8). siteUrl: production origin used for canonical/OG/sitemap/JSON-LD — change here when the domain is final.",
+  "siteUrl": "https://pum.mx",
+  "brand": {
+    "name": "¡PUM!",
+    "legalName": "¡PUM! Snacks",
+    "tagline": "Crujen. Sonríen. Disfrutan.",
+    "category": "Palitos de maíz horneados",
+    "country": "MX",
+    "language": "es-MX"
+  },
+  "commerce": {
+    "currency": "MXN",
+    "taxIncluded": true,
+    "priceNote": "IVA incluido",
+    "shippingFlatMXN": 0,
+    "cartStorageKey": "pum_cart"
+  },
+  "features": {
+    "checkoutEnabled": false,
+    "comingSoonCapture": true,
+    "prelaunchRibbon": true,
+    "waitlist": false
+  },
+  "forms": {
+    "$comment": "Endpoint URLs for a form/email provider (Formspree, Buttondown, Mailchimp, own API…). Empty string = simulate success locally (pre-launch). Swap providers by editing these only (handoff doc 06 R9).",
+    "waitlistUrl": "",
+    "newsletterUrl": "",
+    "contactUrl": ""
+  },
+  "navigation": {
+    "header": [
+      { "label": "Sabores", "id": "flavors" },
+      { "label": "Siente el crunch", "id": "crunch" },
+      { "label": "Para Papás", "id": "story" },
+      { "label": "Preguntas frecuentes", "href": "/preguntas-frecuentes.html" }
+    ],
+    "headerCta": { "label": "Quiero ¡PUM!", "id": "waitlist" }
+  },
+  "links": {
+    "home": "/index.html",
+    "flavors": "/index.html#flavors",
+    "faq": "/preguntas-frecuentes.html",
+    "marca": {
+      "nosotros": "/marca/nosotros.html",
+      "ingredientes": "/marca/ingredientes.html",
+      "contacto": "/marca/contacto.html"
+    },
+    "legal": {
+      "privacidad": "/legal/aviso-de-privacidad.html",
+      "terminos": "/legal/terminos-y-condiciones.html",
+      "envios": "/legal/politica-de-envios.html",
+      "devoluciones": "/legal/politica-de-devoluciones.html",
+      "facturacion": "/legal/facturacion.html"
+    },
+    "social": {
+      "instagram": "#",
+      "tiktok": "#",
+      "youtube": "#"
+    }
+  },
+  "footer": {
+    "blurb": "Palitos de maíz horneados. Crujen, sonríen, disfrutan. Hecho en México con ingredientes reales.",
+    "paymentBadges": ["Visa", "MC", "Amex", "PayPal"],
+    "copyright": "© 2026 ¡PUM! Snacks"
+  },
+  "contact": {
+    "address": "Av Alfonso Reyes 100, Zona Valle Poniente, 66196 Cdad. Santa Catarina, N.L., México",
+    "addressLines": ["Av Alfonso Reyes 100, Zona Valle Poniente,", "66196 Cdad. Santa Catarina, N.L., México"],
+    "phone": "+52 (220) 5678 618",
+    "phoneHref": "tel:+522205678618",
+    "whatsapp": "+52 220 567 8618",
+    "whatsappHref": "https://wa.me/522205678618",
+    "email": "hola@pum.mx",
+    "billingEmail": "facturacion@pum.mx"
+  },
+  "logos": {
+    "onLight": "/assets/logos/logo-dark.png",
+    "onDark": "/assets/logos/logo-white.png",
+    "legalHeader": "/assets/brand/logo-corn-u-reversed.png",
+    "markU": "/assets/brand/mark-u.png",
+    "cornU": "/assets/brand/mark-corn-u-trans.png"
+  }
+}
