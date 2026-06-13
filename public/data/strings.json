@@ -105,8 +105,9 @@
     "shippingFree": "Gratis",
     "total": "Total",
     "taxNote": "IVA incluido",
-    "parentalNotice": "Las compras solo pueden ser realizadas por mayores de edad. Los menores deben contar con la autorización de su mamá, papá o tutor.",
-    "checkout": "Ir a pagar",
+    "parentalNotice": "¡PUM! todavía no sale a la venta. Por ahora puedes apartar tu mezcla y te avisamos en cuanto puedas conseguirla.",
+    "checkout": "Avísame cuando salga",
+    "checkoutShort": "Avísame",
     "invoice": "¿Necesitas factura?",
     "deleteItem": "Quitar del carrito"
   },

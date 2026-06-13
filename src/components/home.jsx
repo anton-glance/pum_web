@@ -30,6 +30,24 @@ const Tagline = ({ H, size = 18, margin = '12px 0 0' }) => (
   <p style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: size, margin, textAlign: 'center' }}><span style={{ color: '#E12251' }}>{H.tagline[0]}</span> <span style={{ color: 'var(--pum-navy)' }}>{H.tagline[1]}</span> <span style={{ color: '#3C7A1E' }}>{H.tagline[2]}</span></p>
 )
 
+/* Monster anchored to the PACK container at a vertical % of the pack's height
+   (its center sits at `top` via translateY(-50%)); `side`/`off` place it just
+   outside the pack edge. Parallax adds gentle tilt life; pointerEvents off so it
+   never blocks the pack. Positions (per request): purple 10% · pink 55% · green 86%. */
+function PackMonster({ color, size, top, side = 'left', off = '-14%', fx = 10, fy = 7, rot = 0 }) {
+  const pos = side === 'left' ? { left: off } : { right: off }
+  return (
+    <div style={{ position: 'absolute', top, ...pos, transform: 'translateY(-50%)', zIndex: 4, pointerEvents: 'none' }}>
+      <Parallax fx={fx} fy={fy} rot={rot}><GooglyMonster color={color} size={size} onPoke={() => {}} /></Parallax>
+    </div>
+  )
+}
+const HERO_MONSTERS = [
+  { key: 'purple', color: '#7A3FA0', top: '10%', side: 'right', off: '-13%' },
+  { key: 'pink', color: '#FF4B7D', top: '55%', side: 'left', off: '-16%' },
+  { key: 'green', color: '#8BC53F', top: '86%', side: 'right', off: '-12%' },
+]
+
 export function Hero({ onNav }) {
   const packRef = React.useRef()
   const mobile = useMediaQuery('(max-width: 720px)')
@@ -45,15 +63,6 @@ export function Hero({ onNav }) {
        pack tilts both directions, no category pill, centered copy, CTAs below pack. */
     return (
       <section id="top" style={{ position: 'relative', overflow: 'hidden', background: 'radial-gradient(130% 110% at 70% 0%, #FFD64D 0%, #F2B632 55%, #EDA91E 100%)' }}>
-        <Parallax fx={14} fy={10} rot={3} style={{ position: 'absolute', left: '3%', top: '55%', zIndex: 4 }}>
-          <GooglyMonster color="#FF4B7D" size={56} onPoke={() => {}} />
-        </Parallax>
-        <Parallax fx={-18} fy={-12} rot={-4} style={{ position: 'absolute', right: '4%', top: '65%', zIndex: 4 }}>
-          <GooglyMonster color="#8BC53F" size={48} onPoke={() => {}} />
-        </Parallax>
-        <Parallax fx={-9} fy={7} style={{ position: 'absolute', right: '7%', top: '42%', zIndex: 4 }}>
-          <GooglyMonster color="#7A3FA0" size={38} onPoke={() => {}} />
-        </Parallax>
         <div style={{ padding: '20px 22px 44px', position: 'relative', zIndex: 3, textAlign: 'center' }}>
           <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 43, lineHeight: 0.97, letterSpacing: '-.015em', color: 'var(--pum-navy)', margin: '6px 0 10px' }}>{H.headline1}<br />{H.headline2}</h1>
           <p style={{ fontSize: 15.5, lineHeight: 1.5, color: 'var(--pum-navy)', opacity: 0.85, margin: '0 auto 6px', fontWeight: 600, maxWidth: 300 }}>{H.body}</p>
@@ -63,6 +72,9 @@ export function Hero({ onNav }) {
             </Parallax>
             <div style={{ position: 'absolute', bottom: '3%', left: '50%', width: '52%', height: 30, transform: 'translateX(-50%)', background: 'radial-gradient(ellipse at center, rgba(13,30,58,.42) 0%, rgba(13,30,58,0) 72%)', filter: 'blur(4px)', pointerEvents: 'none' }} />
             <div className="pum-pack-bob" style={{ position: 'relative', width: 230, zIndex: 2 }}>
+              <PackMonster color="#7A3FA0" size={38} top="10%" side="right" off="-22%" fx={-9} fy={7} />
+              <PackMonster color="#FF4B7D" size={52} top="55%" side="left" off="-26%" fx={14} fy={10} rot={3} />
+              <PackMonster color="#8BC53F" size={44} top="86%" side="right" off="-24%" fx={-18} fy={-12} rot={-4} />
               <PackTilt amp={1.15}>
                 <div onClick={burst} style={{ cursor: 'pointer' }}>
                   <PumImg imgRef={packRef} src={heroFlavor.img} widths={[200, 400, 800]} sizes="230px" width={800} height={1028} eager fetchPriority="high" alt={H.packAlt} style={{ display: 'block', width: '100%', height: 'auto', filter: 'drop-shadow(0 26px 36px rgba(13,30,58,.38)) drop-shadow(0 8px 14px rgba(13,30,58,.22))' }} />
@@ -82,10 +94,6 @@ export function Hero({ onNav }) {
 
   return (
     <section id="top" style={{ position: 'relative', overflow: 'hidden', background: 'radial-gradient(120% 120% at 70% 0%, #FFD64D 0%, #F2B632 55%, #EDA91E 100%)' }}>
-      {/* wandering monsters */}
-      <div className="pum-float" style={{ position: 'absolute', left: '6%', top: '24%', zIndex: 2 }}><GooglyMonster color="#FF4B7D" size={64} onPoke={() => {}} /></div>
-      <div className="pum-float2" style={{ position: 'absolute', right: '9%', bottom: '30%', zIndex: 2 }}><GooglyMonster color="#8BC53F" size={58} onPoke={() => {}} /></div>
-      <div className="pum-float3 hide-sm" style={{ position: 'absolute', left: '46%', top: '10%', zIndex: 2 }}><GooglyMonster color="#7A3FA0" size={46} onPoke={() => {}} /></div>
       <div className="pum-hero-grid" style={{ maxWidth: 1140, margin: '0 auto', padding: '46px 26px 60px', display: 'grid', gridTemplateColumns: '1.04fr .96fr', gap: 24, alignItems: 'center', position: 'relative', zIndex: 3 }}>
         <div>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'var(--pum-navy)', color: 'var(--pum-cream)', fontWeight: 800, fontSize: 13, letterSpacing: '.05em', textTransform: 'uppercase', padding: '7px 15px', borderRadius: 999 }}><Icon name="sparkles" size={15} stroke={2.4} /> {H.badge}</span>
@@ -101,6 +109,9 @@ export function Hero({ onNav }) {
             <div className="pum-halo" style={{ position: 'absolute', width: 480, height: 480, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,.62) 0%, rgba(255,255,255,.18) 46%, rgba(255,255,255,0) 70%)', top: '47%', left: '50%', transform: 'translate(-50%,-50%)', pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', bottom: '5%', left: '50%', width: '56%', height: 38, transform: 'translateX(-50%)', background: 'radial-gradient(ellipse at center, rgba(13,30,58,.42) 0%, rgba(13,30,58,0) 72%)', filter: 'blur(4px)', pointerEvents: 'none' }} />
             <div className="pum-pack-bob" style={{ position: 'relative', width: '84%', maxWidth: 360, zIndex: 2 }}>
+              {HERO_MONSTERS.map((m) => (
+                <PackMonster key={m.key} color={m.color} size={m.key === 'pink' ? 60 : m.key === 'green' ? 56 : 46} top={m.top} side={m.side} off={m.off} />
+              ))}
               <div style={{ perspective: 1000 }}>
                 <div ref={packRef} onMouseMove={onTilt} onMouseLeave={offTilt} onClick={burst}
                   style={{ cursor: 'pointer', transition: 'transform .4s cubic-bezier(.22,.61,.36,1)', transform: 'rotateY(-8deg) rotateZ(-3deg)', transformStyle: 'preserve-3d', willChange: 'transform' }}>

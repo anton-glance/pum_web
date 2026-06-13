@@ -97,7 +97,7 @@ export function CartBar({ cart, total, onOpen, onCheckout }) {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
             <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 17 }}>${total}</span>
-            <button onClick={(e) => { e.stopPropagation(); onCheckout() }} style={{ background: 'var(--pum-corn)', color: 'var(--pum-navy)', border: 'none', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 14, padding: '8px 18px', borderRadius: 999, display: 'flex', alignItems: 'center', gap: 7, cursor: 'pointer' }}>{C.checkout} <Icon name="arrow-right" size={16} stroke={2.6} /></button>
+            <button onClick={(e) => { e.stopPropagation(); onCheckout() }} style={{ background: 'var(--pum-corn)', color: 'var(--pum-navy)', border: 'none', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 14, padding: '8px 18px', borderRadius: 999, display: 'flex', alignItems: 'center', gap: 7, cursor: 'pointer', whiteSpace: 'nowrap' }}><Icon name="bell" size={15} stroke={2.6} /> {C.checkoutShort}</button>
           </div>
         </div>
       </div>

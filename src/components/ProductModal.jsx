@@ -111,7 +111,8 @@ export function ProductModal({ flavor, cart, onClose, onAddToCart, onViewCart, o
               </div>
             ) : (
               <React.Fragment>
-                <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 14, marginBottom: 14, minHeight: 42 }}>
+                {/* fixed height (not min) so the add button row never shifts as qty / in-cart change */}
+                <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 14, marginBottom: 14, height: 50 }}>
                   <div>
                     {inCart > 0 && (
                       <React.Fragment>

@@ -5,9 +5,10 @@ import ReactDOM from 'react-dom/client'
 import './styles/global.css'
 import './styles/subpage.css'
 import { SubpageApp } from './SubpageApp.jsx'
+import { ErrorBoundary } from './components/ErrorBoundary.jsx'
 
 const container = document.getElementById('root')
-const app = <SubpageApp page={container.dataset.page} flavorId={container.dataset.flavor} />
+const app = <ErrorBoundary><SubpageApp page={container.dataset.page} flavorId={container.dataset.flavor} /></ErrorBoundary>
 if (container.firstElementChild) {
   ReactDOM.hydrateRoot(container, app)
 } else {
