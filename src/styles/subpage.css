@@ -52,7 +52,7 @@
 
 /* floating brand art — corn sticks, corners only, fully visible */
 .hero-deco { position: absolute; inset: 0; z-index: 0; pointer-events: none }
-.hero-deco .puff { position: absolute; filter: drop-shadow(0 8px 10px rgba(13,30,58,.16)) }
+.hero-deco .puff { position: absolute; height: auto; filter: drop-shadow(0 8px 10px rgba(13,30,58,.16)) }
 .hero-deco .p1 { left: 4%; top: 16%; width: 56px; transform: rotate(-18deg) }
 .hero-deco .p2 { left: 30%; bottom: 15%; width: 44px; transform: rotate(22deg); opacity: .85 }
 .hero-deco .p3 { right: 5%; top: 15%; width: 84px; transform: rotate(10deg); opacity: .92 }
@@ -217,11 +217,11 @@ section.faq { padding: 56px 0 30px }
 .grouptitle h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(24px,3vw,32px); color: var(--pum-navy); margin: 0; line-height: 1 }
 .qa { display: flex; flex-direction: column; gap: 14px }
 details.q { background: #fff; border: 1.5px solid var(--border); border-radius: 18px; box-shadow: 0 5px 0 rgba(13,30,58,.06); overflow: hidden; transition: box-shadow .2s, transform .18s cubic-bezier(.34,1.56,.64,1) }
-details.q:hover { transform: translateY(-3px) }
+details.q:hover { transform: translateY(-3px); background: rgba(242,182,50,.07) }
 details.q[open] { box-shadow: 0 8px 0 rgba(13,30,58,.07), var(--shadow-md); border-color: var(--border-strong) }
 details.q summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 14px; padding: 20px 22px; font-family: var(--font-display); font-weight: 800; font-size: 18px; color: var(--pum-navy); line-height: 1.25 }
 details.q summary::-webkit-details-marker { display: none }
-details.q summary:hover { background: rgba(242,182,50,.07) }
+/* (whole-card hover handled by details.q:hover above; summary keeps the pointer only) */
 details.q summary:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: -3px; border-radius: 18px }
 details.q .chev { margin-left: auto; flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; background: var(--pum-cream-2); display: flex; align-items: center; justify-content: center; color: var(--pum-navy); transition: transform .25s, background .2s }
 details.q[open] .chev { transform: rotate(180deg); background: var(--pum-corn) }
@@ -238,8 +238,8 @@ details.q .ans { padding: 0 22px 22px 22px; font-size: 17px; line-height: 1.6; c
 .disclaimer-card { max-width: 680px; margin: 30px auto 0; background: var(--pum-cream-2); border: 1.5px dashed var(--border-strong); border-radius: 16px; padding: 15px 24px; display: flex; align-items: center; justify-content: center; gap: 11px }
 .disclaimer-card svg { color: var(--fg-mute); flex-shrink: 0 }
 .disclaimer-card p { font-size: 14px; color: var(--fg-mute); font-weight: 600; font-style: italic; margin: 0; line-height: 1.5; text-align: left }
-.disclaimer { font-size: 14px; color: var(--fg-mute); font-weight: 600; font-style: italic; text-align: center; max-width: 620px; margin: 34px auto 0; line-height: 1.55 }
-.more-q { padding: 46px 26px 10px; text-align: center }
+.prose p.disclaimer { font-size: 14px; color: var(--fg-mute); font-weight: 600; font-style: italic; text-align: center; max-width: 620px; margin: 52px auto 0; line-height: 1.55 }
+.more-q { padding: 26px 26px 14px; text-align: center }
 .more-q p { font-size: 16.5px; color: var(--fg-soft); font-weight: 600; margin: 0 }
 .more-q p .q { font-style: italic }
 .more-q a { color: var(--pum-navy); font-weight: 800; text-decoration: underline; text-decoration-color: var(--accent-dyn); text-decoration-thickness: 2.5px; text-underline-offset: 2px }

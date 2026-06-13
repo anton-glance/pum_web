@@ -1,17 +1,18 @@
-/* Footer — identical on every page (handoff doc 02 contract #4).
-   Sabores column opens the shared product modal in place via onFlavor (doc 04 §3).
-   ≤720px follows the approved mobile mockup MobileFooter: stacked newsletter form,
-   two-column link grid (Sabores | Marca+Síguenos), multi-line contact. */
+/* Footer + standalone Newsletter section (handoff doc 02 contract #4).
+   The newsletter signup is its OWN section now (rendered only on the home page, as the
+   last section before the footer) — it used to live inside the footer and showed on every
+   page, duplicating the interior pages' inline notify cards.
+   Sabores column opens the shared product modal in place via onFlavor (doc 04 §3). */
 import React from 'react'
 import { esValidation, PumImg } from './ui.jsx'
 import { FLAVORS, SITE, STRINGS, LINKS, WAITLIST } from '../lib/data.js'
 import { submitForm, honeypotProps } from '../lib/forms.js'
 import { useMediaQuery } from '../lib/motion.jsx'
 
-export function Footer({ onFlavor }) {
+/* Waitlist signup — home page only, rendered as the last section before the footer. */
+export function Newsletter() {
   const [done, setDone] = React.useState(false)
   const [error, setError] = React.useState(false)
-  const S = STRINGS.footer
   const N = STRINGS.newsletter
   const mobile = useMediaQuery('(max-width: 720px)')
   const onSubmit = async (e) => {
@@ -22,26 +23,10 @@ export function Footer({ onFlavor }) {
     if (ok) setDone(true)
     else setError(true)
   }
-  const colH = { fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: mobile ? 15 : 16, marginBottom: mobile ? 10 : 12 }
-  const colA = { display: 'block', color: 'var(--pum-cream)', opacity: 0.72, fontSize: 14, fontWeight: 600, padding: mobile ? '6px 0' : '5px 0', cursor: 'pointer', textDecoration: 'none' }
-  const saboresCol = (
-    <div>
-      <div style={colH}>{S.colSabores}</div>
-      {FLAVORS.map((f) => (
-        <a key={f.id} href={`/sabores/${f.id}.html`} onClick={(e) => { e.preventDefault(); onFlavor(f) }} style={colA}>{f.name}</a>
-      ))}
-    </div>
-  )
-  const marcaLinks = S.marcaLinks.map((it) => (
-    <a key={it.label} href={LINKS.marca[it.linkKey] || LINKS[it.linkKey]} style={colA}>{it.label}</a>
-  ))
-  const socialLinks = S.socialLinks.map((label) => (
-    <a key={label} href={SITE.links.social[label.toLowerCase()]} style={colA}>{label}</a>
-  ))
   return (
-    <footer style={{ background: 'var(--pum-navy)', color: 'var(--pum-cream)' }}>
-      <div style={{ maxWidth: 1140, margin: '0 auto', padding: mobile ? '38px 20px 22px' : '54px 26px 24px' }}>
-        <div style={{ background: 'var(--pum-corn)', borderRadius: mobile ? 24 : 28, padding: mobile ? '24px 22px' : '32px', display: mobile ? 'block' : 'flex', gap: 22, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+    <section aria-label={N.headline} style={{ background: 'var(--pum-navy)' }}>
+      <div style={{ maxWidth: 1140, margin: '0 auto', padding: mobile ? '44px 20px 10px' : '60px 26px 14px' }}>
+        <div style={{ background: 'var(--pum-corn)', borderRadius: mobile ? 24 : 28, padding: mobile ? '24px 22px' : '32px', display: mobile ? 'block' : 'flex', gap: 22, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', boxShadow: '0 6px 0 var(--pum-corn-deep)' }}>
           <div>
             <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: mobile ? 23 : 26, color: 'var(--pum-navy)', margin: '0 0 4px' }}>{N.headline}</h3>
             <p style={{ color: 'var(--pum-navy)', opacity: 0.8, fontWeight: 600, margin: mobile ? '0 0 14px' : 0, fontSize: mobile ? 14.5 : undefined }}>{N.body}</p>
@@ -58,9 +43,36 @@ export function Footer({ onFlavor }) {
             <p style={{ fontSize: 11.5, color: 'var(--pum-navy)', opacity: 0.85, fontWeight: 600, margin: '8px 0 0', lineHeight: 1.4 }}>{N.consentPrefix}<a href={LINKS.legal.privacidad} style={{ color: 'var(--pum-navy)', textDecoration: 'underline' }}>{N.consentLink}</a>.</p>
           </div>
         </div>
+      </div>
+    </section>
+  )
+}
+
+export function Footer({ onFlavor }) {
+  const S = STRINGS.footer
+  const mobile = useMediaQuery('(max-width: 720px)')
+  const colH = { fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: mobile ? 15 : 16, marginBottom: mobile ? 10 : 12 }
+  const colA = { display: 'block', color: 'var(--pum-cream)', opacity: 0.72, fontSize: 14, fontWeight: 600, padding: mobile ? '6px 0' : '5px 0', cursor: 'pointer', textDecoration: 'none' }
+  const saboresCol = (
+    <div>
+      <div style={colH}>{S.colSabores}</div>
+      {FLAVORS.map((f) => (
+        <a key={f.id} href={`/sabores/${f.id}.html`} onClick={(e) => { if (onFlavor) { e.preventDefault(); onFlavor(f) } }} style={colA}>{f.name}</a>
+      ))}
+    </div>
+  )
+  const marcaLinks = S.marcaLinks.map((it) => (
+    <a key={it.label} href={LINKS.marca[it.linkKey] || LINKS[it.linkKey]} style={colA}>{it.label}</a>
+  ))
+  const socialLinks = S.socialLinks.map((label) => (
+    <a key={label} href={SITE.links.social[label.toLowerCase()]} style={colA}>{label}</a>
+  ))
+  return (
+    <footer style={{ background: 'var(--pum-navy)', color: 'var(--pum-cream)' }}>
+      <div style={{ maxWidth: 1140, margin: '0 auto', padding: mobile ? '38px 20px 22px' : '54px 26px 24px' }}>
         {mobile ? (
           <React.Fragment>
-            <div style={{ marginTop: 32 }}>
+            <div>
               <PumImg src={SITE.logos.onDark} widths={[200, 400]} sizes="109px" width={400} height={132} alt={SITE.brand.name} style={{ height: 36, width: 'auto' }} />
               <p style={{ opacity: 0.7, fontSize: 14, lineHeight: 1.55, margin: '12px 0 0', fontWeight: 500 }}>{SITE.footer.blurb}</p>
             </div>
@@ -92,7 +104,7 @@ export function Footer({ onFlavor }) {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <div className="pum-footcols" style={{ display: 'flex', gap: 30, justifyContent: 'space-between', flexWrap: 'wrap', marginTop: 40 }}>
+            <div className="pum-footcols" style={{ display: 'flex', gap: 30, justifyContent: 'space-between', flexWrap: 'wrap' }}>
               <div style={{ maxWidth: 280 }}>
                 <PumImg src={SITE.logos.onDark} widths={[200, 400]} sizes="122px" width={400} height={132} alt={SITE.brand.name} style={{ height: 40, width: 'auto' }} />
                 <p style={{ opacity: 0.7, fontSize: 14, lineHeight: 1.55, marginTop: 14, fontWeight: 500 }}>{SITE.footer.blurb}</p>

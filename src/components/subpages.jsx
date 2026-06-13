@@ -9,13 +9,20 @@ import { submitForm, honeypotProps } from '../lib/forms.js'
 
 /* ---- shared building blocks ---- */
 
-// hero corner sticks: 5 imgs from the 3 stick assets, reused (p1..p5)
-const PUFFS = ['puff-long', 'puff-smile', 'puff-u', 'puff-smile', 'puff-long']
+// hero corner sticks: 5 imgs from the 3 stick assets, reused (p1..p5).
+// Real intrinsic sizes (so the aspect ratio isn't squished to a square) — width comes from CSS.
+const PUFFS = [
+  { src: 'puff-long', w: 280, h: 125 },
+  { src: 'puff-smile', w: 280, h: 119 },
+  { src: 'puff-u', w: 280, h: 186 },
+  { src: 'puff-smile', w: 280, h: 119 },
+  { src: 'puff-long', w: 280, h: 125 },
+]
 function HeroDeco() {
   return (
     <div className="hero-deco" aria-hidden="true">
       {PUFFS.map((p, i) => (
-        <PumImg key={i} src={`/assets/puffs/${p}.png`} widths={[180, 360]} sizes="84px" width={360} height={360} alt="" className={`puff p${i + 1}`} />
+        <PumImg key={i} src={`/assets/puffs/${p.src}.png`} widths={[180, 360]} sizes="84px" width={p.w} height={p.h} alt="" className={`puff p${i + 1}`} />
       ))}
     </div>
   )

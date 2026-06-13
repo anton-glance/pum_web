@@ -7,7 +7,7 @@ import { FLAVORS, WAITLIST } from './lib/data.js'
 import { useCart, cartStore, cartCount, cartTotal } from './lib/cart.js'
 import { CrumbCanvas, CursorMascot } from './lib/fx.jsx'
 import { Nav } from './components/Nav.jsx'
-import { Footer } from './components/Footer.jsx'
+import { Footer, Newsletter } from './components/Footer.jsx'
 import { Hero, FlavorPlayground, CrunchZone, Story, EnDesarrollo } from './components/home.jsx'
 import { Cart, CartBar, ComingSoon } from './components/Cart.jsx'
 import { ProductModal } from './components/ProductModal.jsx'
@@ -59,6 +59,7 @@ export function App() {
         <FlavorPlayground cart={cart} onAdd={add} onOpen={setDetail} onNotify={notify} />
         <CrunchZone onOpen={setDetail} />
         <Story />
+        <Newsletter />
       </main>
       <Footer onFlavor={setDetail} />
       {!WAITLIST && <CartBar cart={cart} total={cartTotal(cart, FLAVORS)} onOpen={() => setOpen(true)} onCheckout={() => setComingSoon(true)} />}
