@@ -45,10 +45,11 @@ export function SaborPage({ flavorId, onNotify }) {
               <span style={{ position: 'absolute', bottom: 14, left: 0, right: 0, textAlign: 'center', fontFamily: 'var(--font-marker)', fontSize: 16, color: lineCol, opacity: 0.85, pointerEvents: 'none' }}>{M.caption}</span>
             </div>
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                <span style={{ fontWeight: 800, fontSize: 11.5, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--fg-mute)' }}>{M.eyebrow}</span>
-                {f.tag && <span style={{ background: f.color, color: f.ink, fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 11.5, padding: '3px 10px', borderRadius: 999 }}>{f.tag}</span>}
-              </div>
+              {f.tag && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                  <span style={{ background: f.color, color: f.ink, fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 11.5, padding: '3px 10px', borderRadius: 999 }}>{f.tag}</span>
+                </div>
+              )}
               <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(34px,4.6vw,52px)', lineHeight: 1, margin: '0 0 8px', color: 'var(--pum-navy)' }}>{f.name}</h1>
               <p style={{ fontFamily: 'var(--font-marker)', fontSize: 19, color: f.color, margin: '0 0 12px', transform: 'rotate(-1.5deg)' }}>{f.monster}</p>
               <p style={{ fontSize: 15.5, lineHeight: 1.6, color: 'var(--fg-soft)', fontWeight: 500, margin: '0 0 16px', maxWidth: 460 }}>{f.desc}</p>

@@ -25,13 +25,13 @@ export function Newsletter() {
   }
   return (
     <section aria-label={N.headline} style={{ background: 'var(--pum-navy)' }}>
-      <div style={{ maxWidth: 1140, margin: '0 auto', padding: mobile ? '44px 20px 10px' : '60px 26px 14px' }}>
-        <div style={{ background: 'var(--pum-corn)', borderRadius: mobile ? 24 : 28, padding: mobile ? '24px 22px' : '32px', display: mobile ? 'block' : 'flex', gap: 22, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', boxShadow: '0 6px 0 var(--pum-corn-deep)' }}>
-          <div>
+      <div style={{ maxWidth: 1140, margin: '0 auto', padding: mobile ? '40px 20px 8px' : '44px 26px 12px' }}>
+        <div style={{ background: 'var(--pum-corn)', borderRadius: mobile ? 24 : 28, padding: mobile ? '22px 22px' : '26px 32px', display: mobile ? 'block' : 'flex', gap: 30, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', boxShadow: '0 6px 0 var(--pum-corn-deep)' }}>
+          <div style={{ flex: mobile ? undefined : '1 1 300px', minWidth: 0 }}>
             <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: mobile ? 23 : 26, color: 'var(--pum-navy)', margin: '0 0 4px' }}>{N.headline}</h3>
-            <p style={{ color: 'var(--pum-navy)', opacity: 0.8, fontWeight: 600, margin: mobile ? '0 0 14px' : 0, fontSize: mobile ? 14.5 : undefined }}>{N.body}</p>
+            <p style={{ color: 'var(--pum-navy)', opacity: 0.8, fontWeight: 600, margin: mobile ? '0 0 14px' : 0, fontSize: mobile ? 14.5 : 15 }}>{N.body}</p>
           </div>
-          <div>
+          <div style={{ flex: mobile ? undefined : '0 1 auto' }}>
             <form onSubmit={onSubmit} style={mobile
               ? { display: 'flex', flexDirection: 'column', gap: 9 }
               : { display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'stretch' }}>
@@ -64,8 +64,15 @@ export function Footer({ onFlavor }) {
   const marcaLinks = S.marcaLinks.map((it) => (
     <a key={it.label} href={LINKS.marca[it.linkKey] || LINKS[it.linkKey]} style={colA}>{it.label}</a>
   ))
-  const socialLinks = S.socialLinks.map((label) => (
-    <a key={label} href={SITE.links.social[label.toLowerCase()]} style={colA}>{label}</a>
+  const socialIcon = (name) => {
+    const p = { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true, style: { flexShrink: 0 } }
+    if (name === 'Instagram') return <svg {...p}><rect x="2" y="2" width="20" height="20" rx="5.5" /><circle cx="12" cy="12" r="4" /><circle cx="17.6" cy="6.4" r="0.9" fill="currentColor" stroke="none" /></svg>
+    if (name === 'YouTube') return <svg {...p}><rect x="2" y="5" width="20" height="14" rx="4.5" /><path d="M10.2 8.8 15.4 12l-5.2 3.2z" fill="currentColor" stroke="none" /></svg>
+    if (name === 'TikTok') return <svg {...p}><path d="M15 3.5c.45 2.2 1.9 3.7 4 4v3.1c-1.55 0-3-.5-4-1.35V15.5a5 5 0 1 1-5-5c.34 0 .68.03 1 .1v3.15A2 2 0 1 0 12.5 15.5V3.5H15z" /></svg>
+    return null
+  }
+  const socialLinks = (align = 'left') => S.socialLinks.map((label) => (
+    <a key={label} href={SITE.links.social[label.toLowerCase()]} style={{ ...colA, display: 'flex', alignItems: 'center', gap: 8, justifyContent: align === 'right' ? 'flex-end' : 'flex-start' }}>{socialIcon(label)}<span>{label}</span></a>
   ))
   return (
     <footer style={{ background: 'var(--pum-navy)', color: 'var(--pum-cream)' }}>
@@ -82,7 +89,7 @@ export function Footer({ onFlavor }) {
                 <div style={colH}>{S.colMarca}</div>
                 {marcaLinks}
                 <div style={{ ...colH, marginTop: 18 }}>{S.colSiguenos}</div>
-                {socialLinks}
+                {socialLinks('left')}
               </div>
             </div>
             <div style={{ borderTop: '1px solid rgba(253,247,241,.16)', marginTop: 28, paddingTop: 16, fontSize: 13, opacity: 0.7, fontWeight: 500, lineHeight: 1.7 }}>
@@ -104,19 +111,22 @@ export function Footer({ onFlavor }) {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <div className="pum-footcols" style={{ display: 'flex', gap: 30, justifyContent: 'space-between', flexWrap: 'wrap' }}>
-              <div style={{ maxWidth: 280 }}>
+            <div className="pum-footcols" style={{ display: 'flex', gap: 40, justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+              <div style={{ maxWidth: 300, flex: '1 1 240px' }}>
                 <PumImg src={SITE.logos.onDark} widths={[200, 400]} sizes="122px" width={400} height={132} alt={SITE.brand.name} style={{ height: 40, width: 'auto' }} />
                 <p style={{ opacity: 0.7, fontSize: 14, lineHeight: 1.55, marginTop: 14, fontWeight: 500 }}>{SITE.footer.blurb}</p>
               </div>
-              {saboresCol}
-              <div>
-                <div style={colH}>{S.colMarca}</div>
-                {marcaLinks}
-              </div>
-              <div>
-                <div style={colH}>{S.colSiguenos}</div>
-                {socialLinks}
+              {/* link columns grouped together, pushed right + right-aligned */}
+              <div style={{ display: 'flex', gap: 40, textAlign: 'right' }}>
+                {saboresCol}
+                <div>
+                  <div style={colH}>{S.colMarca}</div>
+                  {marcaLinks}
+                </div>
+                <div>
+                  <div style={colH}>{S.colSiguenos}</div>
+                  {socialLinks('right')}
+                </div>
               </div>
             </div>
             {/* contact + payment badges */}

@@ -87,10 +87,11 @@ export function ProductModal({ flavor, cart, onClose, onAddToCart, onViewCart, o
         )}
         <div className="pum-modal-info" style={{ color: 'var(--pum-navy)', flex: '1 1 0', minWidth: 0, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
           <div className="pum-modal-scroll" style={{ padding: sheet ? '20px 22px 14px' : '30px 30px 14px', overflowY: 'auto', flex: '1 1 auto', minHeight: 0 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-              <span style={{ fontWeight: 800, fontSize: 11.5, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--fg-mute)' }}>{M.eyebrow}</span>
-              {f.tag && <span style={{ background: f.color, color: f.ink, fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 11.5, padding: '3px 10px', borderRadius: 999 }}>{f.tag}</span>}
-            </div>
+            {f.tag && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                <span style={{ background: f.color, color: f.ink, fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 11.5, padding: '3px 10px', borderRadius: 999 }}>{f.tag}</span>
+              </div>
+            )}
             <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: sheet ? 34 : 38, lineHeight: 1, margin: '0 0 6px' }}>{f.name}</h2>
             <p style={{ fontFamily: 'var(--font-marker)', fontSize: 19, color: f.color, margin: '0 0 12px', transform: 'rotate(-1.5deg)' }}>{f.monster}</p>
             <p style={{ fontSize: 14.5, lineHeight: 1.55, color: 'var(--fg-soft)', fontWeight: 500, margin: '0 0 16px' }}>{f.desc}</p>

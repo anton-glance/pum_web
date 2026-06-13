@@ -143,10 +143,11 @@ export function NutritionTable({ data, compact = false }) {
           <span>{data.title}</span><span style={{ opacity: 0.7 }}>{data.portion}</span>
         </div>
         <div style={{ overflowX: 'auto' }}>
+          {/* product cards show only label / per-30g / per-100g — the NOM-051 limit column is dropped */}
           <table style={{ width: '100%', borderCollapse: 'collapse', background: 'var(--pum-cream)' }}>
             <thead>
               <tr>
-                {data.headers.map((h, i) => <th key={i} style={{ ...th, textAlign: i === 0 ? 'left' : 'right', color: 'var(--fg-mute)', borderBottom: '1px solid var(--border)' }}>{h}</th>)}
+                {data.headers.slice(0, 3).map((h, i) => <th key={i} style={{ ...th, textAlign: i === 0 ? 'left' : 'right', color: 'var(--fg-mute)', borderBottom: '1px solid var(--border)' }}>{h}</th>)}
               </tr>
             </thead>
             <tbody>
@@ -155,7 +156,6 @@ export function NutritionTable({ data, compact = false }) {
                   <td style={{ ...labelTd, borderTop: '1px solid var(--border)' }}>{r[0]}</td>
                   <td style={{ ...td, fontWeight: 800, borderTop: '1px solid var(--border)' }}>{r[1]}</td>
                   <td style={{ ...td, borderTop: '1px solid var(--border)' }}>{r[2]}</td>
-                  <td style={{ ...td, color: 'var(--fg-mute)', borderTop: '1px solid var(--border)' }}>{r[3]}</td>
                 </tr>
               ))}
             </tbody>
