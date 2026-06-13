@@ -5,6 +5,8 @@ import {
   ShoppingBag, Sparkles, ArrowRight, Star, Flame, Plus, X, ShieldCheck, Sprout, Smile,
   ChevronsRight, ChevronsLeft, Bell, Image, Heart, Leaf, CheckCircle2, Wheat, Candy,
   Droplet, XCircle, MapPin, Phone, Mail, Send, Trash2, Menu, MessageCircle,
+  FlaskConical, Palette, Pill, Feather, Ban, Zap, BadgeCheck, CandyOff, Users, Eye,
+  ScanLine, ChevronDown, MessageCircleQuestion,
 } from 'lucide-react'
 
 /* Pinned lucide-react set (handoff doc 03: Lucide, stroke 2–2.2, navy). */
@@ -37,6 +39,19 @@ const ICONS = {
   'trash-2': Trash2,
   menu: Menu,
   'message-circle': MessageCircle,
+  'flask-conical': FlaskConical,
+  palette: Palette,
+  pill: Pill,
+  feather: Feather,
+  ban: Ban,
+  zap: Zap,
+  'badge-check': BadgeCheck,
+  'candy-off': CandyOff,
+  users: Users,
+  eye: Eye,
+  'scan-line': ScanLine,
+  'chevron-down': ChevronDown,
+  'message-circle-question': MessageCircleQuestion,
 }
 
 /* Focus trap for dialogs (design-critique M5, handoff doc 06 R10).
@@ -186,7 +201,7 @@ export function inlineMd(text, kp = 't') {
   let m, last = 0, k = 0
   while ((m = re.exec(text))) {
     if (m.index > last) out.push(...emphasis(text.slice(last, m.index), `${kp}p${k}`))
-    out.push(<a key={`${kp}l${k++}`} href={resolveHref(m[2])}>{emphasis(m[1], `${kp}la${k}`)}</a>)
+    out.push(<a key={`${kp}l${k++}`} className="inl" href={resolveHref(m[2])}>{emphasis(m[1], `${kp}la${k}`)}</a>)
     last = re.lastIndex
   }
   if (last < text.length) out.push(...emphasis(text.slice(last), `${kp}e`))
