@@ -147,9 +147,7 @@
     "contactWhatsapp": " · WhatsApp: ",
     "legalLinks": [
       { "label": "Aviso de Privacidad", "linkKey": "privacidad" },
-      { "label": "Términos y Condiciones", "linkKey": "terminos" },
-      { "label": "Política de Envíos", "linkKey": "envios" },
-      { "label": "Política de Devoluciones", "linkKey": "devoluciones" }
+      { "label": "Términos y Condiciones", "linkKey": "terminos" }
     ],
     "tagline": "Crujen. Sonríen. Disfrutan."
   },

@@ -119,7 +119,10 @@ export function PumImg({ src, widths = [200, 400, 800], sizes = '100vw', alt = '
         width={width}
         height={height}
         loading={eager ? 'eager' : 'lazy'}
-        decoding={eager ? 'sync' : 'async'}
+        /* always sync-decode: with async decode the drop-shadow filter paints the
+           image's bounding box (a rectangle) until the alpha is decoded on a later
+           repaint. Sync decode makes the transparent shape correct on first paint. */
+        decoding="sync"
         fetchpriority={fetchPriority}
         className={className}
         style={style}
@@ -234,9 +237,14 @@ export function Icon({ name, size = 22, stroke = 2.2, color, style }) {
   return <Cmp size={size} strokeWidth={stroke} color={color || 'currentColor'} style={{ display: 'inline-flex', flexShrink: 0, ...style }} aria-hidden="true" />
 }
 
+/* Only hover-capable (pointer:fine) devices get the lift/press transforms — on touch
+   they would stick after a tap (mouseenter fires, mouseleave doesn't), leaving the button
+   shifted + a different shade. On touch the button keeps one identical resting state. */
+const CAN_HOVER = typeof window !== 'undefined' && window.matchMedia ? window.matchMedia('(hover: hover) and (pointer: fine)').matches : false
+
 export function Btn({ children, variant = 'primary', size = 'md', onClick, style, type }) {
   const [st, setSt] = React.useState('')
-  const base = { fontFamily: 'var(--font-display)', fontWeight: 800, border: 'none', borderRadius: 999, cursor: 'pointer', letterSpacing: '.01em', display: 'inline-flex', alignItems: 'center', gap: 9, lineHeight: 1, fontSize: size === 'lg' ? 19 : 16, padding: size === 'lg' ? '15px 30px' : '12px 24px', transition: 'transform .12s cubic-bezier(.34,1.56,.64,1),box-shadow .12s,filter .12s', ...style }
+  const base = { fontFamily: 'var(--font-display)', fontWeight: 800, border: 'none', borderRadius: 999, cursor: 'pointer', letterSpacing: '.01em', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 9, lineHeight: 1, fontSize: size === 'lg' ? 19 : 16, padding: size === 'lg' ? '15px 30px' : '12px 24px', transition: 'transform .12s cubic-bezier(.34,1.56,.64,1),box-shadow .12s,filter .12s', ...style }
   const skins = {
     primary: { background: 'var(--pum-corn)', color: 'var(--pum-navy)', boxShadow: '0 4px 0 var(--pum-corn-deep)' },
     secondary: { background: 'var(--pum-navy)', color: 'var(--pum-cream)', boxShadow: '0 4px 0 #050d1d' },
@@ -244,9 +252,10 @@ export function Btn({ children, variant = 'primary', size = 'md', onClick, style
     light: { background: '#fff', color: 'var(--pum-navy)', boxShadow: '0 4px 0 rgba(0,0,0,.18)' },
   }
   const press = variant !== 'ghost'
-  const dyn = st === 'press' && press ? { transform: 'translateY(4px)', boxShadow: '0 0 0 transparent' } : st === 'hover' ? { transform: 'translateY(-2px)', filter: 'brightness(1.04)' } : {}
+  const dyn = !CAN_HOVER ? {} : st === 'press' && press ? { transform: 'translateY(4px)', boxShadow: '0 0 0 transparent' } : st === 'hover' ? { transform: 'translateY(-2px)', filter: 'brightness(1.04)' } : {}
+  const handlers = CAN_HOVER ? { onMouseEnter: () => setSt('hover'), onMouseLeave: () => setSt(''), onMouseDown: () => setSt('press'), onMouseUp: () => setSt('hover') } : {}
   return (
-    <button type={type} onClick={onClick} onMouseEnter={() => setSt('hover')} onMouseLeave={() => setSt('')} onMouseDown={() => setSt('press')} onMouseUp={() => setSt('hover')} style={{ ...base, ...skins[variant], ...dyn }}>
+    <button type={type} onClick={onClick} {...handlers} style={{ ...base, ...skins[variant], ...dyn }}>
       {children}
     </button>
   )

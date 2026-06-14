@@ -67,7 +67,7 @@ export function Hero({ onNav }) {
           <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 43, lineHeight: 0.97, letterSpacing: '-.015em', color: 'var(--pum-navy)', margin: '6px 0 10px' }}>{H.headline1}<br />{H.headline2}</h1>
           <p style={{ fontSize: 15.5, lineHeight: 1.5, color: 'var(--pum-navy)', opacity: 0.85, margin: '0 auto 6px', fontWeight: 600, maxWidth: 300 }}>{H.body}</p>
           <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 6 }}>
-            <Parallax fx={-7} fy={-5} style={{ position: 'absolute', width: 330, height: 330, top: '50%', left: '50%', marginLeft: -165, marginTop: -165, pointerEvents: 'none' }}>
+            <Parallax fx={-7} fy={-5} style={{ position: 'absolute', width: 330, height: 330, top: '50%', left: '50%', marginLeft: -165, marginTop: -165, pointerEvents: 'none', zIndex: -1 }}>
               <div className="pum-halo" style={{ width: '100%', height: '100%', borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,.62) 0%, rgba(255,255,255,.18) 46%, rgba(255,255,255,0) 70%)' }} />
             </Parallax>
             <div style={{ position: 'absolute', bottom: '3%', left: '50%', width: '52%', height: 30, transform: 'translateX(-50%)', background: 'radial-gradient(ellipse at center, rgba(13,30,58,.42) 0%, rgba(13,30,58,0) 72%)', filter: 'blur(4px)', pointerEvents: 'none' }} />

@@ -5,7 +5,7 @@
    Sabores column opens the shared product modal in place via onFlavor (doc 04 §3). */
 import React from 'react'
 import { esValidation, PumImg } from './ui.jsx'
-import { FLAVORS, SITE, STRINGS, LINKS, WAITLIST } from '../lib/data.js'
+import { FLAVORS, SITE, STRINGS, LINKS } from '../lib/data.js'
 import { submitForm, honeypotProps } from '../lib/forms.js'
 import { useMediaQuery } from '../lib/motion.jsx'
 
@@ -95,14 +95,8 @@ export function Footer({ onFlavor }) {
             </div>
             <div style={{ borderTop: '1px solid rgba(253,247,241,.16)', marginTop: 28, paddingTop: 16, fontSize: 13, opacity: 0.7, fontWeight: 500, lineHeight: 1.7 }}>
               {S.contactPrefix}<a href={`mailto:${SITE.contact.email}`} style={{ color: 'var(--pum-cream)', fontWeight: 700 }}>{SITE.contact.email}</a><br />
-              {S.contactBilling.replace(/^ · /, '')}<a href={`mailto:${SITE.contact.billingEmail}`} style={{ color: 'var(--pum-cream)', fontWeight: 700 }}>{SITE.contact.billingEmail}</a><br />
               {S.contactWhatsapp.replace(/^ · /, '')}<a href={SITE.contact.whatsappHref} target="_blank" rel="noopener" style={{ color: 'var(--pum-cream)', fontWeight: 700 }}>{SITE.contact.whatsapp}</a>
             </div>
-            {!WAITLIST && (
-              <div style={{ display: 'flex', gap: 8, alignItems: 'center', opacity: 0.6, marginTop: 14, flexWrap: 'wrap' }}>
-                {SITE.footer.paymentBadges.map((c) => <span key={c} style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.04em', background: 'rgba(253,247,241,.12)', border: '1px solid rgba(253,247,241,.2)', borderRadius: 6, padding: '4px 10px', color: 'var(--pum-cream)' }}>{c}</span>)}
-              </div>
-            )}
             <div style={{ borderTop: '1px solid rgba(253,247,241,.1)', marginTop: 16, paddingTop: 14, display: 'flex', flexWrap: 'wrap', gap: '8px 16px', fontSize: 12, opacity: 0.5, fontWeight: 600 }}>
               {S.legalLinks.map((it) => <a key={it.label} href={LINKS.legal[it.linkKey]} style={{ color: 'var(--pum-cream)', textDecoration: 'underline', cursor: 'pointer' }}>{it.label}</a>)}
             </div>
@@ -135,14 +129,8 @@ export function Footer({ onFlavor }) {
             <div style={{ borderTop: '1px solid rgba(253,247,241,.16)', marginTop: 32, paddingTop: 18, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 14 }}>
               <div style={{ fontSize: 13, opacity: 0.7, fontWeight: 500, lineHeight: 1.6 }}>
                 {S.contactPrefix}<a href={`mailto:${SITE.contact.email}`} style={{ color: 'var(--pum-cream)', fontWeight: 700 }}>{SITE.contact.email}</a>
-                {S.contactBilling}<a href={`mailto:${SITE.contact.billingEmail}`} style={{ color: 'var(--pum-cream)', fontWeight: 700 }}>{SITE.contact.billingEmail}</a>
                 {S.contactWhatsapp}<a href={SITE.contact.whatsappHref} target="_blank" rel="noopener" style={{ color: 'var(--pum-cream)', fontWeight: 700 }}>{SITE.contact.whatsapp}</a>
               </div>
-              {!WAITLIST && (
-                <div style={{ display: 'flex', gap: 8, alignItems: 'center', opacity: 0.6 }}>
-                  {SITE.footer.paymentBadges.map((c) => <span key={c} style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.04em', background: 'rgba(253,247,241,.12)', border: '1px solid rgba(253,247,241,.2)', borderRadius: 6, padding: '4px 10px', color: 'var(--pum-cream)' }}>{c}</span>)}
-                </div>
-              )}
             </div>
             {/* legal links */}
             <div style={{ borderTop: '1px solid rgba(253,247,241,.1)', marginTop: 14, paddingTop: 14, display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 18, fontSize: 12, opacity: 0.5, fontWeight: 600 }}>

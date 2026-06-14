@@ -64,7 +64,6 @@ export function Cart({ open, cart, onClose, onAdd, onRemove, onDelete, onCheckou
             <span>{C.parentalNotice}</span>
           </div>
           <Btn size="lg" style={{ width: '100%', justifyContent: 'center' }} variant="secondary" onClick={onCheckout}>{C.checkout} <Icon name="arrow-right" size={18} stroke={2.6} /></Btn>
-          <div style={{ textAlign: 'center', marginTop: 10 }}><a href={LINKS.legal.facturacion} style={{ fontSize: 12, color: 'var(--fg-mute)', fontWeight: 700, textDecoration: 'underline', cursor: 'pointer' }}>{C.invoice}</a></div>
         </div>
       </aside>
     </div>

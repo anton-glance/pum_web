@@ -427,7 +427,7 @@ export function ContactoPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
           <div className="card"><div className="ic"><Icon name="map-pin" size={22} /></div><div><h3>{P.cards.addressTitle}</h3><p>{SITE.contact.addressLines[0]}<br />{SITE.contact.addressLines[1]}</p></div></div>
           <div className="card"><div className="ic" style={{ borderColor: '#2E9E5B', color: '#2E9E5B' }}><Icon name="message-circle" size={22} /></div><div><h3>{P.cards.whatsappTitle}</h3><p><a href={SITE.contact.whatsappHref} target="_blank" rel="noopener" style={{ color: '#2E9E5B', fontWeight: 800 }}>{P.cards.whatsappCta} →</a></p></div></div>
-          <div className="card"><div className="ic"><Icon name="mail" size={22} /></div><div><h3>{P.cards.emailTitle}</h3><p><a href={`mailto:${SITE.contact.email}`} style={{ color: 'var(--pum-navy)', fontWeight: 700 }}>{SITE.contact.email}</a><br /><span style={{ color: 'var(--fg-mute)', fontSize: 13 }}>{P.cards.billingPrefix}{SITE.contact.billingEmail}</span></p></div></div>
+          <div className="card"><div className="ic"><Icon name="mail" size={22} /></div><div><h3>{P.cards.emailTitle}</h3><p><a href={`mailto:${SITE.contact.email}`} style={{ color: 'var(--pum-navy)', fontWeight: 700 }}>{SITE.contact.email}</a></p></div></div>
         </div>
       </div></section>
     </React.Fragment>

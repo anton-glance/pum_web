@@ -52,10 +52,7 @@
     },
     "legal": {
       "privacidad": "/legal/aviso-de-privacidad.html",
-      "terminos": "/legal/terminos-y-condiciones.html",
-      "envios": "/legal/politica-de-envios.html",
-      "devoluciones": "/legal/politica-de-devoluciones.html",
-      "facturacion": "/legal/facturacion.html"
+      "terminos": "/legal/terminos-y-condiciones.html"
     },
     "social": {
       "instagram": "#",
@@ -64,8 +61,7 @@
     }
   },
   "footer": {
-    "blurb": "Palitos de maíz horneados. Crujen, sonríen, disfrutan. Hecho en México con ingredientes reales.",
-    "paymentBadges": ["Visa", "MC", "Amex", "PayPal"],
+    "blurb": "Palitos de maíz horneados. Crujen, sonríen, disfrutan.",
     "copyright": "© 2026 ¡PUM! Snacks"
   },
   "contact": {

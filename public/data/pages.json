@@ -235,10 +235,7 @@
   },
   "legal": [
     { "slug": "aviso-de-privacidad", "title": "Aviso de Privacidad" },
-    { "slug": "terminos-y-condiciones", "title": "Términos y Condiciones" },
-    { "slug": "politica-de-envios", "title": "Política de Envíos" },
-    { "slug": "politica-de-devoluciones", "title": "Política de Devoluciones" },
-    { "slug": "facturacion", "title": "Facturación" }
+    { "slug": "terminos-y-condiciones", "title": "Términos y Condiciones" }
   ],
   "legalStub": {
     "body": "Contenido legal en preparación — pendiente de revisión legal.",

@@ -48,7 +48,7 @@ function MenuSheet({ open, onClose, onSection, goHome, onComingSoon }) {
     return !headerHrefs.has(href)
   })
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 70, pointerEvents: open ? 'auto' : 'none' }} aria-hidden={!open}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 70, overflow: 'hidden', pointerEvents: open ? 'auto' : 'none' }} aria-hidden={!open}>
       <div onClick={onClose} style={{ position: 'absolute', inset: 0, background: 'rgba(13,30,58,.45)', opacity: open ? 1 : 0, transition: 'opacity .25s' }} />
       <aside ref={panelRef} role="dialog" aria-modal="true" aria-label="Menú" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: '84%', maxWidth: 360, background: 'var(--pum-cream)', boxShadow: '-18px 0 44px rgba(13,30,58,.25)', transform: open ? 'translateX(0)' : 'translateX(105%)', transition: 'transform .3s cubic-bezier(.4,1.1,.5,1)', display: 'flex', flexDirection: 'column', padding: '24px 22px calc(26px + env(safe-area-inset-bottom))' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
