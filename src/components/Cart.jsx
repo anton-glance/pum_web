@@ -22,7 +22,7 @@ export function Cart({ open, cart, onClose, onAdd, onRemove, onDelete, onCheckou
     return () => window.removeEventListener('keydown', k)
   }, [open])
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 60, pointerEvents: open ? 'auto' : 'none' }} aria-hidden={!open}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 60, overflow: 'hidden', pointerEvents: open ? 'auto' : 'none' }} aria-hidden={!open}>
       <div onClick={onClose} style={{ position: 'absolute', inset: 0, background: 'rgba(13,30,58,.45)', opacity: open ? 1 : 0, transition: 'opacity .25s' }} />
       <aside ref={panelRef} role="dialog" aria-modal="true" aria-label={C.title} style={sheet
         /* bottom-sheet on mobile (doc 09 §6.2, mockup CartSheet) */

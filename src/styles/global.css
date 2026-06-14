@@ -1,11 +1,12 @@
 /* ¡PUM! — global styles & keyframes (ported from the approved mockup site/index.html) */
 * { box-sizing: border-box }
 html, body { margin: 0 }
-/* clip horizontal overflow on BOTH html and body — iOS Safari can still scroll the
-   page horizontally to reveal an off-screen fixed element (the slide-in menu) when
-   only body is clipped. This keeps the inner pages from showing white space on the right. */
-html { overflow-x: hidden }
-body { background: var(--pum-cream); font-family: var(--font-text); color: var(--pum-navy); -webkit-font-smoothing: antialiased; overflow-x: hidden; overscroll-behavior-x: none }
+/* No overflow on html/body — that makes the element a scroll container, which on iOS Safari
+   breaks position:sticky (nav scrolls away) and position:fixed interactivity (menu/cart).
+   The only things that sit off-screen are the slide-in menu and the cart drawer; each is
+   clipped by its OWN `overflow:hidden` fixed wrapper (Nav.jsx / Cart.jsx), so nothing
+   creates a horizontal scroll gap. */
+body { background: var(--pum-cream); font-family: var(--font-text); color: var(--pum-navy); -webkit-font-smoothing: antialiased }
 a { text-decoration: none }
 ::selection { background: var(--pum-corn) }
 .navlink { transition: background .15s }

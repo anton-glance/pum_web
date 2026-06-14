@@ -82,7 +82,7 @@ export function Footer({ onFlavor }) {
           <React.Fragment>
             <div>
               <PumImg src={SITE.logos.onDark} widths={[200, 400]} sizes="109px" width={400} height={132} alt={SITE.brand.name} style={{ height: 36, width: 'auto' }} />
-              <p style={{ opacity: 0.7, fontSize: 14, lineHeight: 1.55, margin: '12px 0 0', fontWeight: 500 }}>{SITE.footer.blurb}</p>
+              <p style={{ opacity: 0.7, fontSize: 14, lineHeight: 1.55, margin: '12px 0 0', fontWeight: 500, whiteSpace: 'pre-line' }}>{SITE.footer.blurb}</p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px 16px', marginTop: 28 }}>
               {saboresCol}
@@ -109,11 +109,11 @@ export function Footer({ onFlavor }) {
             <div className="pum-footcols" style={{ display: 'flex', gap: 40, justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap' }}>
               <div style={{ maxWidth: 300, flex: '1 1 240px' }}>
                 <PumImg src={SITE.logos.onDark} widths={[200, 400]} sizes="122px" width={400} height={132} alt={SITE.brand.name} style={{ height: 40, width: 'auto' }} />
-                <p style={{ opacity: 0.7, fontSize: 14, lineHeight: 1.55, marginTop: 14, fontWeight: 500 }}>{SITE.footer.blurb}</p>
+                <p style={{ opacity: 0.7, fontSize: 14, lineHeight: 1.55, marginTop: 14, fontWeight: 500, whiteSpace: 'pre-line' }}>{SITE.footer.blurb}</p>
               </div>
               {/* link columns: equal width (so the long "Preguntas frecuentes" doesn't skew
-                  the spacing) + left-aligned text in each */}
-              <div style={{ display: 'flex', gap: 36 }}>
+                  the spacing) + left-aligned text in each; wrap as a safety net on narrow widths */}
+              <div style={{ display: 'flex', gap: 36, flexWrap: 'wrap' }}>
                 <div style={{ width: 176 }}>{saboresCol}</div>
                 <div style={{ width: 176 }}>
                   <div style={colH}>{S.colMarca}</div>

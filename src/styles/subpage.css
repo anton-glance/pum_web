@@ -274,9 +274,9 @@ details.q .ans { padding: 0 22px 22px 22px; font-size: 17px; line-height: 1.6; c
   .bag-pack { order: -1; margin-bottom: 6px }
   .nolist { grid-template-columns: 1fr }
 }
-/* nosotros: tighten the gap between the founder photo (hero) and the story section */
-section.hero-centered .hero-simple { padding-bottom: 34px }
-section.hero-centered + section.block { padding-top: 24px }
+/* nosotros: keep the hero's full bottom padding so the founder-photo shadow has room
+   (no clipped edge); take the gap reduction from the next section's TOP padding instead. */
+section.hero-centered + section.block { padding-top: 18px }
 
 /* mobile: notify field + button same size (stacked, full width); FAQ CTA buttons equal */
 @media (max-width:560px){
