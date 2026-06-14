@@ -27,8 +27,8 @@ export function Newsletter() {
     <section aria-label={N.headline} style={{ background: 'var(--pum-navy)' }}>
       <div style={{ maxWidth: 1140, margin: '0 auto', padding: mobile ? '40px 20px 8px' : '44px 26px 12px' }}>
         <div style={{ background: 'var(--pum-corn)', borderRadius: mobile ? 24 : 28, padding: mobile ? '22px 22px' : '26px 32px', display: mobile ? 'block' : 'flex', gap: 30, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', boxShadow: '0 6px 0 var(--pum-corn-deep)' }}>
-          <div style={{ flex: mobile ? undefined : '1 1 300px', minWidth: 0 }}>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: mobile ? 23 : 26, color: 'var(--pum-navy)', margin: '0 0 4px' }}>{N.headline}</h3>
+          <div style={{ flex: mobile ? undefined : '0 1 auto', maxWidth: mobile ? undefined : 400, minWidth: 0 }}>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: mobile ? 23 : 26, color: 'var(--pum-navy)', margin: '0 0 4px', whiteSpace: mobile ? undefined : 'nowrap' }}>{N.headline}</h3>
             <p style={{ color: 'var(--pum-navy)', opacity: 0.8, fontWeight: 600, margin: mobile ? '0 0 14px' : 0, fontSize: mobile ? 14.5 : 15 }}>{N.body}</p>
           </div>
           <div style={{ flex: mobile ? undefined : '0 1 500px', minWidth: 0, width: mobile ? '100%' : undefined }}>
@@ -41,7 +41,7 @@ export function Newsletter() {
               <button type="submit" style={{ flexShrink: 0, fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 16, background: 'var(--pum-navy)', color: 'var(--pum-cream)', border: 'none', borderRadius: 999, padding: mobile ? '14px 24px' : '13px 26px', cursor: 'pointer', letterSpacing: '.01em', lineHeight: 1 }}>{done ? N.done : N.submit}</button>
             </form>
             {error && <p style={{ fontSize: 12.5, color: 'var(--danger)', fontWeight: 700, margin: '8px 0 0' }}>{STRINGS.forms.submitError}</p>}
-            <p style={{ fontSize: 11.5, color: 'var(--pum-navy)', opacity: 0.85, fontWeight: 600, margin: '8px 0 0', lineHeight: 1.4, textAlign: mobile ? undefined : 'left' }}>{N.consentPrefix}<a href={LINKS.legal.privacidad} style={{ color: 'var(--pum-navy)', textDecoration: 'underline' }}>{N.consentLink}</a>.</p>
+            <p style={{ fontSize: 11.5, color: 'var(--pum-navy)', opacity: 0.85, fontWeight: 600, margin: '8px 0 0', lineHeight: 1.4, textAlign: mobile ? undefined : 'center' }}>{N.consentPrefix}<a href={LINKS.legal.privacidad} style={{ color: 'var(--pum-navy)', textDecoration: 'underline' }}>{N.consentLink}</a>.</p>
           </div>
         </div>
       </div>
