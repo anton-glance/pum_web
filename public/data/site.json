@@ -55,10 +55,11 @@
       "terminos": "/legal/terminos-y-condiciones.html"
     },
     "social": {
-      "instagram": "#",
-      "tiktok": "#",
-      "youtube": "#"
-    }
+      "instagram": "https://www.instagram.com/pum.mexico",
+      "tiktok": "https://www.tiktok.com/@pum.mexico",
+      "youtube": "https://www.youtube.com/@pum.mexico"
+    },
+    "socialUtm": "utm_source=pum.mx&utm_medium=referral&utm_campaign=footer_social"
   },
   "footer": {
     "blurb": "Palitos de maíz.\nCrujen, sonríen, disfrutan.",
