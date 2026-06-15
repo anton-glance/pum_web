@@ -10,7 +10,10 @@ import { Nav } from './components/Nav.jsx'
 import { Footer, Newsletter } from './components/Footer.jsx'
 import { Hero, FlavorPlayground, CrunchZone, Story, EnDesarrollo } from './components/home.jsx'
 import { Cart, CartBar, ComingSoon } from './components/Cart.jsx'
-import { ProductModal } from './components/ProductModal.jsx'
+/* Lazy-loaded: the modal is heavy (confetti + 3D tilt) and only mounts when a flavor is
+   opened. Keeping it OUT of the static graph means each page ships a single self-contained
+   entry <script> — see subpage.jsx. (It also trims initial JS.) */
+const ProductModal = React.lazy(() => import('./components/ProductModal.jsx').then((m) => ({ default: m.ProductModal })))
 import { MotionPermission } from './components/MotionPermission.jsx'
 
 export function App() {
@@ -64,14 +67,18 @@ export function App() {
       <Footer onFlavor={setDetail} />
       {!WAITLIST && <CartBar cart={cart} total={cartTotal(cart, FLAVORS)} onOpen={() => setOpen(true)} onCheckout={() => setComingSoon(true)} />}
       {!WAITLIST && <Cart open={open} cart={cart} onClose={() => setOpen(false)} onAdd={add} onRemove={remove} onDelete={(f) => cartStore.delete(f.id)} onCheckout={() => { setOpen(false); setComingSoon(true) }} />}
-      <ProductModal
-        flavor={detail}
-        cart={cart}
-        onClose={() => { setDetail(null); if (/sabor=/i.test(location.hash)) history.replaceState(null, '', location.pathname + location.search) }}
-        onAddToCart={(f, n) => cartStore.add(f.id, n)}
-        onViewCart={() => { setDetail(null); if (/sabor=/i.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); setOpen(true) }}
-        onNotify={() => { setDetail(null); if (/sabor=/i.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); notify() }}
-      />
+      {detail && (
+        <React.Suspense fallback={null}>
+          <ProductModal
+            flavor={detail}
+            cart={cart}
+            onClose={() => { setDetail(null); if (/sabor=/i.test(location.hash)) history.replaceState(null, '', location.pathname + location.search) }}
+            onAddToCart={(f, n) => cartStore.add(f.id, n)}
+            onViewCart={() => { setDetail(null); if (/sabor=/i.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); setOpen(true) }}
+            onNotify={() => { setDetail(null); if (/sabor=/i.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); notify() }}
+          />
+        </React.Suspense>
+      )}
       <ComingSoon open={comingSoon} onClose={() => setComingSoon(false)} />
       <MotionPermission />
     </div>

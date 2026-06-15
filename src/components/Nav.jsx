@@ -107,7 +107,11 @@ export function Nav({ variant = 'home', count = 0, onCart, onNav, onComingSoon }
     <React.Fragment>
       <a className="pum-skip" href="#main">{STRINGS.skipLink}</a>
       <Ribbon onComingSoon={onComingSoon} />
-      <header style={{ position: 'sticky', top: 0, zIndex: 50, background: solid ? 'rgba(253,247,241,.85)' : 'transparent', backdropFilter: solid ? 'saturate(180%) blur(10px)' : 'none', WebkitBackdropFilter: solid ? 'saturate(180%) blur(10px)' : 'none', borderBottom: solid ? '1px solid var(--border)' : '1px solid transparent', transition: 'background .25s,border-color .25s' }}>
+      {/* solid-bar styling (bg/blur/border) lives in CSS keyed off data-solid so we can drop
+          backdrop-filter on touch widths: a backdrop-filter on a position:sticky element breaks
+          tap hit-testing in iOS Safari — it left the burger/cart buttons dead on inner pages
+          (where the bar is solid from first paint). Mobile gets a near-opaque bar, no blur. */}
+      <header className="pum-header" data-solid={solid ? '1' : '0'} style={{ position: 'sticky', top: 0, zIndex: 50, transition: 'background .25s,border-color .25s' }}>
         <div style={{ maxWidth: 1140, margin: '0 auto', padding: mobile ? '9px 18px' : '13px 26px', display: 'flex', alignItems: 'center', gap: mobile ? 10 : 16, position: 'relative' }}>
           {goHome
             ? <a href="/" onClick={(e) => { e.preventDefault(); onNav('top') }} aria-label={SITE.brand.name}>{logoImg}</a>

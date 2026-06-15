@@ -37,7 +37,7 @@
       { "label": "Sabores", "id": "flavors" },
       { "label": "Siente el crunch", "id": "crunch" },
       { "label": "Para Papás", "id": "story" },
-      { "label": "Preguntas frecuentes", "href": "/preguntas-frecuentes.html" }
+      { "label": "Preguntas", "href": "/preguntas-frecuentes.html" }
     ],
     "headerCta": { "label": "Quiero ¡PUM!", "id": "waitlist" }
   },

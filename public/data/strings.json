@@ -138,7 +138,7 @@
     "marcaLinks": [
       { "label": "Nosotros", "linkKey": "nosotros" },
       { "label": "Ingredientes", "linkKey": "ingredientes" },
-      { "label": "Preguntas frecuentes", "linkKey": "faq" },
+      { "label": "Preguntas", "linkKey": "faq" },
       { "label": "Contacto", "linkKey": "contacto" }
     ],
     "socialLinks": ["Instagram", "TikTok", "YouTube"],
