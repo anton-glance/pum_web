@@ -7,15 +7,10 @@ import { FLAVORS, WAITLIST } from './lib/data.js'
 import { useCart, cartStore, cartCount, cartTotal } from './lib/cart.js'
 import { Nav } from './components/Nav.jsx'
 import { Footer } from './components/Footer.jsx'
+import { ProductModal } from './components/ProductModal.jsx'
 import { Cart, CartBar, ComingSoon } from './components/Cart.jsx'
 import { NosotrosPage, IngredientesPage, ContactoPage, FaqPage } from './components/subpages.jsx'
 import { SaborPage } from './components/SaborPage.jsx'
-
-/* Lazy — see App.jsx. Keeps ProductModal out of the static graph so each subpage ships a
-   SINGLE entry <script>. Vite was otherwise emitting the shared ProductModal chunk as a
-   second executing module script on subpages only — harmless in Chrome, but it left the
-   inner-page tree non-interactive on iOS Safari (menu/cart/cart-bar dead). */
-const ProductModal = React.lazy(() => import('./components/ProductModal.jsx').then((m) => ({ default: m.ProductModal })))
 
 const PAGES = { nosotros: NosotrosPage, ingredientes: IngredientesPage, contacto: ContactoPage, faq: FaqPage }
 
@@ -49,18 +44,14 @@ export function SubpageApp({ page, flavorId }) {
       <Footer onFlavor={setDetail} />
       {!WAITLIST && <CartBar cart={cart} total={cartTotal(cart, FLAVORS)} onOpen={() => setOpen(true)} onCheckout={() => setComingSoon(true)} />}
       {!WAITLIST && <Cart open={open} cart={cart} onClose={() => setOpen(false)} onAdd={add} onRemove={remove} onDelete={(f) => cartStore.delete(f.id)} onCheckout={() => { setOpen(false); setComingSoon(true) }} />}
-      {detail && (
-        <React.Suspense fallback={null}>
-          <ProductModal
-            flavor={detail}
-            cart={cart}
-            onClose={() => setDetail(null)}
-            onAddToCart={(f, n) => cartStore.add(f.id, n)}
-            onViewCart={() => { setDetail(null); setOpen(true) }}
-            onNotify={() => { setDetail(null); notify() }}
-          />
-        </React.Suspense>
-      )}
+      <ProductModal
+        flavor={detail}
+        cart={cart}
+        onClose={() => setDetail(null)}
+        onAddToCart={(f, n) => cartStore.add(f.id, n)}
+        onViewCart={() => { setDetail(null); setOpen(true) }}
+        onNotify={() => { setDetail(null); notify() }}
+      />
       <ComingSoon open={comingSoon} onClose={() => setComingSoon(false)} />
     </React.Fragment>
   )
