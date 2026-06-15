@@ -83,7 +83,7 @@ export function CartBar({ cart, total, onOpen, onCheckout }) {
   const show = count > 0
   const C = STRINGS.cart
   return (
-    <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 55, transform: show ? 'translateY(0)' : 'translateY(100%)', transition: 'transform .35s cubic-bezier(.34,1.2,.5,1)', pointerEvents: show ? 'auto' : 'none' }} aria-hidden={!show}>
+    <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 55, transform: show ? 'translateY(0)' : 'translateY(100%)', transition: 'transform .35s cubic-bezier(.22,.61,.36,1)', pointerEvents: show ? 'auto' : 'none' }} aria-hidden={!show}>
       <div style={{ maxWidth: 700, margin: '0 auto', padding: '0 16px', paddingBottom: 'calc(18px + env(safe-area-inset-bottom))' }}>
         <div onClick={onOpen} role="button" tabIndex={0} aria-label={C.title} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpen() } }} style={{ width: '100%', background: 'var(--pum-navy-700)', border: 'none', borderBottom: '4px solid var(--pum-corn)', borderRadius: 22, padding: '13px 18px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 12, boxShadow: '0 -4px 24px rgba(0,0,0,.28), 0 12px 28px rgba(13,30,58,.32)', color: 'var(--pum-cream)', boxSizing: 'border-box' }}>
           <div style={{ display: 'flex', gap: 6, alignItems: 'center', flex: 1 }}>
