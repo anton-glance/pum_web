@@ -13,6 +13,17 @@
   Permissions-Policy: accelerometer=(self), gyroscope=(self), camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; form-action 'self' https:; upgrade-insecure-requests
 
+# HTML documents reference content-hashed assets, so they must NOT be cached by the
+# browser — otherwise a long-lived desktop browser keeps an old HTML that points at a
+# stale JS bundle (the "works in incognito / on mobile but not in my normal browser, and
+# clearing cache doesn't help" class of bug). max-age=0 forces a revalidation on every
+# load, so a new deploy's asset hashes are picked up immediately. HTML is tiny; the
+# revalidation is a cheap 304.
+/
+  Cache-Control: public, max-age=0, must-revalidate
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
 # Content-hashed build assets — safe to cache forever
 /assets/*
   Cache-Control: public, max-age=31536000, immutable

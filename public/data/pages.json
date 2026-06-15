@@ -74,7 +74,7 @@
   },
   "ingredientes": {
     "title": "Ingredientes | ¡PUM! Palitos de maíz",
-    "metaDescription": "Los ingredientes que queremos usar en ¡PUM!: maíz, salvado de maíz, azúcar mascabado, y color y sabor de plantas. Sin edulcorantes artificiales.",
+    "metaDescription": "Los ingredientes que queremos usar en ¡PUM!: maíz, salvado de maíz, azúcar mascabado, y color y sabor de plantas. Receta en desarrollo.",
     "hero": {
       "badge": "En desarrollo",
       "h1": "Ingredientes",
@@ -109,7 +109,7 @@
           { "term": "Ácido cítrico", "desc": "aporta acidez; más presente en [Limón](/sabores/limon) y [Jamaica](/sabores/jamaica)." }
         ] },
         { "icon": "droplet", "h3": "Aceite", "items": [
-          { "term": "Aceite vegetal bajo en grasas saturadas (girasol, soya o maíz)", "desc": "funciona como aglutinante de la cobertura. No usamos aceite de palma ni de coco." }
+          { "term": "Aceite vegetal bajo en grasas saturadas (girasol, soya o maíz)", "desc": "funciona como aglutinante de la cobertura. No llevará aceite de palma ni de coco." }
         ] }
       ]
     },
