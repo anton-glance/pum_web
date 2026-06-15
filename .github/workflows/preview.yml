@@ -39,8 +39,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          PUM_DEV: "1" # TEMP: development React so hydration mismatches print full diagnostics
 
       - name: Deploy preview to Cloudflare Pages
         id: deploy

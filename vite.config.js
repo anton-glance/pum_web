@@ -4,9 +4,6 @@ import react from '@vitejs/plugin-react'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 
 export default defineConfig(({ isSsrBuild }) => ({
-  // PUM_DEV=1 builds with development React (non-minified, full hydration warnings) so a
-  // deployed preview prints the exact server/client mismatch in the console. TEMP diagnostic.
-  ...(process.env.PUM_DEV ? { define: { 'process.env.NODE_ENV': JSON.stringify('development') } } : {}),
   // PUM_HTTPS=1 serves over self-signed HTTPS — needed on iPhone for the real
   // gyro (iOS exposes DeviceOrientationEvent only in secure contexts).
   plugins: [react(), ...(process.env.PUM_HTTPS ? [basicSsl()] : [])],
@@ -15,7 +12,6 @@ export default defineConfig(({ isSsrBuild }) => ({
   preview: { allowedHosts: true },
   build: {
     target: 'es2022', // top-level await in src/lib/data.js (runtime data load)
-    ...(process.env.PUM_DEV ? { minify: false } : {}),
     ...(isSsrBuild
       ? { outDir: 'dist-ssr', ssr: true }
       : {
