@@ -7,6 +7,7 @@ import React from 'react'
 import { esValidation, PumImg, PrivacyShort } from './ui.jsx'
 import { FLAVORS, SITE, STRINGS, LINKS } from '../lib/data.js'
 import { submitForm, honeypotProps } from '../lib/forms.js'
+import { trackIntent } from '../lib/analytics.js'
 import { useMediaQuery } from '../lib/motion.jsx'
 
 /* Waitlist signup — home page only, rendered as the last section before the footer. */
@@ -83,11 +84,16 @@ export function Footer({ onFlavor }) {
             <div className="fcol">
               <h4>{S.colSiguenos}</h4>
               {S.socialLinks.map((label) => {
-                const href = SITE.links.social[label.toLowerCase()]
-                const live = href && href !== '#'
+                const key = label.toLowerCase()
+                const base = SITE.links.social[key]
+                const live = base && base !== '#'
+                /* Append UTM so referrals from the site are attributable; rel=noopener keeps the
+                   new tab isolated (perf + security), referrer is preserved for the platform's own
+                   analytics. onClick fires the shared intent signal for outbound-click counting. */
+                const href = live && SITE.links.socialUtm ? `${base}${base.includes('?') ? '&' : '?'}${SITE.links.socialUtm}` : base
                 /* Until real account URLs are set, render the row non-clickable + muted (handoff §1.4). */
                 return live
-                  ? <a key={label} href={href} target="_blank" rel="noopener">{socialIcon(label)}<span>{label}</span></a>
+                  ? <a key={label} href={href} target="_blank" rel="noopener" aria-label={`¡PUM! en ${label}`} onClick={() => trackIntent(`social_${key}`)}>{socialIcon(label)}<span>{label}</span></a>
                   : <span key={label} title="Próximamente" style={{ display: 'flex', alignItems: 'center', gap: 8, opacity: 0.45, fontSize: 14, fontWeight: 600, padding: '5px 0', cursor: 'default' }}>{socialIcon(label)}<span>{label}</span></span>
               })}
             </div>
