@@ -1,0 +1,84 @@
+name: Preview Deploy (PRs)
+
+# For every pull request, build the site and publish a Cloudflare Pages
+# *preview* deployment (never production), then comment the tappable URL on
+# the PR so changes can be reviewed on any device — phone, tablet, etc.
+#
+# Reuses the same secrets as the production deploy:
+#   CLOUDFLARE_API_TOKEN  – token with "Cloudflare Pages: Edit" permission
+#   CLOUDFLARE_ACCOUNT_ID – the target account id
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+# One preview per PR; cancel an in-flight build when new commits arrive.
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    # Skip PRs from forks: they cannot access the Cloudflare secrets.
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy preview to Cloudflare Pages
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          # A branch name other than the production branch (main) makes this a
+          # preview deployment. Cloudflare also creates a stable per-branch alias.
+          command: pages deploy dist --project-name pum-snacks --branch ${{ github.head_ref }}
+
+      - name: Comment preview URL on the PR
+        uses: actions/github-script@v7
+        env:
+          PREVIEW_URL: ${{ steps.deploy.outputs.deployment-url }}
+          ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+        with:
+          script: |
+            const url = process.env.PREVIEW_URL;
+            const alias = process.env.ALIAS_URL;
+            const marker = '<!-- cf-pages-preview -->';
+            const lines = [
+              marker,
+              '### 🔍 Cloudflare Pages preview',
+              '',
+              `**Open on any device:** ${url}`,
+            ];
+            if (alias && alias !== url) {
+              lines.push('', `Branch alias (stable): ${alias}`);
+            }
+            lines.push('', `_Updated for commit ${context.sha.slice(0, 7)} · production (pum.mx) is untouched._`);
+            const body = lines.join('\n');
+
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const { data: comments } = await github.rest.issues.listComments({ owner, repo, issue_number });
+            const existing = comments.find((c) => c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
