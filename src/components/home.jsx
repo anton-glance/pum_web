@@ -150,7 +150,7 @@ export function FlavorCard({ f, qty, onAdd, onOpen, onNotify }) {
         <div style={{ padding: '15px 18px 18px', color: f.ink, flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
             <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 22, color: f.ink, lineHeight: 1, margin: 0 }}>{f.name}</h3>
-            <span style={{ fontSize: 11, fontWeight: 600, color: f.ink, opacity: 0.6, lineHeight: 1.3, textAlign: 'right' }}>{F.cardPriceNote}</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 18, color: f.ink }}>${f.price} <span style={{ fontSize: 11, fontWeight: 700, opacity: 0.7 }}>MXN*</span></span>
           </div>
           <p style={{ fontSize: 13.5, color: f.ink, opacity: 0.82, margin: '7px 0 12px', fontWeight: 600, lineHeight: 1.4, minHeight: mobile ? 0 : 38 }}>{f.blurb}</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 14 }}>
