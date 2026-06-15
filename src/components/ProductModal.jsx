@@ -124,7 +124,7 @@ export function ProductModal({ flavor, cart, onClose, onAddToCart, onViewCart, o
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 30, lineHeight: 1 }}>${f.price * qty}</div>
-                    <div style={{ fontSize: 12, color: 'var(--fg-mute)', fontWeight: 700 }}>${f.price} {M.perUnitNote}</div>
+                    <div style={{ fontSize: 12, color: 'var(--fg-mute)', fontWeight: 700 }}>{STRINGS.flavors.cardPriceNote}</div>
                   </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>

@@ -76,7 +76,7 @@ export function SaborPage({ flavorId, onNotify }) {
                 <React.Fragment>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 16 }}>
                     <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 34, color: 'var(--pum-navy)' }}>${f.price * qty}</span>
-                    <span style={{ fontSize: 13, color: 'var(--fg-mute)', fontWeight: 700 }}>${f.price} {M.perUnitNote}</span>
+                    <span style={{ fontSize: 13, color: 'var(--fg-mute)', fontWeight: 700 }}>{F.cardPriceNote}</span>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
                     <div style={{ display: 'inline-flex', alignItems: 'center', border: '2px solid var(--pum-navy)', borderRadius: 999, overflow: 'hidden' }}>
