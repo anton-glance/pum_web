@@ -159,6 +159,9 @@ function headBlock(p) {
   const canonical = `${ORIGIN}${clean(p.url)}`
   const lines = [
     `<meta name="description" content="${esc(p.desc)}">`,
+    // Disable Chrome/Google auto-translation: it rewrites text nodes during React
+    // hydration, causing hydration mismatches (#418/#425) that break interactivity.
+    `<meta name="google" content="notranslate">`,
     `<link rel="canonical" href="${canonical}">`,
     `<meta property="og:site_name" content="${esc(SITE.brand.name)}">`,
     `<meta property="og:type" content="${p.ogType}">`,
