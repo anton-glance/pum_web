@@ -22,12 +22,15 @@ export function Cart({ open, cart, onClose, onAdd, onRemove, onDelete, onCheckou
     return () => window.removeEventListener('keydown', k)
   }, [open])
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 60, overflow: 'hidden', pointerEvents: open ? 'auto' : 'none' }} aria-hidden={!open}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 60, overflow: 'hidden', display: 'flex', alignItems: sheet ? 'flex-end' : 'stretch', justifyContent: sheet ? 'center' : 'flex-end', pointerEvents: open ? 'auto' : 'none' }} aria-hidden={!open}>
+      {/* Edge-anchored via flexbox (align/justify above), NOT position:absolute bottom/right:0: on iOS
+          Safari those edges don't resolve on the panel's first paint, so it flashed on the wrong border
+          for a frame before snapping in. Flex resolves the edge immediately. */}
       <div onClick={onClose} style={{ position: 'absolute', inset: 0, background: 'rgba(13,30,58,.45)', opacity: open ? 1 : 0, transition: 'opacity .25s' }} />
       <aside ref={panelRef} role="dialog" aria-modal="true" aria-label={C.title} style={sheet
         /* bottom-sheet on mobile (doc 09 §6.2, mockup CartSheet) */
-        ? { position: 'absolute', left: 0, right: 0, bottom: 0, maxHeight: '86%', background: 'var(--pum-cream)', borderRadius: '26px 26px 0 0', boxShadow: '0 -18px 44px rgba(13,30,58,.3)', transform: open ? 'translateY(0)' : 'translateY(105%)', transition: 'transform .32s cubic-bezier(.22,.61,.36,1)', display: 'flex', flexDirection: 'column' }
-        : { position: 'absolute', top: 0, right: 0, bottom: 0, width: 'min(404px,92vw)', background: 'var(--pum-cream)', boxShadow: '-18px 0 44px rgba(13,30,58,.2)', transform: open ? 'translateX(0)' : 'translateX(100%)', transition: 'transform .3s cubic-bezier(.4,1.2,.5,1)', display: 'flex', flexDirection: 'column' }}>
+        ? { position: 'relative', width: '100%', maxHeight: '86%', background: 'var(--pum-cream)', borderRadius: '26px 26px 0 0', boxShadow: '0 -18px 44px rgba(13,30,58,.3)', transform: open ? 'translateY(0)' : 'translateY(105%)', transition: 'transform .32s cubic-bezier(.22,.61,.36,1)', willChange: 'transform', display: 'flex', flexDirection: 'column' }
+        : { position: 'relative', width: 'min(404px,92vw)', height: '100%', background: 'var(--pum-cream)', boxShadow: '-18px 0 44px rgba(13,30,58,.2)', transform: open ? 'translateX(0)' : 'translateX(105%)', transition: 'transform .3s cubic-bezier(.22,.61,.36,1)', willChange: 'transform', display: 'flex', flexDirection: 'column' }}>
         <div style={{ padding: '20px 22px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--border)' }}>
           <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 20, color: 'var(--pum-navy)' }}>{C.title}{count > 0 ? ` · ${count} ${count > 1 ? STRINGS.modal.bagPlural : STRINGS.modal.bagSingular}` : ''}</div>
           <button onClick={onClose} aria-label={STRINGS.modal.closeAria} style={{ background: '#fff', border: '1px solid var(--border)', width: 38, height: 38, borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--pum-navy)' }}><Icon name="x" size={20} stroke={2.4} /></button>

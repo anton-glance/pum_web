@@ -1,35 +1,19 @@
 /* Single import surface for all content (handoff doc 06 R1).
    Components never hardcode copy, prices, links, or asset paths.
 
-   Data is fetched at RUNTIME from /data/*.json (served statically from public/data),
-   not bundled at build time. This means prices, copy, links and other content can be
-   edited on the deployed server by editing dist/data/*.json — no rebuild required
-   (handoff doc 06 R2/R5; resolves issue: "change prices without site re-build").
+   Content is imported from public/data/*.json at BUILD time (bundled into the JS).
+   This was previously a runtime fetch + top-level await so dist/data/*.json could be
+   edited live without a rebuild — but that made data.js an ASYNC module, and on iOS
+   Safari the multi-chunk subpages hydrated before the shared chunk's await resolved,
+   throwing a temporal-dead-zone error ("Cannot access 'cartStore' before initialization")
+   into the ErrorBoundary. Synchronous build-time imports remove that race entirely; the
+   site is pre-launch and ships through git → build → deploy anyway, so live JSON edits
+   weren't part of the real workflow. (Edit the JSON, then `npm run build`.) */
 
-   The top-level await below blocks the entry module until content is loaded, so every
-   component still imports SITE / FLAVORS / STRINGS synchronously and sees final values
-   on first render (no price flash). Requires build target es2022+ (set in vite.config.js). */
-
-const BASE = import.meta.env.BASE_URL || '/'
-
-async function loadJSON(name) {
-  if (import.meta.env.SSR) {
-    // Prerender (node, run from the project root): read the same files from public/data
-    const { readFile } = await import('node:fs/promises')
-    const { join } = await import('node:path')
-    return JSON.parse(await readFile(join(process.cwd(), 'public/data', `${name}.json`), 'utf8'))
-  }
-  const res = await fetch(`${BASE}data/${name}.json`, { cache: 'no-cache' })
-  if (!res.ok) throw new Error(`Failed to load data/${name}.json (${res.status})`)
-  return res.json()
-}
-
-const [flavorsData, siteData, stringsData, pagesData] = await Promise.all([
-  loadJSON('flavors'),
-  loadJSON('site'),
-  loadJSON('strings'),
-  loadJSON('pages'),
-])
+import flavorsData from '../../public/data/flavors.json'
+import siteData from '../../public/data/site.json'
+import stringsData from '../../public/data/strings.json'
+import pagesData from '../../public/data/pages.json'
 
 export const SITE = siteData
 export const STRINGS = stringsData
