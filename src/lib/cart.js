@@ -12,7 +12,18 @@ const listeners = new Set()
 function read() {
   if (typeof localStorage === 'undefined') return EMPTY // SSR
   try {
-    return JSON.parse(localStorage.getItem(KEY)) || {}
+    const raw = JSON.parse(localStorage.getItem(KEY)) || {}
+    /* Sanitize: keep only positive-integer quantities. A cart persisted by an older build
+       (or hand-edited) could hold a non-numeric/object value, which makes price × qty NaN —
+       the count (raw keys) still shows but the TOTAL renders blank. This is the most likely
+       cause of "total works on mobile but not on desktop": only the long-lived desktop
+       browser accumulated the bad entry. Drop anything that isn't a clean count. */
+    const clean = {}
+    for (const id in raw) {
+      const q = Math.floor(Number(raw[id]))
+      if (Number.isFinite(q) && q > 0) clean[id] = q
+    }
+    return clean
   } catch {
     return {}
   }
@@ -68,9 +79,9 @@ export function useCart() {
   return useSyncExternalStore(cartStore.subscribe, cartStore.get, () => EMPTY)
 }
 
-export const cartCount = (cart) => Object.values(cart).reduce((s, n) => s + n, 0)
+export const cartCount = (cart) => Object.values(cart).reduce((s, n) => s + (Number(n) || 0), 0)
 export const cartTotal = (cart, flavors) =>
   Object.keys(cart).reduce((s, id) => {
     const f = flavors.find((x) => x.id === id)
-    return s + (f ? f.price * cart[id] : 0)
+    return s + (f ? (Number(f.price) || 0) * (Number(cart[id]) || 0) : 0)
   }, 0)
