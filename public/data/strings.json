@@ -40,7 +40,8 @@
     "inCart": "en carrito",
     "intensidad": "Intensidad",
     "dulzura": "Dulzura",
-    "priceFootnote": "* Precio objetivo de la bolsa de 30 g cuando ¡PUM! salga a la venta. Producto en desarrollo; precio y presentación pueden cambiar."
+    "priceFootnote": "Los precios mostrados son de referencia y corresponden a la bolsa de 30 g. Producto en desarrollo; el precio final puede cambiar antes del lanzamiento.",
+    "cardPriceNote": "Precio de referencia"
   },
   "privacyShort": {
     "summary": "Aviso de Privacidad (versión corta)",
@@ -110,7 +111,7 @@
     "shipping": "Envío",
     "shippingFree": "Gratis",
     "total": "Total",
-    "parentalNotice": "¡PUM! todavía no sale a la venta. Por ahora puedes apartar tu mezcla y te avisamos en cuanto puedas conseguirla.",
+    "parentalNotice": "¡PUM! todavía no sale a la venta: esto es lo que pagarías cuando esté disponible. Te avisamos en cuanto puedas conseguirla.",
     "checkout": "Avísame cuando salga",
     "checkoutShort": "Avísame",
     "deleteItem": "Quitar del carrito"

@@ -65,7 +65,7 @@ export function SaborPage({ flavorId, onNotify }) {
                   </div>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
                     <span style={{ fontWeight: 800, fontSize: 11.5, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--fg-mute)' }}>{PRICE.label}:</span>
-                    <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 26, color: 'var(--pum-navy)' }}>{PRICE.value}*</span>
+                    <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 26, color: 'var(--pum-navy)' }}>{PRICE.value}</span>
                   </div>
                   <Btn size="lg" onClick={() => onNotify && onNotify()}><Icon name="bell" size={18} stroke={2.5} /> {F.notify}</Btn>
                   <div style={{ marginTop: 26, maxWidth: 460 }}>

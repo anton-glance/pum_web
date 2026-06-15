@@ -93,15 +93,15 @@ export function Footer({ onFlavor }) {
             </div>
           </div>
         </div>
+        {/* contact (left) + legal links (right) share one row; copyright (left) + dev disclaimer
+            (right) share the bottom row. Tagline dropped from the bottom-right (handoff #1). */}
         <div className="pum-foot-contact">
-          {S.contactPrefix}<a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a>
-          {S.contactWhatsapp}<a href={SITE.contact.whatsappHref} target="_blank" rel="noopener">{SITE.contact.whatsapp}</a>
+          <span className="pum-foot-contact-info">{S.contactPrefix}<a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a>{S.contactWhatsapp}<a href={SITE.contact.whatsappHref} target="_blank" rel="noopener">{SITE.contact.whatsapp}</a></span>
+          <span className="pum-foot-legal">
+            {S.legalLinks.map((it) => <a key={it.label} href={LINKS.legal[it.linkKey]}>{it.label}</a>)}
+          </span>
         </div>
-        <div className="pum-foot-legal">
-          {S.legalLinks.map((it) => <a key={it.label} href={LINKS.legal[it.linkKey]}>{it.label}</a>)}
-        </div>
-        {SITE.footer.devNotice && <p style={{ fontSize: 12, lineHeight: 1.5, opacity: 0.6, fontWeight: 600, margin: '14px 0 0', maxWidth: 720 }}>{SITE.footer.devNotice}</p>}
-        <div className="pum-foot-copy"><span>{SITE.footer.copyright}</span><span>{S.tagline}</span></div>
+        <div className="pum-foot-copy"><span>{SITE.footer.copyright}</span>{SITE.footer.devNotice && <span className="pum-foot-dev">{SITE.footer.devNotice}</span>}</div>
       </div>
     </footer>
   )

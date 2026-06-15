@@ -60,7 +60,7 @@ function NotifyCard({ data, kind = 'newsletter' }) {
           </form>
         )}
       <p className="fine">{data.finePrefix}<a href={LINKS.legal.privacidad}>{data.fineLink}</a>.</p>
-      <PrivacyShort tone="mute" align="left" />
+      <PrivacyShort tone="mute" align="center" />
     </div>
   )
 }

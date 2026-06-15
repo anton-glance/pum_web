@@ -106,7 +106,7 @@ export function ProductModal({ flavor, cart, onClose, onAddToCart, onViewCart, o
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14, flexWrap: 'wrap' }}>
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--fg-mute)' }}>{PRICE.label}</div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 22, lineHeight: 1.1, color: 'var(--pum-navy)' }}>{PRICE.value}*</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 22, lineHeight: 1.1, color: 'var(--pum-navy)' }}>{PRICE.value}</div>
                 </div>
                 <Btn size="md" onClick={() => onNotify && onNotify()}><Icon name="bell" size={17} stroke={2.5} /> {STRINGS.flavors.notify}</Btn>
               </div>

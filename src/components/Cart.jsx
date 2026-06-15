@@ -22,15 +22,14 @@ export function Cart({ open, cart, onClose, onAdd, onRemove, onDelete, onCheckou
     return () => window.removeEventListener('keydown', k)
   }, [open])
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 60, overflow: 'hidden', display: 'flex', alignItems: sheet ? 'flex-end' : 'stretch', justifyContent: sheet ? 'center' : 'flex-end', pointerEvents: open ? 'auto' : 'none' }} aria-hidden={!open}>
-      {/* Edge-anchored via flexbox (align/justify above), NOT position:absolute bottom/right:0: on iOS
-          Safari those edges don't resolve on the panel's first paint, so it flashed on the wrong border
-          for a frame before snapping in. Flex resolves the edge immediately. */}
-      <div onClick={onClose} style={{ position: 'absolute', inset: 0, background: 'rgba(13,30,58,.45)', opacity: open ? 1 : 0, transition: 'opacity .25s' }} />
+    <div style={{ position: 'fixed', inset: 0, zIndex: 60, overflow: 'hidden', display: 'flex', alignItems: sheet ? 'flex-end' : 'stretch', justifyContent: sheet ? 'center' : 'flex-end', pointerEvents: open ? 'auto' : 'none', opacity: open ? 1 : 0, visibility: open ? 'visible' : 'hidden' }} aria-hidden={!open}>
+      {/* No slide animation — the panel just appears (handoff #7); toggling visibility on the wrapper
+          avoids the iOS first-paint flash the transform slide caused. Edge-anchored via flexbox. */}
+      <div onClick={onClose} style={{ position: 'absolute', inset: 0, background: 'rgba(13,30,58,.45)' }} />
       <aside ref={panelRef} role="dialog" aria-modal="true" aria-label={C.title} style={sheet
         /* bottom-sheet on mobile (doc 09 §6.2, mockup CartSheet) */
-        ? { position: 'relative', width: '100%', maxHeight: '86%', background: 'var(--pum-cream)', borderRadius: '26px 26px 0 0', boxShadow: '0 -18px 44px rgba(13,30,58,.3)', transform: open ? 'translateY(0)' : 'translateY(105%)', transition: 'transform .32s cubic-bezier(.22,.61,.36,1)', willChange: 'transform', display: 'flex', flexDirection: 'column' }
-        : { position: 'relative', width: 'min(404px,92vw)', height: '100%', background: 'var(--pum-cream)', boxShadow: '-18px 0 44px rgba(13,30,58,.2)', transform: open ? 'translateX(0)' : 'translateX(105%)', transition: 'transform .3s cubic-bezier(.22,.61,.36,1)', willChange: 'transform', display: 'flex', flexDirection: 'column' }}>
+        ? { position: 'relative', width: '100%', maxHeight: '86%', background: 'var(--pum-cream)', borderRadius: '26px 26px 0 0', boxShadow: '0 -18px 44px rgba(13,30,58,.3)', display: 'flex', flexDirection: 'column' }
+        : { position: 'relative', width: 'min(404px,92vw)', height: '100%', background: 'var(--pum-cream)', boxShadow: '-18px 0 44px rgba(13,30,58,.2)', display: 'flex', flexDirection: 'column' }}>
         <div style={{ padding: '20px 22px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--border)' }}>
           <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 20, color: 'var(--pum-navy)' }}>{C.title}{count > 0 ? ` · ${count} ${count > 1 ? STRINGS.modal.bagPlural : STRINGS.modal.bagSingular}` : ''}</div>
           <button onClick={onClose} aria-label={STRINGS.modal.closeAria} style={{ background: '#fff', border: '1px solid var(--border)', width: 38, height: 38, borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--pum-navy)' }}><Icon name="x" size={20} stroke={2.4} /></button>
@@ -42,7 +41,6 @@ export function Cart({ open, cart, onClose, onAdd, onRemove, onDelete, onCheckou
               <div style={{ width: 54, height: 54, borderRadius: 14, background: f.wash, display: 'flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto' }}><PumImg src={f.img} widths={[200]} sizes="40px" width={800} height={1028} alt={f.name} style={{ maxWidth: '72%', maxHeight: 48, width: 'auto', height: 'auto' }} /></div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, color: 'var(--pum-navy)', fontSize: 16 }}>{f.name}</div>
-                <div style={{ fontSize: 12.5, color: 'var(--fg-mute)', fontWeight: 700 }}>${f.price} {C.perUnit}</div>
               </div>
               <div style={{ display: 'inline-flex', alignItems: 'center', border: '2px solid var(--pum-navy)', borderRadius: 999, overflow: 'hidden' }}>
                 <button onClick={() => onRemove(f)} aria-label={STRINGS.modal.minusAria} style={{ border: 'none', background: '#fff', color: 'var(--pum-navy)', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 16, width: 30, height: 32, cursor: 'pointer' }}>−</button>
@@ -56,11 +54,7 @@ export function Cart({ open, cart, onClose, onAdd, onRemove, onDelete, onCheckou
           ))}
         </div>
         <div style={{ padding: sheet ? '14px 20px calc(22px + env(safe-area-inset-bottom))' : '18px 22px', borderTop: '1px solid var(--border)' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 14 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, fontWeight: 600, color: 'var(--fg-soft)' }}><span>{C.subtotal}</span><span>${subtotal} MXN</span></div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, fontWeight: 600, color: 'var(--fg-soft)' }}><span>{C.shipping}</span>{shipping === 0 ? <span style={{ color: '#2E9E5B', fontWeight: 700 }}>{C.shippingFree}</span> : <span>${shipping} MXN</span>}</div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 19, color: 'var(--pum-navy)', borderTop: '1px solid var(--border)', paddingTop: 8, marginTop: 4 }}><span>{C.total}</span><span>${total} MXN</span></div>
-          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 19, color: 'var(--pum-navy)', marginBottom: 14 }}><span>{C.total}</span><span>${total} MXN</span></div>
           <div style={{ background: 'var(--pum-cream-2)', borderRadius: 12, padding: '10px 14px', marginBottom: 14, fontSize: 12.5, lineHeight: 1.45, color: 'var(--fg-soft)', fontWeight: 600, display: 'flex', gap: 8, alignItems: 'flex-start' }}>
             <span style={{ flexShrink: 0, marginTop: 1 }}><Icon name="shield-check" size={14} stroke={2.4} color="var(--pum-navy)" /></span>
             <span>{C.parentalNotice}</span>
@@ -82,7 +76,7 @@ export function CartBar({ cart, total, onOpen, onCheckout }) {
   const show = count > 0
   const C = STRINGS.cart
   return (
-    <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 55, transform: show ? 'translateY(0)' : 'translateY(100%)', transition: 'transform .35s cubic-bezier(.22,.61,.36,1)', pointerEvents: show ? 'auto' : 'none' }} aria-hidden={!show}>
+    <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 55, pointerEvents: show ? 'auto' : 'none', opacity: show ? 1 : 0, visibility: show ? 'visible' : 'hidden' }} aria-hidden={!show}>
       <div style={{ maxWidth: 700, margin: '0 auto', padding: '0 16px', paddingBottom: 'calc(18px + env(safe-area-inset-bottom))' }}>
         <div onClick={onOpen} role="button" tabIndex={0} aria-label={C.title} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpen() } }} style={{ width: '100%', background: 'var(--pum-navy-700)', border: 'none', borderBottom: '4px solid var(--pum-corn)', borderRadius: 22, padding: '13px 18px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 12, boxShadow: '0 -4px 24px rgba(0,0,0,.28), 0 12px 28px rgba(13,30,58,.32)', color: 'var(--pum-cream)', boxSizing: 'border-box' }}>
           <div style={{ display: 'flex', gap: 6, alignItems: 'center', flex: 1 }}>

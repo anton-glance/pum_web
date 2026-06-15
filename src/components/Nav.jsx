@@ -48,12 +48,11 @@ function MenuSheet({ open, onClose, onSection, goHome, onComingSoon }) {
     return !headerHrefs.has(href)
   })
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 70, overflow: 'hidden', display: 'flex', justifyContent: 'flex-end', pointerEvents: open ? 'auto' : 'none' }} aria-hidden={!open}>
-      <div onClick={onClose} style={{ position: 'absolute', inset: 0, background: 'rgba(13,30,58,.45)', opacity: open ? 1 : 0, transition: 'opacity .25s' }} />
-      {/* Right-anchored via flexbox (justify-content:flex-end on the parent), NOT position:absolute
-          right:0 — on iOS Safari `right:0` doesn't resolve on the panel's first paint, so it flashed
-          on the LEFT for a frame before snapping right. Flex resolves the edge immediately. */}
-      <aside ref={panelRef} role="dialog" aria-modal="true" aria-label="Menú" style={{ position: 'relative', width: '84%', maxWidth: 360, height: '100%', background: 'var(--pum-cream)', boxShadow: '-18px 0 44px rgba(13,30,58,.25)', transform: open ? 'translateX(0)' : 'translateX(105%)', transition: 'transform .3s cubic-bezier(.22,.61,.36,1)', willChange: 'transform', display: 'flex', flexDirection: 'column', padding: '24px 22px calc(26px + env(safe-area-inset-bottom))' }}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 70, overflow: 'hidden', display: 'flex', justifyContent: 'flex-end', pointerEvents: open ? 'auto' : 'none', opacity: open ? 1 : 0, visibility: open ? 'visible' : 'hidden' }} aria-hidden={!open}>
+      {/* No slide animation — the menu just appears (handoff #7); toggling visibility on the wrapper
+          avoids the iOS first-paint flash the transform slide caused. Right-anchored via flexbox. */}
+      <div onClick={onClose} style={{ position: 'absolute', inset: 0, background: 'rgba(13,30,58,.45)' }} />
+      <aside ref={panelRef} role="dialog" aria-modal="true" aria-label="Menú" style={{ position: 'relative', width: '84%', maxWidth: 360, height: '100%', background: 'var(--pum-cream)', boxShadow: '-18px 0 44px rgba(13,30,58,.25)', display: 'flex', flexDirection: 'column', padding: '24px 22px calc(26px + env(safe-area-inset-bottom))' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
           <PumImg src={SITE.logos.onLight} widths={[200, 400]} sizes="80px" width={400} height={131} eager alt={SITE.brand.name} style={{ height: 26, width: 'auto', display: 'block' }} />
           <button onClick={onClose} aria-label={STRINGS.menu.closeAria} style={{ background: '#fff', border: '1px solid var(--border)', width: 44, height: 44, borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--pum-navy)' }}><Icon name="x" size={20} stroke={2.4} /></button>
