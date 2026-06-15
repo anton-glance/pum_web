@@ -101,7 +101,7 @@ const PAGES = [
     page: 'index',
     url: '/',
     title: `${SITE.brand.name} — ${SITE.brand.category} | ${SITE.brand.tagline}`,
-    desc: '¡PUM! — palitos de maíz horneados, ligeros y crujientes, con sabores dulces mexicanos. Producto en desarrollo: conoce las especificaciones objetivo y únete a la lista de espera.',
+    desc: '¡PUM! — palitos de maíz, ligeros y crujientes, con sabores dulces mexicanos. Producto en desarrollo: conoce las especificaciones objetivo y únete a la lista de espera.',
     ogType: 'website',
     ld: [ORG_LD, WEBSITE_LD],
   },

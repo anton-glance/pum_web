@@ -4,7 +4,7 @@
    the kind of thing that destabilises hydration recovery on iOS. Responsiveness is pure CSS
    (.pum-footer* in global.css). The newsletter signup is its own section, home page only. */
 import React from 'react'
-import { esValidation, PumImg } from './ui.jsx'
+import { esValidation, PumImg, PrivacyShort } from './ui.jsx'
 import { FLAVORS, SITE, STRINGS, LINKS } from '../lib/data.js'
 import { submitForm, honeypotProps } from '../lib/forms.js'
 import { useMediaQuery } from '../lib/motion.jsx'
@@ -41,6 +41,7 @@ export function Newsletter() {
             </form>
             {error && <p style={{ fontSize: 12.5, color: 'var(--danger)', fontWeight: 700, margin: '8px 0 0' }}>{STRINGS.forms.submitError}</p>}
             <p style={{ fontSize: 11.5, color: 'var(--pum-navy)', opacity: 0.85, fontWeight: 600, margin: '8px 0 0', lineHeight: 1.4, textAlign: mobile ? undefined : 'center' }}>{N.consentPrefix}<a href={LINKS.legal.privacidad} style={{ color: 'var(--pum-navy)', textDecoration: 'underline' }}>{N.consentLink}</a>.</p>
+            <div style={{ display: 'flex', justifyContent: mobile ? 'flex-start' : 'center' }}><PrivacyShort tone="navy" align={mobile ? 'left' : 'center'} /></div>
           </div>
         </div>
       </div>
@@ -81,9 +82,14 @@ export function Footer({ onFlavor }) {
             </div>
             <div className="fcol">
               <h4>{S.colSiguenos}</h4>
-              {S.socialLinks.map((label) => (
-                <a key={label} href={SITE.links.social[label.toLowerCase()]}>{socialIcon(label)}<span>{label}</span></a>
-              ))}
+              {S.socialLinks.map((label) => {
+                const href = SITE.links.social[label.toLowerCase()]
+                const live = href && href !== '#'
+                /* Until real account URLs are set, render the row non-clickable + muted (handoff §1.4). */
+                return live
+                  ? <a key={label} href={href} target="_blank" rel="noopener">{socialIcon(label)}<span>{label}</span></a>
+                  : <span key={label} title="Próximamente" style={{ display: 'flex', alignItems: 'center', gap: 8, opacity: 0.45, fontSize: 14, fontWeight: 600, padding: '5px 0', cursor: 'default' }}>{socialIcon(label)}<span>{label}</span></span>
+              })}
             </div>
           </div>
         </div>
@@ -94,6 +100,7 @@ export function Footer({ onFlavor }) {
         <div className="pum-foot-legal">
           {S.legalLinks.map((it) => <a key={it.label} href={LINKS.legal[it.linkKey]}>{it.label}</a>)}
         </div>
+        {SITE.footer.devNotice && <p style={{ fontSize: 12, lineHeight: 1.5, opacity: 0.6, fontWeight: 600, margin: '14px 0 0', maxWidth: 720 }}>{SITE.footer.devNotice}</p>}
         <div className="pum-foot-copy"><span>{SITE.footer.copyright}</span><span>{S.tagline}</span></div>
       </div>
     </footer>

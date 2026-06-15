@@ -1,6 +1,6 @@
 /* Shared UI primitives: Icon, Btn, Rating — ported 1:1 from the approved mockup app.jsx */
 import React from 'react'
-import { STRINGS } from '../lib/data.js'
+import { STRINGS, LINKS } from '../lib/data.js'
 import {
   ShoppingBag, Sparkles, ArrowRight, Star, Flame, Plus, X, ShieldCheck, Sprout, Smile,
   ChevronsRight, ChevronsLeft, Bell, Image, Heart, Leaf, CheckCircle2, Wheat, Candy,
@@ -269,5 +269,20 @@ export function Rating({ value, label, fill = 'var(--pum-navy)', track = 'rgba(2
         {[1, 2, 3, 4, 5].map((i) => <span key={i} style={{ width: 13, height: 13, borderRadius: i <= value ? 4 : '50%', background: i <= value ? fill : track, transition: 'all .2s' }} />)}
       </div>
     </div>
+  )
+}
+
+/* Short privacy notice shown under each email-signup consent line (handoff §4.1).
+   Collapsible so it stays lightweight; expands to the plain-language summary + a link to
+   the full Aviso. `tone` switches text color for light (corn) vs dark backgrounds. */
+export function PrivacyShort({ tone = 'mute', align = 'left' }) {
+  const P = STRINGS.privacyShort
+  if (!P) return null
+  const color = tone === 'navy' ? 'var(--pum-navy)' : 'var(--fg-mute)'
+  return (
+    <details className="pum-privshort" style={{ marginTop: 7, textAlign: align }}>
+      <summary style={{ fontSize: 11, fontWeight: 700, color, cursor: 'pointer', listStyle: 'none', opacity: 0.85, display: 'inline-flex', alignItems: 'center', gap: 4 }}>{P.summary} <Icon name="chevron-down" size={12} stroke={2.4} /></summary>
+      <p style={{ fontSize: 11, lineHeight: 1.5, color, fontWeight: 500, margin: '6px 0 0', opacity: 0.92 }}>{P.body}<a href={LINKS.legal.privacidad} style={{ color, textDecoration: 'underline', fontWeight: 700 }}>{P.link}</a>.</p>
+    </details>
   )
 }

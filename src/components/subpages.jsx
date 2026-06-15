@@ -3,7 +3,7 @@
    monsters, polaroid photos, bloque ingredients). Header/footer are the React Nav/Footer
    (out of scope). Copy comes from public/data/pages.json (source of truth). */
 import React from 'react'
-import { Icon, esValidation, PumImg, RichText, inlineMd } from './ui.jsx'
+import { Icon, esValidation, PumImg, RichText, inlineMd, PrivacyShort } from './ui.jsx'
 import { PAGES, SITE, STRINGS, LINKS } from '../lib/data.js'
 import { submitForm, honeypotProps } from '../lib/forms.js'
 
@@ -60,6 +60,7 @@ function NotifyCard({ data, kind = 'newsletter' }) {
           </form>
         )}
       <p className="fine">{data.finePrefix}<a href={LINKS.legal.privacidad}>{data.fineLink}</a>.</p>
+      <PrivacyShort tone="mute" align="left" />
     </div>
   )
 }

@@ -5,14 +5,14 @@
     "name": "¡PUM!",
     "legalName": "¡PUM! Snacks",
     "tagline": "Crujen. Sonríen. Disfrutan.",
-    "category": "Palitos de maíz horneados",
+    "category": "Palitos de maíz",
     "country": "MX",
     "language": "es-MX"
   },
   "commerce": {
     "currency": "MXN",
     "taxIncluded": true,
-    "priceNote": "IVA incluido",
+    "priceNote": "",
     "shippingFlatMXN": 0,
     "cartStorageKey": "pum_cart"
   },
@@ -61,8 +61,9 @@
     }
   },
   "footer": {
-    "blurb": "Palitos de maíz horneados.\nCrujen, sonríen, disfrutan.",
-    "copyright": "© 2026 ¡PUM! Snacks"
+    "blurb": "Palitos de maíz.\nCrujen, sonríen, disfrutan.",
+    "copyright": "© 2026 ¡PUM! Snacks",
+    "devNotice": "¡PUM! está en desarrollo. Los productos aún no están a la venta; sabores, precios y presentaciones son de referencia y pueden cambiar."
   },
   "contact": {
     "address": "Av Alfonso Reyes 100, Zona Valle Poniente, 66196 Cdad. Santa Catarina, N.L., México",
@@ -71,8 +72,7 @@
     "phoneHref": "tel:+522205678618",
     "whatsapp": "+52 220 567 8618",
     "whatsappHref": "https://wa.me/522205678618",
-    "email": "hola@pum.mx",
-    "billingEmail": "facturacion@pum.mx"
+    "email": "hola@pum.mx"
   },
   "logos": {
     "onLight": "/assets/logos/logo-dark.png",

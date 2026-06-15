@@ -2,7 +2,7 @@
   "$comment": "Interior page content — v2 redesign (design bundle KwRYq_PWU0hX22dNIKjqdQ, spec interior-pages-implementation.md). Copy is the source of truth and is intentionally softened for a pre-launch in-development product (no NOM-051 threshold table, vitamins as 'es posible que añadamos', reframed school FAQ, no seal claims). Inline links use markdown routes mapped to .html by inlineMd. Header/footer untouched (React Nav/Footer).",
   "nosotros": {
     "title": "Para Papás | ¡PUM! Snack para niños",
-    "metaDescription": "La historia de ¡PUM!: palitos de maíz horneados, ligeros y crujientes, en sabores mexicanos, hechos pensando en los niños — y los compromisos con los que se construyen.",
+    "metaDescription": "La historia de ¡PUM!: palitos de maíz, ligeros y crujientes, en sabores mexicanos, hechos pensando en los niños — y los compromisos con los que se construyen.",
     "hero": {
       "eyebrow": "La historia detrás de ¡PUM!",
       "h1": "Para Papás",
@@ -30,7 +30,7 @@
         { "icon": "heart", "icBg": "var(--flv-fresa-wash)", "icColor": "var(--flv-fresa)", "t": "Dulce", "d": "un gustito de verdad" }
       ],
       "pum": { "spark": "¡por fin!", "t": "¡PUM!", "d": "y además, ligerito" },
-      "closing": "¡PUM! serán **palitos de maíz horneados**, ligeros y aireados, en sabores mexicanos de verdad: la flor de [Jamaica](/sabores/jamaica), el [Limón](/sabores/limon) fresco, el [Chocolate](/sabores/chocolate) y el clásico [Churro](/sabores/churro). El antojo que los niños ya conocen, hecho como yo lo querría para la mía."
+      "closing": "¡PUM! serán **palitos de maíz**, ligeros y aireados, en sabores mexicanos de verdad: la flor de [Jamaica](/sabores/jamaica), el [Limón](/sabores/limon) fresco, el [Chocolate](/sabores/chocolate) y el clásico [Churro](/sabores/churro). El antojo que los niños ya conocen, hecho como yo lo querría para la mía."
     },
     "compromisos": {
       "eyebrow": "Las reglas con las que lo construyo",
@@ -73,7 +73,7 @@
     "moreQ": { "q": "¿Te quedaste con más dudas?", "body": "Visita las", "link": "Preguntas frecuentes" }
   },
   "ingredientes": {
-    "title": "Ingredientes | ¡PUM! Palitos de maíz horneados",
+    "title": "Ingredientes | ¡PUM! Palitos de maíz",
     "metaDescription": "Los ingredientes que queremos usar en ¡PUM!: maíz, salvado de maíz, azúcar mascabado, y color y sabor de plantas. Sin edulcorantes artificiales.",
     "hero": {
       "badge": "En desarrollo",
@@ -84,7 +84,7 @@
     },
     "bolsa": {
       "eyebrow": "Una bolsa, por dentro",
-      "lede": "¡PUM! es una botana de maíz horneada **en desarrollo**. La composición a continuación es la receta que estamos creando; los ingredientes y las cantidades finales se confirmarán en la formulación final.",
+      "lede": "¡PUM! es una botana de maíz **en desarrollo**. La composición a continuación es la receta que estamos creando; los ingredientes y las cantidades finales se confirmarán en la formulación final.",
       "pack": "/assets/packs/pack-jamaica.png",
       "left": [
         { "t": "Harina de maíz", "d": "La base del palito, ligera y crujiente." },
@@ -92,7 +92,7 @@
       ],
       "right": [
         { "t": "Cobertura de sabor", "d": "De ingredientes reales." },
-        { "t": "Color de plantas", "d": "Sin colorantes artificiales." }
+        { "t": "Color de plantas", "d": "El color vendrá de plantas." }
       ]
     },
     "receta": {
@@ -100,7 +100,7 @@
       "h2": "La receta",
       "sections": [
         { "icon": "wheat", "h3": "Base", "items": [
-          { "term": "Harina de maíz", "desc": "la base del palito; al hornearse se infla en una textura ligera y crujiente." },
+          { "term": "Harina de maíz", "desc": "la base del palito; se infla en una textura ligera y crujiente." },
           { "term": "Salvado de maíz", "desc": "aporta fibra y mantiene el palito ligero." }
         ] },
         { "icon": "candy", "h3": "Endulzante y sazón", "items": [
@@ -128,7 +128,7 @@
       },
       "colorantes": {
         "icon": "palette", "h2": "Colorantes naturales (de plantas)",
-        "intro": "No usamos colorantes artificiales. El color proviene de:",
+        "intro": "El color vendrá de plantas, no de colorantes artificiales:",
         "headers": ["Color", "Origen", "Sabor"],
         "rows": [
           [{ "swatch": "#D4237A", "label": "Magenta" }, "Hibisco, betabel", "[Jamaica](/sabores/jamaica)"],
@@ -182,7 +182,7 @@
         "icon": "message-circle-question",
         "h2": "Sobre ¡PUM!",
         "items": [
-          { "q": "¿Qué es ¡PUM!?", "a": "¡PUM! es la botana de maíz horneada que estoy creando: palitos ligeros y crujientes en sabores dulces mexicanos: [Jamaica](/sabores/jamaica), [Limón](/sabores/limon), [Chocolate](/sabores/chocolate) y [Churro](/sabores/churro).", "sa": "¡PUM! es una botana de maíz horneada en desarrollo: palitos ligeros y crujientes en sabores dulces mexicanos (Jamaica, Limón, Chocolate y Churro)." },
+          { "q": "¿Qué es ¡PUM!?", "a": "¡PUM! es la botana de maíz que estoy creando: palitos ligeros y crujientes en sabores dulces mexicanos: [Jamaica](/sabores/jamaica), [Limón](/sabores/limon), [Chocolate](/sabores/chocolate) y [Churro](/sabores/churro).", "sa": "¡PUM! es una botana de maíz en desarrollo: palitos ligeros y crujientes en sabores dulces mexicanos (Jamaica, Limón, Chocolate y Churro)." },
           { "q": "¿Para qué edad es?", "a": "Está hecho para niños de 10 años en adelante.", "sa": "Está hecho para niños de 10 años en adelante." },
           { "q": "¿Dónde lo consigo?", "a": "Todavía no, apenas estamos empezando. Déjanos tu correo y te avisamos en cuanto haya ¡PUM! cerca de ti.", "sa": "Todavía no; apenas estamos empezando. Deja tu correo para recibir aviso cuando haya ¡PUM! cerca de ti." },
           { "q": "¿Por qué muchas botanas ya no se venden en las escuelas?", "a": "Desde 2025, las escuelas en México solo pueden vender productos sin sellos de advertencia.", "sa": "Desde 2025, las escuelas en México solo pueden vender productos sin sellos de advertencia." }
@@ -193,7 +193,7 @@
         "h2": "Ingredientes",
         "items": [
           { "q": "¿Tendrá azúcar?", "a": "Sí, un poco de azúcar mascabado, en una cantidad medida. Sin edulcorantes artificiales. Lo contamos todo en [Ingredientes](/ingredientes).", "sa": "Sí, un poco de azúcar mascabado, en cantidad medida. Sin edulcorantes artificiales." },
-          { "q": "¿Será frito?", "a": "No. ¡PUM! serán palitos de maíz horneados.", "sa": "No. ¡PUM! serán palitos de maíz horneados." },
+          { "q": "¿Será frito?", "a": "No. ¡PUM! serán palitos de maíz ligeros y crujientes, no fritos.", "sa": "No. ¡PUM! serán palitos de maíz ligeros y crujientes, no fritos." },
           { "q": "¿Tendrá colores o sabores artificiales?", "a": "No. El color viene de plantas (espirulina, hibisco, betabel, cacao) y el sabor de ingredientes reales como la flor de jamaica, el cacao y la canela.", "sa": "No. El color viene de plantas (espirulina, hibisco, betabel, cacao) y el sabor de ingredientes reales como flor de jamaica, cacao y canela." }
         ]
       }
@@ -229,8 +229,7 @@
       "phoneTitle": "Teléfono",
       "whatsappTitle": "WhatsApp",
       "whatsappCta": "Escríbenos por WhatsApp",
-      "emailTitle": "Correo",
-      "billingPrefix": "Facturación: "
+      "emailTitle": "Correo"
     }
   },
   "legal": [

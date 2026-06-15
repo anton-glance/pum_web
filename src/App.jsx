@@ -5,6 +5,7 @@
 import React from 'react'
 import { FLAVORS, WAITLIST } from './lib/data.js'
 import { useCart, cartStore, cartCount, cartTotal } from './lib/cart.js'
+import { trackIntent } from './lib/analytics.js'
 import { CrumbCanvas, CursorMascot } from './lib/fx.jsx'
 import { Nav } from './components/Nav.jsx'
 import { Footer, Newsletter } from './components/Footer.jsx'
@@ -18,7 +19,7 @@ export function App() {
   const [open, setOpen] = React.useState(false)
   const [detail, setDetail] = React.useState(null)
   const [comingSoon, setComingSoon] = React.useState(false)
-  const notify = () => setComingSoon(true)
+  const notify = () => { trackIntent('waitlist_intent'); setComingSoon(true) }
   React.useEffect(() => {
     const cover = document.getElementById('pum-jump-cover')
     const reveal = () => { if (cover && cover.classList.contains('on') && !cover.classList.contains('fade')) { cover.classList.add('fade'); setTimeout(() => { cover.classList.remove('on', 'fade') }, 450) } }
@@ -41,7 +42,7 @@ export function App() {
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
-  const add = (f) => { cartStore.add(f.id, f.delta === -1 ? -1 : 1) }
+  const add = (f) => { cartStore.add(f.id, f.delta === -1 ? -1 : 1); if (f.delta !== -1) trackIntent('add_to_cart') }
   const remove = (f) => cartStore.remove(f.id)
   const count = cartCount(cart)
   const nav = (id) => {
@@ -62,13 +63,13 @@ export function App() {
         <Newsletter />
       </main>
       <Footer onFlavor={setDetail} />
-      {!WAITLIST && <CartBar cart={cart} total={cartTotal(cart, FLAVORS)} onOpen={() => setOpen(true)} onCheckout={() => setComingSoon(true)} />}
-      {!WAITLIST && <Cart open={open} cart={cart} onClose={() => setOpen(false)} onAdd={add} onRemove={remove} onDelete={(f) => cartStore.delete(f.id)} onCheckout={() => { setOpen(false); setComingSoon(true) }} />}
+      {!WAITLIST && <CartBar cart={cart} total={cartTotal(cart, FLAVORS)} onOpen={() => setOpen(true)} onCheckout={() => { trackIntent('checkout_intent'); setComingSoon(true) }} />}
+      {!WAITLIST && <Cart open={open} cart={cart} onClose={() => setOpen(false)} onAdd={add} onRemove={remove} onDelete={(f) => cartStore.delete(f.id)} onCheckout={() => { trackIntent('checkout_intent'); setOpen(false); setComingSoon(true) }} />}
       <ProductModal
         flavor={detail}
         cart={cart}
         onClose={() => { setDetail(null); if (/sabor=/i.test(location.hash)) history.replaceState(null, '', location.pathname + location.search) }}
-        onAddToCart={(f, n) => cartStore.add(f.id, n)}
+        onAddToCart={(f, n) => { cartStore.add(f.id, n); trackIntent('add_to_cart') }}
         onViewCart={() => { setDetail(null); if (/sabor=/i.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); setOpen(true) }}
         onNotify={() => { setDetail(null); if (/sabor=/i.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); notify() }}
       />

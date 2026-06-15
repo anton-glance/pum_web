@@ -5,6 +5,7 @@
 import React from 'react'
 import { FLAVORS, WAITLIST } from './lib/data.js'
 import { useCart, cartStore, cartCount, cartTotal } from './lib/cart.js'
+import { trackIntent } from './lib/analytics.js'
 import { Nav } from './components/Nav.jsx'
 import { Footer } from './components/Footer.jsx'
 import { ProductModal } from './components/ProductModal.jsx'
@@ -19,7 +20,7 @@ export function SubpageApp({ page, flavorId }) {
   const [detail, setDetail] = React.useState(null)
   const [open, setOpen] = React.useState(false)
   const [comingSoon, setComingSoon] = React.useState(false)
-  const notify = () => setComingSoon(true)
+  const notify = () => { trackIntent('waitlist_intent'); setComingSoon(true) }
   React.useEffect(() => {
     const onClick = (e) => {
       const a = e.target.closest('a[href*="#sabor="], a[href^="/sabores/"]')
@@ -32,7 +33,7 @@ export function SubpageApp({ page, flavorId }) {
     document.addEventListener('click', onClick)
     return () => document.removeEventListener('click', onClick)
   }, [flavorId])
-  const add = (f) => cartStore.add(f.id, f.delta === -1 ? -1 : 1)
+  const add = (f) => { cartStore.add(f.id, f.delta === -1 ? -1 : 1); if (f.delta !== -1) trackIntent('add_to_cart') }
   const remove = (f) => cartStore.remove(f.id)
   const Page = page === 'sabor' ? SaborPage : PAGES[page]
   return (
@@ -42,13 +43,13 @@ export function SubpageApp({ page, flavorId }) {
         <Page flavorId={flavorId} onNotify={notify} />
       </main>
       <Footer onFlavor={setDetail} />
-      {!WAITLIST && <CartBar cart={cart} total={cartTotal(cart, FLAVORS)} onOpen={() => setOpen(true)} onCheckout={() => setComingSoon(true)} />}
-      {!WAITLIST && <Cart open={open} cart={cart} onClose={() => setOpen(false)} onAdd={add} onRemove={remove} onDelete={(f) => cartStore.delete(f.id)} onCheckout={() => { setOpen(false); setComingSoon(true) }} />}
+      {!WAITLIST && <CartBar cart={cart} total={cartTotal(cart, FLAVORS)} onOpen={() => setOpen(true)} onCheckout={() => { trackIntent('checkout_intent'); setComingSoon(true) }} />}
+      {!WAITLIST && <Cart open={open} cart={cart} onClose={() => setOpen(false)} onAdd={add} onRemove={remove} onDelete={(f) => cartStore.delete(f.id)} onCheckout={() => { trackIntent('checkout_intent'); setOpen(false); setComingSoon(true) }} />}
       <ProductModal
         flavor={detail}
         cart={cart}
         onClose={() => setDetail(null)}
-        onAddToCart={(f, n) => cartStore.add(f.id, n)}
+        onAddToCart={(f, n) => { cartStore.add(f.id, n); trackIntent('add_to_cart') }}
         onViewCart={() => { setDetail(null); setOpen(true) }}
         onNotify={() => { setDetail(null); notify() }}
       />

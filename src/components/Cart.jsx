@@ -1,6 +1,6 @@
 /* Cart drawer + sticky bottom cart bar + coming-soon modal (handoff doc 04 §4–5). */
 import React from 'react'
-import { Icon, Btn, esValidation, PumImg, useFocusTrap } from './ui.jsx'
+import { Icon, Btn, esValidation, PumImg, useFocusTrap, PrivacyShort } from './ui.jsx'
 import { FLAVORS, SITE, STRINGS, LINKS } from '../lib/data.js'
 import { submitForm, honeypotProps } from '../lib/forms.js'
 import { useMediaQuery, Parallax } from '../lib/motion.jsx'
@@ -60,7 +60,6 @@ export function Cart({ open, cart, onClose, onAdd, onRemove, onDelete, onCheckou
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, fontWeight: 600, color: 'var(--fg-soft)' }}><span>{C.subtotal}</span><span>${subtotal} MXN</span></div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, fontWeight: 600, color: 'var(--fg-soft)' }}><span>{C.shipping}</span>{shipping === 0 ? <span style={{ color: '#2E9E5B', fontWeight: 700 }}>{C.shippingFree}</span> : <span>${shipping} MXN</span>}</div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 19, color: 'var(--pum-navy)', borderTop: '1px solid var(--border)', paddingTop: 8, marginTop: 4 }}><span>{C.total}</span><span>${total} MXN</span></div>
-            <div style={{ fontSize: 11.5, color: 'var(--fg-mute)', fontWeight: 600, textAlign: 'right' }}>{C.taxNote}</div>
           </div>
           <div style={{ background: 'var(--pum-cream-2)', borderRadius: 12, padding: '10px 14px', marginBottom: 14, fontSize: 12.5, lineHeight: 1.45, color: 'var(--fg-soft)', fontWeight: 600, display: 'flex', gap: 8, alignItems: 'flex-start' }}>
             <span style={{ flexShrink: 0, marginTop: 1 }}><Icon name="shield-check" size={14} stroke={2.4} color="var(--pum-navy)" /></span>
@@ -151,6 +150,7 @@ export function ComingSoon({ open, onClose }) {
                 {error && <p style={{ fontSize: 12.5, color: 'var(--danger)', fontWeight: 700, margin: 0 }}>{STRINGS.forms.submitError}</p>}
               </form>
               <p style={{ fontSize: 11.5, color: 'var(--fg-mute)', fontWeight: 600, margin: '12px 0 0' }}>{S.consentPrefix}<a href={LINKS.legal.privacidad} style={{ color: 'var(--pum-navy)', textDecoration: 'underline' }}>{S.consentLink}</a>.</p>
+              <div style={{ display: 'flex', justifyContent: 'center' }}><PrivacyShort tone="mute" align="center" /></div>
             </React.Fragment>
           ) : (
             <React.Fragment>
