@@ -50,13 +50,33 @@ generates AVIF + WebP + PNG fallback at multiple widths into `public/assets/` (p
 9–12 MB each to 8–40 KB AVIF). Components render them via the `PumImg` component (srcset/sizes,
 explicit dimensions, lazy below the fold, `fetchpriority=high` on the hero).
 
-## Forms
+## Forms → Brevo email engine
 
-`src/lib/forms.js` posts waitlist/newsletter/contact to endpoints configured in
-`site.json → forms.{waitlistUrl,newsletterUrl,contactUrl}` (Formspree/Buttondown/own API — swap
-freely). Empty endpoint = simulated success (pre-launch). All forms carry a honeypot field
-(`empresa`). **Before going live: set real endpoints and replace the Aviso de Privacidad stub —
-collecting emails requires a real privacy notice under LFPDPPP.**
+Every form (`src/lib/forms.js`) posts JSON to a first-party **Cloudflare Pages Function** that
+talks to Brevo server-side — so the Brevo API key never reaches the browser. Endpoints are wired
+in `site.json → forms`:
+
+| Form (surface) | `kind` | Endpoint | Function | What it does |
+|---|---|---|---|---|
+| Footer newsletter (home) | `newsletter` | `/api/subscribe` | `functions/api/subscribe.js` | Brevo **double opt-in** → one list |
+| ComingSoon modal · Notify cards | `waitlist` | `/api/subscribe` | same | same (tagged `SOURCE`) |
+| Contacto form | `contact` | `/api/contact` | `functions/api/contact.js` | Upsert contact + email the message to the owner |
+
+Flow: submit an email → redirect to **`/gracias`** ("revisa tu correo") → Brevo sends the opt-in
+email → clicking it confirms and lands the user on **`/confirmacion`** (Brevo `redirectionUrl`).
+The contact form stays inline (it's a support message, not a subscription). All forms carry a
+honeypot (`empresa`); the Functions also validate the email and silently drop honeypot hits.
+
+**Config (Cloudflare → Pages → pum-snacks → Settings → Variables & Secrets)** — see
+[`.env.example`](.env.example) for the full list. Required: `BREVO_API_KEY` (secret),
+`BREVO_LIST_ID`, `BREVO_DOI_TEMPLATE_ID`. Optional: `BREVO_DOI_REDIRECT_URL`
+(default `https://pum.mx/confirmacion`), `CONTACT_NOTIFY_EMAIL`, `BREVO_SENDER_EMAIL/NAME`.
+Until the key + IDs are set the Functions **simulate success** so the forms keep working pre-launch.
+
+Test the Functions locally against the built site: `npm run build && npx wrangler pages dev dist`.
+
+**Before going live: set the Brevo vars and replace the Aviso de Privacidad stub — collecting
+emails requires a real privacy notice under LFPDPPP.**
 
 ## Mobile (handoff doc 09 — implemented)
 

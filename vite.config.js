@@ -22,6 +22,8 @@ export default defineConfig(({ isSsrBuild }) => ({
               ingredientes: resolve(__dirname, 'marca/ingredientes.html'),
               contacto: resolve(__dirname, 'marca/contacto.html'),
               'preguntas-frecuentes': resolve(__dirname, 'preguntas-frecuentes.html'),
+              gracias: resolve(__dirname, 'gracias.html'),
+              confirmacion: resolve(__dirname, 'confirmacion.html'),
               'sabor-churro': resolve(__dirname, 'sabores/churro.html'),
               'sabor-chocolate': resolve(__dirname, 'sabores/chocolate.html'),
               'sabor-jamaica': resolve(__dirname, 'sabores/jamaica.html'),

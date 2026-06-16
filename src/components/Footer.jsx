@@ -6,7 +6,7 @@
 import React from 'react'
 import { esValidation, PumImg, PrivacyShort } from './ui.jsx'
 import { FLAVORS, SITE, STRINGS, LINKS } from '../lib/data.js'
-import { submitForm, honeypotProps } from '../lib/forms.js'
+import { submitForm, honeypotProps, goToThanks } from '../lib/forms.js'
 import { trackIntent } from '../lib/analytics.js'
 import { useMediaQuery } from '../lib/motion.jsx'
 
@@ -21,7 +21,7 @@ export function Newsletter() {
     setError(false)
     const form = e.target
     const { ok } = await submitForm('newsletter', { email: form.email.value, empresa: form.empresa.value })
-    if (ok) setDone(true)
+    if (ok) { setDone(true); goToThanks() } // → /gracias ("revisa tu correo")
     else setError(true)
   }
   return (

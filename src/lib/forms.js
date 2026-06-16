@@ -24,12 +24,20 @@ export async function submitForm(kind, fields) {
     const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ ...fields, empresa: undefined }),
+      // `source` lets Brevo tag where the signup came from (newsletter vs waitlist vs contact).
+      body: JSON.stringify({ ...fields, source: kind, empresa: undefined }),
     })
     return { ok: res.ok }
   } catch {
     return { ok: false }
   }
+}
+
+/* Double opt-in flow: after a successful email-capture submit we send the visitor to the
+   "revisa tu correo" thank-you page (/gracias). Brevo then redirects them to /confirmacion
+   once they click the confirmation link. Guarded for SSR/prerender (no window). */
+export function goToThanks() {
+  if (typeof window !== 'undefined') window.location.assign('/gracias')
 }
 
 /* Visually hidden honeypot input props — shared by all three forms. */

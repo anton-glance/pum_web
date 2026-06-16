@@ -21,3 +21,5 @@ npm-debug.log*
 .env
 .env.*
 !.env.example
+# wrangler local secrets for `wrangler pages dev`
+.dev.vars

@@ -136,6 +136,22 @@
     "consentPrefix": "Al suscribirte aceptas recibir correos de ¡PUM! y nuestro ",
     "consentLink": "Aviso de Privacidad"
   },
+  "gracias": {
+    "eyebrow": "Casi listo",
+    "h1": "¡Revisa tu correo! 🌽",
+    "body": "Te enviamos un correo para confirmar tu suscripción. Haz clic en el botón del mensaje y quedarás dentro de la lista de espera de ¡PUM!.",
+    "note": "¿No lo ves en unos minutos? Échale un ojo a las carpetas de spam o promociones. El correo llega de parte de ¡PUM!.",
+    "ctaPrimary": "Conoce los sabores",
+    "ctaSecondary": "Volver al inicio"
+  },
+  "confirmacion": {
+    "eyebrow": "Suscripción confirmada",
+    "h1": "¡Listo, ya eres del crunch! 🎉",
+    "body": "Confirmaste tu correo. Serás de los primeros en enterarte cuando ¡PUM! salga a la venta: sabores, lanzamiento y novedades, sin spam.",
+    "note": "Mientras tanto, conoce los sabores y la historia detrás de ¡PUM!.",
+    "ctaPrimary": "Conoce los sabores",
+    "ctaSecondary": "Volver al inicio"
+  },
   "footer": {
     "colSabores": "Sabores",
     "colMarca": "Marca",

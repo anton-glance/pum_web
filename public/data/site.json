@@ -27,10 +27,10 @@
     "cloudflareToken": ""
   },
   "forms": {
-    "$comment": "Endpoint URLs for a form/email provider (Formspree, Buttondown, Mailchimp, own API…). Empty string = simulate success locally (pre-launch). Swap providers by editing these only (handoff doc 06 R9).",
-    "waitlistUrl": "",
-    "newsletterUrl": "",
-    "contactUrl": ""
+    "$comment": "First-party Cloudflare Pages Functions that talk to Brevo (functions/api/*). Same-origin, so the Brevo API key never touches the client. subscribe = double opt-in (newsletter+waitlist → one list); contact = upsert + notify owner. Config lives in Pages env vars (see .env.example). Empty string = simulate success locally.",
+    "waitlistUrl": "/api/subscribe",
+    "newsletterUrl": "/api/subscribe",
+    "contactUrl": "/api/contact"
   },
   "navigation": {
     "header": [

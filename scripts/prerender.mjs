@@ -141,6 +141,26 @@ const PAGES = [
     ogType: 'website',
     ld: [faqLD(), breadcrumb([['Inicio', '/'], ['Preguntas frecuentes', '/preguntas-frecuentes.html']])],
   },
+  {
+    path: 'gracias.html',
+    page: 'gracias',
+    url: '/gracias.html',
+    title: '¡PUM! — ¡Gracias! Revisa tu correo',
+    desc: 'Te enviamos un correo para confirmar tu suscripción a la lista de espera de ¡PUM!.',
+    ogType: 'website',
+    noindex: true,
+    ld: [],
+  },
+  {
+    path: 'confirmacion.html',
+    page: 'confirmacion',
+    url: '/confirmacion.html',
+    title: '¡PUM! — Suscripción confirmada',
+    desc: 'Confirmaste tu correo: ya estás en la lista de espera de ¡PUM!.',
+    ogType: 'website',
+    noindex: true,
+    ld: [],
+  },
   ...FLAVORS.map((f) => ({
     path: `sabores/${f.id}.html`,
     page: 'sabor',
@@ -162,6 +182,7 @@ function headBlock(p) {
     // Disable Chrome/Google auto-translation: it rewrites text nodes during React
     // hydration, causing hydration mismatches (#418/#425) that break interactivity.
     `<meta name="google" content="notranslate">`,
+    ...(p.noindex ? [`<meta name="robots" content="noindex,follow">`] : []),
     `<link rel="canonical" href="${canonical}">`,
     `<meta property="og:site_name" content="${esc(SITE.brand.name)}">`,
     `<meta property="og:type" content="${p.ogType}">`,
@@ -199,7 +220,7 @@ for (const p of PAGES) {
 const today = new Date().toISOString().slice(0, 10)
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${PAGES.map((p) => `  <url><loc>${ORIGIN}${clean(p.url)}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
+${PAGES.filter((p) => !p.noindex).map((p) => `  <url><loc>${ORIGIN}${clean(p.url)}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
 </urlset>
 `
 await writeFile(join(DIST, 'sitemap.xml'), sitemap)

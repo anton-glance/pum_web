@@ -11,9 +11,10 @@ import { Footer } from './components/Footer.jsx'
 import { ProductModal } from './components/ProductModal.jsx'
 import { Cart, CartBar, ComingSoon } from './components/Cart.jsx'
 import { NosotrosPage, IngredientesPage, ContactoPage, FaqPage } from './components/subpages.jsx'
+import { GraciasPage, ConfirmacionPage } from './components/FlowPages.jsx'
 import { SaborPage } from './components/SaborPage.jsx'
 
-const PAGES = { nosotros: NosotrosPage, ingredientes: IngredientesPage, contacto: ContactoPage, faq: FaqPage }
+const PAGES = { nosotros: NosotrosPage, ingredientes: IngredientesPage, contacto: ContactoPage, faq: FaqPage, gracias: GraciasPage, confirmacion: ConfirmacionPage }
 
 export function SubpageApp({ page, flavorId }) {
   const cart = useCart()
