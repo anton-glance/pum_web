@@ -2,7 +2,7 @@
 import React from 'react'
 import { Icon, Btn, esValidation, PumImg, useFocusTrap, PrivacyShort } from './ui.jsx'
 import { FLAVORS, SITE, STRINGS, LINKS } from '../lib/data.js'
-import { submitForm, honeypotProps, goToThanks } from '../lib/forms.js'
+import { submitForm, honeypotProps, goToConfirmEmail } from '../lib/forms.js'
 import { useMediaQuery, Parallax } from '../lib/motion.jsx'
 
 export function Cart({ open, cart, onClose, onAdd, onRemove, onDelete, onCheckout }) {
@@ -112,7 +112,7 @@ export function ComingSoon({ open, onClose }) {
     e.preventDefault()
     setError(false)
     const { ok } = await submitForm('waitlist', { email, empresa: e.target.empresa.value })
-    if (ok) { setDone(true); goToThanks() } // → /gracias ("revisa tu correo")
+    if (ok) { setDone(true); goToConfirmEmail() } // → /confirmacion ("revisa tu correo")
     else setError(true)
   }
   React.useEffect(() => { if (!open) { setDone(false); setError(false); setEmail('') } }, [open])

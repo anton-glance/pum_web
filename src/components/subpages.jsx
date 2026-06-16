@@ -5,7 +5,7 @@
 import React from 'react'
 import { Icon, esValidation, PumImg, RichText, inlineMd, PrivacyShort } from './ui.jsx'
 import { PAGES, SITE, STRINGS, LINKS } from '../lib/data.js'
-import { submitForm, honeypotProps, goToThanks } from '../lib/forms.js'
+import { submitForm, honeypotProps, goToConfirmEmail } from '../lib/forms.js'
 
 /* ---- shared building blocks ---- */
 
@@ -44,7 +44,7 @@ function NotifyCard({ data, kind = 'newsletter' }) {
   const onSubmit = async (e) => {
     e.preventDefault()
     const { ok } = await submitForm(kind, { email: e.target.email.value, empresa: e.target.empresa.value })
-    if (ok) { setDone(true); goToThanks() } // → /gracias ("revisa tu correo")
+    if (ok) { setDone(true); goToConfirmEmail() } // → /confirmacion ("revisa tu correo")
   }
   return (
     <div className="notify">

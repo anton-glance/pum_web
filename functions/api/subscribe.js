@@ -3,8 +3,8 @@
 
    Uses Brevo's double opt-in flow: the contact is NOT added to the list until they click
    the confirmation link in the email Brevo sends. That click lands them on redirectionUrl
-   (BREVO_DOI_REDIRECT_URL → https://pum.mx/confirmacion). On submit the visitor is sent to
-   /gracias ("check your inbox"). See functions/api/_lib.js for env/config. */
+   (BREVO_DOI_REDIRECT_URL → https://pum.mx/gracias, the "ya eres del crunch" page). On submit
+   the visitor is sent to /confirmacion ("revisa tu correo"). See _lib.js for env/config. */
 import { isEmail, json, readBody, brevo } from './_lib.js'
 
 export async function onRequestPost({ request, env }) {
@@ -17,7 +17,7 @@ export async function onRequestPost({ request, env }) {
   const apiKey = env.BREVO_API_KEY
   const listId = parseInt(env.BREVO_LIST_ID, 10)
   const templateId = parseInt(env.BREVO_DOI_TEMPLATE_ID, 10)
-  const redirectionUrl = env.BREVO_DOI_REDIRECT_URL || 'https://pum.mx/confirmacion'
+  const redirectionUrl = env.BREVO_DOI_REDIRECT_URL || 'https://pum.mx/gracias'
 
   // Not configured yet (pre-launch, before the owner pastes secrets): simulate success so the
   // form keeps working. Mirrors the project's "empty endpoint = simulate" convention.

@@ -34,10 +34,10 @@ export async function submitForm(kind, fields) {
 }
 
 /* Double opt-in flow: after a successful email-capture submit we send the visitor to the
-   "revisa tu correo" thank-you page (/gracias). Brevo then redirects them to /confirmacion
-   once they click the confirmation link. Guarded for SSR/prerender (no window). */
-export function goToThanks() {
-  if (typeof window !== 'undefined') window.location.assign('/gracias')
+   "revisa tu correo" page (/confirmacion). Brevo then redirects them to /gracias ("ya eres
+   del crunch") once they click the confirmation link. Guarded for SSR/prerender (no window). */
+export function goToConfirmEmail() {
+  if (typeof window !== 'undefined') window.location.assign('/confirmacion')
 }
 
 /* Visually hidden honeypot input props — shared by all three forms. */
