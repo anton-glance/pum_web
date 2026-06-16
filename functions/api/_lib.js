@@ -26,6 +26,17 @@ export async function readBody(request) {
   try { return (await request.json()) || {} } catch { return {} }
 }
 
+/* Signed opt-in token: HMAC-SHA256(email) truncated to 128 bits, hex. Ties an /api/optin
+   link to one email so only the person who received the ack email can use it. Returns ''
+   when no secret is configured (dev/simulated) — the endpoint then skips verification. */
+export async function optinToken(email, secret) {
+  if (!secret) return ''
+  const enc = new TextEncoder()
+  const key = await crypto.subtle.importKey('raw', enc.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign'])
+  const sig = await crypto.subtle.sign('HMAC', key, enc.encode(String(email).trim().toLowerCase()))
+  return [...new Uint8Array(sig)].map((b) => b.toString(16).padStart(2, '0')).join('').slice(0, 32)
+}
+
 /* Thin Brevo REST client. Returns { ok, status, data } — never throws on HTTP errors. */
 export async function brevo(path, apiKey, body, method = 'POST') {
   let res

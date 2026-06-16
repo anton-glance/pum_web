@@ -60,18 +60,27 @@ in `site.json → forms`:
 |---|---|---|---|---|
 | Footer newsletter (home) | `newsletter` | `/api/subscribe` | `functions/api/subscribe.js` | Brevo **double opt-in** → one list |
 | ComingSoon modal · Notify cards | `waitlist` | `/api/subscribe` | same | same (tagged `SOURCE`) |
-| Contacto form | `contact` | `/api/contact` | `functions/api/contact.js` | Upsert contact + email the message to the owner |
+| Contacto form | `contact` | `/api/contact` | `functions/api/contact.js` | Upsert contact (no list) + notify owner + ack email w/ opt-in |
+| Opt-in click (from ack email) | — | `/api/optin` | `functions/api/optin.js` | Signed link → add to list → redirect `/gracias` |
 
-Flow: submit an email → redirect to **`/confirmacion`** ("revisa tu correo") → Brevo sends the
-opt-in email → clicking it confirms and lands the user on **`/gracias`** ("¡ya eres del crunch!",
-Brevo `redirectionUrl`). The contact form stays inline (it's a support message, not a
-subscription). All forms carry a honeypot (`empresa`); the Functions also validate the email and
-silently drop honeypot hits.
+Newsletter/waitlist flow: submit an email → redirect to **`/confirmacion`** ("revisa tu correo")
+→ Brevo sends the opt-in email → clicking it confirms and lands the user on **`/gracias`**
+("¡ya eres del crunch!", Brevo `redirectionUrl`).
+
+Contact flow: submit → inline success; the owner gets the message, and the visitor gets an
+acknowledgement email (Brevo template `BREVO_CONTACT_TEMPLATE_ID`, params `NAME`/`MESSAGE`/
+`OPTIN_URL`). They are **not** subscribed unless they click that email's opt-in button, which hits
+`/api/optin` (HMAC-signed so only the recipient can use it) → adds them to the list → `/gracias`.
+
+All forms carry a honeypot (`empresa`); the Functions validate the email and silently drop hits.
+The two transactional email templates live in [`brevo-templates/`](brevo-templates/) (paste into
+Brevo; logo points at the live `/assets/logos/logo-dark.png`).
 
 **Config (Cloudflare → Pages → pum-snacks → Settings → Variables & Secrets)** — see
 [`.env.example`](.env.example) for the full list. Required: `BREVO_API_KEY` (secret),
 `BREVO_LIST_ID`, `BREVO_DOI_TEMPLATE_ID`. Optional: `BREVO_DOI_REDIRECT_URL`
-(default `https://pum.mx/gracias`), `CONTACT_NOTIFY_EMAIL`, `BREVO_SENDER_EMAIL/NAME`.
+(default `<deployment origin>/gracias`), `BREVO_CONTACT_TEMPLATE_ID` (ack email), `OPTIN_SECRET`
+(signs opt-in links), `CONTACT_NOTIFY_EMAIL`, `BREVO_SENDER_EMAIL/NAME`.
 Until the key + IDs are set the Functions **simulate success** so the forms keep working pre-launch.
 
 Test the Functions locally against the built site: `npm run build && npx wrangler pages dev dist`.

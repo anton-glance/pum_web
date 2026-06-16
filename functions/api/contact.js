@@ -1,12 +1,14 @@
 /* POST /api/contact — contact form (nombre + email + mensaje).
    Body: { nombre, email, mensaje, empresa? }  (empresa = honeypot)
 
-   Two best-effort steps:
-   1. Upsert the person as a Brevo contact (NOMBRE/MENSAJE/SOURCE attributes). No double opt-in
-      here — this is a support enquiry, not a marketing subscription.
-   2. Email the message to the site owner as a transactional email (reply-to = the visitor).
-   The owner notification is the action that decides success. See _lib.js for env/config. */
-import { isEmail, escapeHtml, json, readBody, brevo } from './_lib.js'
+   Three steps:
+   1. Upsert the person as a Brevo contact (NOMBRE/MENSAJE/SOURCE attributes). NO list add —
+      this is a support enquiry; the newsletter opt-in is explicit, via the ack-email button.
+   2. Notify the site owner (transactional email, reply-to = the visitor) — the critical path.
+   3. Send the visitor an acknowledgement email (Brevo template = BREVO_CONTACT_TEMPLATE_ID)
+      with a signed opt-in link (OPTIN_URL → /api/optin → /gracias). Best-effort.
+   Success hinges on the owner notification, so an enquiry is never lost. See _lib.js for config. */
+import { isEmail, escapeHtml, optinToken, json, readBody, brevo } from './_lib.js'
 
 export async function onRequestPost({ request, env }) {
   const body = await readBody(request)
@@ -24,23 +26,21 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: true, simulated: true })
   }
 
-  const listId = parseInt(env.BREVO_LIST_ID, 10)
   const notifyTo = env.CONTACT_NOTIFY_EMAIL || 'hola@pum.mx'
   const senderEmail = env.BREVO_SENDER_EMAIL || 'hola@pum.mx'
   const senderName = env.BREVO_SENDER_NAME || '¡PUM!'
 
-  // 1) Upsert contact (non-fatal — never fail the visitor if this errors).
+  // 1) Upsert contact — attributes only, NO list add (opt-in is explicit, via the ack email).
   const r1 = await brevo('/contacts', apiKey, {
     email,
     updateEnabled: true,
     attributes: { NOMBRE: nombre, MENSAJE: mensaje, SOURCE: 'contacto' },
-    ...(listId ? { listIds: [listId] } : {}),
   })
   if (!r1.ok && !(r1.status === 400 && r1.data && r1.data.code === 'duplicate_parameter')) {
     console.log('[contact] upsert warning', r1.status, JSON.stringify(r1.data))
   }
 
-  // 2) Notify the owner (this is what success hinges on).
+  // 2) Notify the owner — this is what success hinges on (don't lose the enquiry).
   const r2 = await brevo('/smtp/email', apiKey, {
     sender: { email: senderEmail, name: senderName },
     to: [{ email: notifyTo }],
@@ -52,6 +52,22 @@ export async function onRequestPost({ request, env }) {
       `<p><b>Correo:</b> ${escapeHtml(email)}</p>` +
       `<p><b>Mensaje:</b></p><p>${escapeHtml(mensaje).replace(/\n/g, '<br>')}</p>`,
   })
+
+  // 3) Acknowledge to the visitor + invite opt-in (best-effort; needs a template id).
+  const ackTemplateId = parseInt(env.BREVO_CONTACT_TEMPLATE_ID, 10)
+  if (ackTemplateId) {
+    let origin = 'https://pum.mx'
+    try { origin = new URL(request.url).origin } catch { /* keep default */ }
+    const token = await optinToken(email, env.OPTIN_SECRET)
+    const optinUrl = `${origin}/api/optin?e=${encodeURIComponent(email)}${token ? `&t=${token}` : ''}`
+    const r3 = await brevo('/smtp/email', apiKey, {
+      sender: { email: senderEmail, name: senderName },
+      to: [{ email, name: nombre || undefined }],
+      templateId: ackTemplateId,
+      params: { NAME: nombre, MESSAGE: mensaje, OPTIN_URL: optinUrl },
+    })
+    if (!r3.ok) console.log('[contact] ack email error', r3.status, JSON.stringify(r3.data))
+  }
 
   if (r2.ok) return json({ ok: true })
   console.log('[contact] notification error', r2.status, JSON.stringify(r2.data))
