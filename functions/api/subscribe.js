@@ -17,7 +17,12 @@ export async function onRequestPost({ request, env }) {
   const apiKey = env.BREVO_API_KEY
   const listId = parseInt(env.BREVO_LIST_ID, 10)
   const templateId = parseInt(env.BREVO_DOI_TEMPLATE_ID, 10)
-  const redirectionUrl = env.BREVO_DOI_REDIRECT_URL || 'https://pum.mx/gracias'
+  // Where Brevo sends the user after they click the opt-in link. Defaults to THIS deployment's
+  // own origin + /gracias, so a preview deploy confirms to the preview's /gracias and prod to
+  // pum.mx — no per-environment config needed. Override with BREVO_DOI_REDIRECT_URL for a fixed target.
+  let origin = 'https://pum.mx'
+  try { origin = new URL(request.url).origin } catch { /* keep default */ }
+  const redirectionUrl = env.BREVO_DOI_REDIRECT_URL || `${origin}/gracias`
 
   // Not configured yet (pre-launch, before the owner pastes secrets): simulate success so the
   // form keeps working. Mirrors the project's "empty endpoint = simulate" convention.
