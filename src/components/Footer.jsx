@@ -55,6 +55,7 @@ const socialIcon = (name) => {
   if (name === 'Instagram') return <svg {...p}><rect x="2" y="2" width="20" height="20" rx="5.5" /><circle cx="12" cy="12" r="4" /><circle cx="17.6" cy="6.4" r="0.9" fill="currentColor" stroke="none" /></svg>
   if (name === 'YouTube') return <svg {...p}><rect x="2" y="5" width="20" height="14" rx="4.5" /><path d="M10.2 8.8 15.4 12l-5.2 3.2z" fill="currentColor" stroke="none" /></svg>
   if (name === 'TikTok') return <svg {...p}><path d="M15 3.5c.45 2.2 1.9 3.7 4 4v3.1c-1.55 0-3-.5-4-1.35V15.5a5 5 0 1 1-5-5c.34 0 .68.03 1 .1v3.15A2 2 0 1 0 12.5 15.5V3.5H15z" /></svg>
+  if (name === 'Facebook') return <svg {...p}><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
   return null
 }
 
