@@ -146,7 +146,7 @@
       { "label": "Preguntas", "linkKey": "faq" },
       { "label": "Contacto", "linkKey": "contacto" }
     ],
-    "socialLinks": ["Instagram", "TikTok", "YouTube"],
+    "socialLinks": ["Instagram", "TikTok", "YouTube", "Facebook"],
     "contactPrefix": "Dudas: ",
     "contactWhatsapp": " · WhatsApp: ",
     "legalLinks": [
